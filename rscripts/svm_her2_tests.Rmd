@@ -14,6 +14,7 @@ require(readr)
 require(mlr)
 require(VIM)
 require(e1071)
+require(ggplot2)
 ```
 
 ## Load HER2 Clinical data
@@ -41,6 +42,8 @@ pos_her2 <- gsub("\\.","-", rownames(clinical_data[which(clinical_data$her2_stat
 
 neg_her2 <- gsub("\\.","-", rownames(clinical_data[which(clinical_data$her2_status_by_ihc == "Negative"),]))
 
+brca_ids <- scan("../../cancerproject/proj_090817/tumor_IDs/tumorBRCA.txt", what = character(),
+                 sep = "\t")
 ```
 
 ```{r}
@@ -107,9 +110,9 @@ write.table(total_her2_expr[-which(row.names(total_her2_expr) %in% training.ids)
 
 total_her2_expr$her2_status_by_ihc.numeric <- as.factor(total_her2_expr$her2_status_by_ihc == "Positive")
 
-temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('MED1', 'STARD3', 'her2_status_by_ihc.numeric')))]
+temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('MED1', 'STARD3', 'her2_status_by_ihc')))]
 
-task <- makeClassifTask(data = temp, target = "her2_status_by_ihc.numeric")
+task <- makeClassifTask(data = temp, target = "her2_status_by_ihc")
 
 svm.lrnr <- makeLearner("classif.svm", kernel = "linear")
 
@@ -141,7 +144,9 @@ svm.pred <- predict(svm.model, task = task, subset = which(!(row.names(temp) %in
 
 performance(svm.pred, measures = list(mmce, acc))
 
-plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "radial"), task = task)
+plt.lrnr = plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "radial"), task = task)
+
+ggsave("../graphs/MED1vSTARD3.pdf", plot = plt.lrnr, device = "pdf")
 
 #svm.model <- svm(her2_status_by_ihc.numeric ~ ., data = total_her2_expr[training.ids, c('SOD2', 'FOS', 'ANXA1', 'BCL6', 'EGR1', 'her2_status_by_ihc.numeric') ], cost = 100, gamma = 1)
 ```
@@ -183,15 +188,17 @@ svm.pred <- predict(svm.model, task = task, subset = which(!(row.names(temp) %in
 
 performance(svm.pred, measures = list(mmce, acc))
 
-plotLearnerPrediction(learner = svm.lrnr, task = task)
+plt.lrnr = plotLearnerPrediction(learner = svm.lrnr, task = task)
+
+ggsave("../graphs/GRB7vSTARD3.pdf", plot = plt.lrnr, device = "pdf")
 ```
 
 ## Test 3: MED1 vs. GRB7
 
 ```{r}
-temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('GRB7', 'MED1', 'her2_status_by_ihc.numeric')))]
+temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('GRB7', 'MED1', 'her2_status_by_ihc')))]
 
-task <- makeClassifTask(data = temp, target = "her2_status_by_ihc.numeric")
+task <- makeClassifTask(data = temp, target = "her2_status_by_ihc")
 
 svm.lrnr <- makeLearner("classif.svm", kernel = "linear")
 
@@ -223,15 +230,17 @@ svm.pred <- predict(svm.model, task = task, subset = which(!(row.names(temp) %in
 
 performance(svm.pred, measures = list(mmce, acc))
 
-plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "radial"), task = task)
+plt.lrnr = plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "radial"), task = task)
+
+ggsave("../graphs/GRB7vMED1.pdf", plot = plt.lrnr, device = "pdf")
 ```
 
 ## Test 4: ERBB2 vs. FGFR1
 
 ```{r}
-temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('ERBB2', 'FGFR1', 'her2_status_by_ihc.numeric')))]
+temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('ERBB2', 'FGFR1', 'her2_status_by_ihc')))]
 
-task <- makeClassifTask(data = temp, target = "her2_status_by_ihc.numeric")
+task <- makeClassifTask(data = temp, target = "her2_status_by_ihc")
 
 svm.lrnr <- makeLearner("classif.svm", kernel = "linear")
 
@@ -263,15 +272,17 @@ svm.pred <- predict(svm.model, task = task, subset = which(!(row.names(temp) %in
 
 performance(svm.pred, measures = list(mmce, acc))
 
-plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "radial"), task = task)
+plt.lrnr = plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "radial"), task = task)
+
+ggsave("../graphs/ERBB2vFGFR1.pdf", plot = plt.lrnr, device = "pdf")
 ```
 
 ## Test 5: ERBB2 vs. MED1
 
 ```{r}
-temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('ERBB2', 'MED1', 'her2_status_by_ihc.numeric')))]
+temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('ERBB2', 'MED1', 'her2_status_by_ihc')))]
 
-task <- makeClassifTask(data = temp, target = "her2_status_by_ihc.numeric")
+task <- makeClassifTask(data = temp, target = "her2_status_by_ihc")
 
 svm.lrnr <- makeLearner("classif.svm", kernel = "linear")
 
@@ -301,17 +312,16 @@ svm.model <- train(svm.lrnr, task, subset = which(row.names(temp) %in% training.
 
 svm.pred <- predict(svm.model, task = task, subset = which(!(row.names(temp) %in% training.ids)))
 
-performance(svm.pred, measures = list(mmce, acc))
+plt.lrnr = plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "radial"), task = task)
 
-plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "radial"), task = task)
+ggsave("../graphs/ERBB2vMED1.pdf", plot = plt.lrnr, device = "pdf")
 ```
-
 ## Test 6: ERBB2 vs. GRB7
 
 ```{r}
-temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('ERBB2', 'GRB7', 'her2_status_by_ihc.numeric')))]
+temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('ERBB2', 'GRB7', 'her2_status_by_ihc')))]
 
-task <- makeClassifTask(data = temp, target = "her2_status_by_ihc.numeric")
+task <- makeClassifTask(data = temp, target = "her2_status_by_ihc")
 
 svm.lrnr <- makeLearner("classif.svm", kernel = "linear")
 
@@ -343,7 +353,51 @@ svm.pred <- predict(svm.model, task = task, subset = which(!(row.names(temp) %in
 
 performance(svm.pred, measures = list(mmce, acc))
 
-plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "radial"), task = task)
+plt.lrnr = plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "radial"), task = task)
+
+ggsave("../graphs/ERBB2vGRB7.pdf", plot = plt.lrnr, device = "pdf")
+```
+
+## Test 7: All
+
+```{r}
+temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('ERBB2', 'GRB7', 'MED1', 'FGFR1', 'STARD3', 'her2_status_by_ihc')))]
+
+task <- makeClassifTask(data = temp, target = "her2_status_by_ihc")
+
+svm.lrnr <- makeLearner("classif.svm", kernel = "linear")
+
+svm.model <- train(svm.lrnr, task, subset = which(row.names(temp) %in% training.ids))
+
+svm.pred <- predict(svm.model, task = task, subset = which(!(row.names(temp) %in% training.ids)))
+
+performance(svm.pred, measures = list(mmce, acc))
+
+plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "linear"), task = task)
+
+
+svm.lrnr <- makeLearner("classif.svm", kernel = "polynomial")
+
+svm.model <- train(svm.lrnr, task, subset = which(row.names(temp) %in% training.ids))
+
+svm.pred <- predict(svm.model, task = task, subset = which(!(row.names(temp) %in% training.ids)))
+
+performance(svm.pred, measures = list(mmce, acc))
+
+plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "polynomial"), task = task)
+
+
+svm.lrnr <- makeLearner("classif.svm", kernel = "radial")
+
+svm.model <- train(svm.lrnr, task, subset = which(row.names(temp) %in% training.ids))
+
+svm.pred <- predict(svm.model, task = task, subset = which(!(row.names(temp) %in% training.ids)))
+
+performance(svm.pred, measures = list(mmce, acc))
+
+plt.lrnr = plotLearnerPrediction(learner = makeLearner("classif.svm", kernel = "radial"), task = task)
+
+ggsave("../graphs/all.pdf", plot = plt.lrnr, device = "pdf")
 ```
 
 ## Grab misclassified
