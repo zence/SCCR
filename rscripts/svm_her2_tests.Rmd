@@ -1,8 +1,9 @@
 ---
 title: "SVM-HER2 tests"
 output: html_document
-genes: 'ERBB2', 'GRB7', 'MED1', 'FGFR1', 'STARD3'
 ---
+
+#### genes: 'ERBB2', 'GRB7', 'MED1', 'FGFR1', 'STARD3'
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
