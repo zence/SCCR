@@ -510,21 +510,164 @@ task <- makeClassifTask(data = temp, target = "her2_status_by_ihc")
 
 rdesc <- makeResampleDesc("CV", iters = 10L)
 
+#discrete_ps <- makeParamSet(
+#  makeDiscreteParam("cost", values = c(0.5, 1.0, 1.5, 2.0, 2.5, 3.0)),
+#  makeDiscreteParam("kernel", values = c("linear", "polynomial", "radial"))
+#)
+
+#ctrl <- makeTuneControlGrid()
+#res <- tuneParams(makeLearner("classif.svm", predict.type = "prob"), task = task, resampling = rdesc, par.set = discrete_ps, control = ctrl)
+
+
+r <- resample(makeLearner("classif.svm", kernel = "linear", predict.type = "prob"), task, rdesc, measures = list(mmce, acc, auc))
+#sink(file("../results/ERB22_GRB7_results.txt", open = "w"), type = "output")
+print(r$aggr)
+#sink(type = "output")
+#sink()
+
+misclassied.ids <- c()
+
+for (i in 1:nrow(temp)){
+  mini.predict <- r$pred$data[which(r$pred$data$id == i & r$pred$data$truth != r$pred$data$response),]
+  #print(mini.predict)
+  if (nrow(mini.predict) > 0){
+    misclassied.ids <- c(misclassied.ids, rownames(temp[i,]))
+  }
+}
+
+temp$misclassied <- rownames(temp) %in% misclassied.ids 
+#sink(file("../results/ERB22_GRB7_results.txt", open = "w"), type = "output")
+print(r$aggr)
+#sink(type = "output")
+#sink()
+
+gscat <- ggplot(data = temp, aes(x = ERBB2, y = GRB7, color = her2_status_by_ihc, shape = misclassied,
+                                 alpha = her2_status_by_ihc))
+ggscat <- gscat + geom_point() +
+  scale_color_manual(values = c(Negative = "#DF013A", Positive = "#31B404")) + 
+  scale_alpha_manual(guide = 'none', values = list(Negative = 0.5, Positive = 1)) +
+  guides(shape = guide_legend(title = "Misclassified"), color = guide_legend(title = "her2 status")) +
+  labs(title = "ERBB2 and GRB7 predictions") +
+  theme_bw()
+
+ggscat
+
+ggsave("../graphs/scat_ERBB2_GRB7.pdf", plot = ggscat, device = "pdf")
+
+write.table(misclassied.ids, file = "../results/misclassified_ERBB2_GRB7.tsv", 
+            quote = F, sep = "\t", row.names = F, col.names = F)
+```
+
+
+## Same thing with ERBB2 and FGFR1
+
+```{r}
+temp <- total_her2_expr[, -which(!(names(total_her2_expr) %in% c('ERBB2', 'FGFR1', 'her2_status_by_ihc')))]
+
+task <- makeClassifTask(data = temp, target = "her2_status_by_ihc")
+
+rdesc <- makeResampleDesc("CV", iters = 10L)
+
 discrete_ps <- makeParamSet(
   makeDiscreteParam("cost", values = c(0.5, 1.0, 1.5, 2.0, 2.5, 3.0)),
   makeDiscreteParam("kernel", values = c("linear", "polynomial", "radial"))
 )
 
-ctrl <- makeTuneControlGrid()
-res <- tuneParams(makeLearner("classif.svm", predict.type = "prob"), task = task, resampling = rdesc, par.set = discrete_ps, control = ctrl)
+#ctrl <- makeTuneControlGrid()
+#res <- tuneParams(makeLearner("classif.svm", predict.type = "prob"), task = task, resampling = rdesc, par.set = discrete_ps, control = ctrl)
 
 
-r <- resample(makeLearner("classif.svm", predict.type = "prob"), task, rdesc, measures = list(mmce, acc, auc))
-sink(file("../results/ERB22_GRB7_results.txt", open = "w"), type = "output")
+r <- resample(makeLearner("classif.svm", kernel = "linear", predict.type = "prob"), task, rdesc, measures = list(mmce, acc, auc))
+
+
+misclassied.ids <- c()
+
+for (i in 1:nrow(temp)){
+  mini.predict <- r$pred$data[which(r$pred$data$id == i & r$pred$data$truth != r$pred$data$response),]
+  #print(mini.predict)
+  if (nrow(mini.predict) > 0){
+    misclassied.ids <- c(misclassied.ids, rownames(temp[i,]))
+  }
+}
+
+temp$misclassied <- rownames(temp) %in% misclassied.ids 
+#sink(file("../results/ERB22_GRB7_results.txt", open = "w"), type = "output")
 print(r$aggr)
-sink(type = "output")
-sink()
+#sink(type = "output")
+#sink()
+
+gscat <- ggplot(data = temp, aes(x = ERBB2, y = FGFR1, color = her2_status_by_ihc, shape = misclassied,
+                                 alpha = her2_status_by_ihc))
+ggscat <- gscat + geom_point() +
+  scale_color_manual(values = c(Negative = "#DF013A", Positive = "#31B404")) + 
+  scale_alpha_manual(guide = 'none', values = list(Negative = 0.5, Positive = 1)) +
+  guides(shape = guide_legend(title = "Misclassified"), color = guide_legend(title = "her2 status")) +
+  labs(title = "ERBB2 and FGFR1 predictions") +
+  theme_bw()
+
+ggscat
+
+ggsave("../graphs/scat_ERBB2_FGFR1.pdf", plot = ggscat, device = "pdf")
+
+write.table(misclassied.ids, file = "../results/misclassified_ERBB2_FGFR1.tsv",  
+            quote = F, sep = "\t", row.names = F, col.names = F)
 ```
+
+## Compare misclassified btween ERBB2-FGFR1 and ERBB2-GRB7
+
+```{r}
+misclassied.FGFR <- scan("../results/misclassified_ERBB2_FGFR1.tsv", what = character())
+
+misclassied.GRB <- scan("../results/misclassified_ERBB2_GRB7.tsv", what = character())
+
+sum(!(misclassied.GRB %in% misclassied.FGFR))
+sum(!(misclassied.FGFR %in% misclassied.GRB))
+
+misclassied.All <- scan("../results/misclassified_All.tsv", what = character())
+
+sum(!(misclassied.GRB %in% misclassied.All))
+sum(!(misclassied.All %in% misclassied.GRB))
+
+setdiff(misclassied.All, misclassied.GRB)
+
+total_her2_expr$all.genes.misclassied <- rownames(total_her2_expr) %in% misclassied.All
+
+total_her2_expr$misclassied.status <- ifelse(rownames(total_her2_expr) %in% misclassied.All,
+                                             ifelse(rownames(total_her2_expr) %in% misclassied.FGFR,
+                                                    "Shared", "All Genes"),
+                                             ifelse(rownames(total_her2_expr) %in% misclassied.FGFR,
+                                                    "ERBB2-FGFR1", "None"))
+
+total_her2_expr
+
+gscat <- ggplot(data = total_her2_expr, aes(x = ERBB2, y = FGFR1, color = her2_status_by_ihc, shape = all.genes.misclassied,
+                                 alpha = her2_status_by_ihc))
+ggscat <- gscat + geom_point() +
+  scale_color_manual(values = c(Negative = "#DF013A", Positive = "#31B404")) + 
+  scale_alpha_manual(guide = 'none', values = list(Negative = 0.5, Positive = 1)) +
+  guides(shape = guide_legend(title = "Misclassified"), color = guide_legend(title = "her2 status")) +
+  labs(title = "All genes predictions") + theme_bw()
+
+ggscat
+
+ggsave("../graphs/scat_All.pdf", plot = ggscat, device = "pdf")
+
+gscat <- ggplot(data = total_her2_expr, aes(x = ERBB2, y = FGFR1, color = her2_status_by_ihc, shape = misclassied.status,
+                                 alpha = misclassied.status))
+ggscat <- gscat + geom_point() +
+  scale_color_manual(values = c(Negative = "#DF013A", Positive = "#31B404")) + 
+  scale_alpha_manual(guide = 'none', values = list(None = 0.15, Shared = 0.7, `All Genes` = 1, `ERBB2-FGFR1` = 1)) +
+  scale_shape_manual(values = c(None = 16, Shared = 11, `All Genes` = 15, `ERBB2-FGFR1` = 17)) +
+  guides(shape = guide_legend(title = "Misclassified"), color = guide_legend(title = "her2 status")) +
+  labs(title = "Misclassified comparison") + theme_bw()
+
+ggscat
+
+ggsave("../graphs/scat_misclassifications.pdf", plot = ggscat, device = "pdf")
+```
+
+
+
 ## Same thing with all
 
 ```{r}
