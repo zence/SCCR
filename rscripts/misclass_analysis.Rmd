@@ -1,0 +1,97 @@
+---
+title: "Misclassification Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# PYTHON:-convert file so we only load what is needed
+```{python}
+import gzip as gz
+import codecs
+import os
+
+os.chdir("/Users/zacharyence/labWork/SCCR/rscripts")
+
+out_f = open("../data/genes_05_14_2018.tsv", 'w')
+
+with gz.open("../../cancerproject/proj_090817/data/GSM1536837_06_01_15_TCGA_24.tumor_Rsubread_TPM.txt.gz", 'r') as in_f:
+    out_f.write(codecs.decode(in_f.readline()))
+    for line in in_f:
+        line = codecs.decode(line)
+        if line.startswith("EGFR") or line.startswith("IGF1R") or line.startswith("KIT") and not line.startswith("KITLG"):
+            out_f.write(line)
+
+out_f.close()
+```
+
+# R
+
+## Load libraries
+
+```{r}
+require(readr)
+require(ggplot2)
+```
+
+## Load gene expression data
+
+```{r}
+gene.expr <- as.data.frame(read_tsv("../data/genes_05_14_2018.tsv"))
+
+rownames(gene.expr) <- gene.expr$X1
+
+gene.expr$X1 <- NULL
+
+gene.expr <- as.data.frame(t(gene.expr))
+
+gene.expr <- data.frame(Sample = rownames(gene.expr), EGFR = log2(gene.expr$EGFR + 1),
+                        IGF1R = log2(gene.expr$IGF1R + 1),
+                        KIT = log2(gene.expr$KIT + 1))
+
+misclassied.ids <- scan("../results/misclassified_All.tsv", what = character())
+pos.ids <- scan("../data/her2_positive_IDs.tsv", what = character())
+misclassied.pos.ids <- pos.ids[pos.ids %in% misclassied.ids]
+neg.ids <- scan("../data/her2_negative_IDs.tsv", what = character())
+correct.neg.ids <- neg.ids[!(neg.ids %in% misclassied.ids)]
+
+sub.gene.expr <- gene.expr[which(gene.expr$Sample %in% pos.ids | gene.expr$Sample %in% neg.ids),]
+
+sub.gene.expr$her2_status_by_ihc <- ifelse(sub.gene.expr$Sample %in% pos.ids, "Positive", "Negative")
+
+sub.gene.expr
+
+for (i in 2:(ncol(gene.expr) - 1)){
+  for (j in (i + 1):ncol(gene.expr)){
+    gscat <- ggplot(data = sub.gene.expr, aes(x = sub.gene.expr[,i], y = sub.gene.expr[,j], 
+                                              color = her2_status_by_ihc, alpha = her2_status_by_ihc))
+    ggscat <- gscat + geom_point() +
+      labs(title = "All samples", x = names(gene.expr)[i], y = names(gene.expr)[j]) +
+      scale_color_manual(values = c(Negative = "#DF013A", Positive = "#31B404")) +
+      scale_alpha_manual(values = c(Negative = 0.5, Positive = 1)) +
+      xlim(0, 13) + ylim(0, 13)
+    
+    print(ggscat)
+  }
+}
+
+sub.gene.expr <- gene.expr[which(gene.expr$Sample %in% misclassied.pos.ids | gene.expr$Sample %in% correct.neg.ids),]
+
+sub.gene.expr$her2_status_by_ihc <- ifelse(sub.gene.expr$Sample %in% misclassied.pos.ids, "Positive", "Negative")
+
+for (i in 2:(ncol(gene.expr) - 1)){
+  for (j in (i + 1):ncol(gene.expr)){
+    gscat <- ggplot(data = sub.gene.expr, aes(x = sub.gene.expr[,i], y = sub.gene.expr[,j], 
+                                              color = her2_status_by_ihc, alpha = her2_status_by_ihc))
+    ggscat <- gscat + geom_point() +
+      labs(title = "Subsamples", x = names(gene.expr)[i], y = names(gene.expr)[j]) +
+      scale_color_manual(values = c(Negative = "#DF013A", Positive = "#31B404")) +
+      scale_alpha_manual(values = c(Negative = 0.5, Positive = 1)) +
+      xlim(0, 13) + ylim(0, 13)
+    
+    print(ggscat)
+  }
+}
+```

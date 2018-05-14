@@ -664,6 +664,18 @@ ggscat <- gscat + geom_point() +
 ggscat
 
 ggsave("../graphs/scat_misclassifications.pdf", plot = ggscat, device = "pdf")
+
+write.table(rownames(total_her2_expr[which(total_her2_expr$misclassied.status == "All Genes"),]),
+                    file = "../results/unique_misclassified_FGFR.tsv", sep = "\t", row.names = F, col.names = F)
+
+write.table(rownames(total_her2_expr[which(total_her2_expr$misclassied.status == "ERBB2-FGFR1"),]),
+                    file = "../results/unique_misclassified_FGFR.tsv", sep = "\t", row.names = F, col.names = F)
+
+write.table(rownames(total_her2_expr[which(total_her2_expr$misclassied.status == "Shared"),]),
+                    file = "../results/unique_misclassified_FGFR.tsv", sep = "\t", row.names = F, col.names = F)
+
+nrow(total_her2_expr[which(total_her2_expr$misclassied.status == "All Genes"),])
+length(misclassied.FGFR)
 ```
 
 
