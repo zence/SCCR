@@ -8,6 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # PYTHON:-convert file so we only load what is needed
+
 ```{python}
 import gzip as gz
 import codecs
@@ -25,6 +26,18 @@ with gz.open("../../cancerproject/proj_090817/data/GSM1536837_06_01_15_TCGA_24.t
             out_f.write(line)
 
 out_f.close()
+```
+
+## Experiment with sklearn and lime
+```{python, engine.path = '/anaconda/bin/python'}
+import sklearn
+import lime
+import pandas as pd
+import os
+
+os.chdir("/Users/zacharyence/labWork/SCCR/python")
+
+
 ```
 
 # R
