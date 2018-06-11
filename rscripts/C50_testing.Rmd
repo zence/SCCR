@@ -1,0 +1,134 @@
+---
+title: "C50 testing"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Required packages
+
+```{r}
+require(readr)
+require(caret)
+require(C50)
+require(VIM)
+require(ggplot2)
+require(ROCR)
+```
+
+## Load HER2 Clinical data
+
+```{r}
+clinical_data <- as.data.frame(read_tsv("../data/her2_Clinical_Data.tsv"))
+
+make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
+                                  is.na(x) <- x%in%c("[Not Available]","[Not Evaluated]"); x} else {
+                                  x}
+clinical_data <- as.data.frame(lapply(clinical_data, make.true.NA))
+
+# aggr() shows how much is missing, and there is a lot missing
+aggr(clinical_data[, 4:200 ])
+
+row.names(clinical_data) <- clinical_data$X1
+
+clinical_data$X1 <- NULL
+
+clinical_data <- as.data.frame(t(clinical_data))
+
+aggr(clinical_data)
+
+pos_her2 <- gsub("\\.","-", rownames(clinical_data[which(clinical_data$her2_status_by_ihc == "Positive"),]))
+
+neg_her2 <- gsub("\\.","-", rownames(clinical_data[which(clinical_data$her2_status_by_ihc == "Negative"),]))
+
+brca_ids <- scan("../../cancerproject/proj_090817/tumor_IDs/tumorBRCA.txt", what = character(),
+                 sep = "\t")
+```
+
+## Load gene expression data
+
+```{r}
+#gene_expr_data <- as.data.frame(read_tsv("../../cancerproject/proj_090817/data/GSM1536837_06_01_15_TCGA_24.tumor_Rsubread_FeatureCounts.txt.gz"))
+
+gene_expr_data <- as.data.frame(read_tsv("../data/her2_genes_TPM.txt"))
+
+rownames(gene_expr_data) <- gene_expr_data$X1
+
+gene_expr_data$X1 <- NULL
+
+gene_expr_data <- as.data.frame(t(gene_expr_data))
+
+gene_expr_data
+
+ids <- rownames(gene_expr_data)
+
+gene_expr_data <- as.data.frame(sapply(gene_expr_data, function(x){log2(x + 1)}))
+
+rownames(gene_expr_data) <- ids
+
+gene_expr_data
+
+pos_her2_expr <- gene_expr_data[which(rownames(gene_expr_data) %in% pos_her2),]
+
+pos_her2_expr$her2_status_by_ihc <- "Positive"
+
+neg_her2_expr <- gene_expr_data[which(rownames(gene_expr_data) %in% neg_her2),]
+
+neg_her2_expr$her2_status_by_ihc <- "Negative"
+
+total_her2_expr <- rbind(pos_her2_expr, neg_her2_expr)
+
+colnames(total_her2_expr) <- make.names(colnames(total_her2_expr))
+
+partition <- createDataPartition(total_her2_expr$her2_status_by_ihc, p = 0.75, list = F)
+
+training.her2_expression <- total_her2_expr[partition, ]
+
+#training.her2_expression <- sample(seq_len(nrow(total_her2_expr)), nrow(total_her2_expr) / 2)
+
+```
+
+## Run C50
+
+```{r}
+results <- C5.0(subset(total_her2_expr, select = -c(her2_status_by_ihc)), as.factor(total_her2_expr$her2_status_by_ihc),
+                trials = 20, rules = T)
+summary(results)
+```
+
+## The Supercomputer script
+
+```{r}
+total_her2_expr <- as.data.frame(read_tsv("../data/all_genes_TPM.tsv"))
+
+total_her2_data <- as.matrix(sapply(subset(total_her2_expr, select = -c(her2_status_by_ihc, Sample)), as.numeric))
+target.total_her2 <- as.factor(total_her2_expr$her2_status_by_ihc)
+
+colnames(total_her2_data) <- make.names(colnames(total_her2_data))
+
+# colnames(total_her2_data)[13000:ncol(total_her2_data)]
+```
+
+```{r}
+partition <- createDataPartition(target.total_her2, p = 0.66, list = F)
+# print(partition)
+
+print("Pre c50")
+results <- C5.0(total_her2_data[partition, ], target.total_her2[partition], trials = 1, rules = F)
+summary(results)
+predictions <- predict(results, total_her2_data[-partition, ])
+print(sum((as.numeric(predictions) - as.numeric(target.total_her2[-partition])) == 0) / length(predictions))
+
+predictions <- predict(results, total_her2_data[-partition, ], type = "prob")
+print(mean(predictions[,1] > predictions[,2]))
+
+pred <- prediction(predictions[,2], target.total_her2[-partition])
+auc.tmp <- performance(pred, "auc")
+auc <- as.numeric(auc.tmp@y.values)
+auc
+
+#pdf("../graphs/c50_tree.pdf")
+#plot(results)
+#dev.off()
+```

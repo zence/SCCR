@@ -1,0 +1,414 @@
+---
+title: "SVM vs. RF"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load packages
+
+```{r}
+require(readr)
+require(C50)
+require(caret)
+require(ROCR)
+require(ggplot2)
+```
+
+
+
+# Analyze SVM data
+
+### Load SVM data
+
+```{r}
+svm_her2_expr <- as.data.frame(read_tsv("../results/svm_genes_TPM.tsv.gz"))
+misclassied.svm <- svm_her2_expr$Sample[which(svm_her2_expr$SVM_classified == "Misclassified")]
+```
+
+### Separate her2 positivity
+
+```{r}
+svm.her2_pos <- svm_her2_expr[which(svm_her2_expr$her2_status_by_ihc == "Positive"),]
+svm.her2_neg <- svm_her2_expr[which(svm_her2_expr$her2_status_by_ihc == "Negative"),]
+rm(svm_her2_expr)
+```
+
+## Positive
+
+### Run C50 analysis
+
+```{r}
+pos_her2_data <- as.matrix(sapply(subset(svm.her2_pos, select = -c(her2_status_by_ihc, Sample, SVM_classified)), as.numeric))
+target.pos_her2 <- as.factor(svm.her2_pos$SVM_classified)
+
+colnames(pos_her2_data) <- make.names(colnames(pos_her2_data))
+
+partition <- createDataPartition(target.pos_her2, p = 0.66, list = F)
+# print(partition)
+
+print("Pre c50")
+sink("../results/positive_svm_analysis.txt")
+results <- C5.0(pos_her2_data[partition, ], target.pos_her2[partition], trials = 1, rules = T)
+summary(results)
+predictions <- predict(results, pos_her2_data[-partition, ])
+print(sum((as.numeric(predictions) - as.numeric(target.pos_her2[-partition])) == 0) / length(predictions))
+
+predictions <- predict(results, pos_her2_data[-partition, ], type = "prob")
+print(mean(predictions[,1] > predictions[,2]))
+
+pred <- prediction(predictions[,2], target.pos_her2[-partition])
+auc.tmp <- performance(pred, "auc")
+auc <- as.numeric(auc.tmp@y.values)
+print("AUC:")
+auc
+
+svm.tree <- C5.0(pos_her2_data[partition, ], target.pos_her2[partition], trials = 1, rules = F)
+summary(svm.tree)
+sink()
+```
+
+```{r}
+neg_her2_data <- as.matrix(sapply(subset(svm.her2_neg, select = -c(her2_status_by_ihc, Sample, SVM_classified)), as.numeric))
+target.neg_her2 <- as.factor(svm.her2_neg$SVM_classified)
+
+colnames(neg_her2_data) <- make.names(colnames(neg_her2_data))
+
+partition <- createDataPartition(target.neg_her2, p = 0.66, list = F)
+# print(partition)
+
+print("Pre c50")
+sink("../results/negative_svm_analysis.txt")
+results <- C5.0(neg_her2_data[partition, ], target.neg_her2[partition], trials = 1, rules = T)
+summary(results)
+predictions <- predict(results, neg_her2_data[-partition, ])
+print(sum((as.numeric(predictions) - as.numeric(target.neg_her2[-partition])) == 0) / length(predictions))
+
+predictions <- predict(results, neg_her2_data[-partition, ], type = "prob")
+print(mean(predictions[,1] > predictions[,2]))
+
+pred <- prediction(predictions[,2], target.neg_her2[-partition])
+
+svm.tree <- C5.0(neg_her2_data[partition, ], target.neg_her2[partition], trials = 1, rules = F)
+summary(svm.tree)
+sink()
+#auc.tmp <- performance(pred, "auc")
+#auc <- as.numeric(auc.tmp@y.values)
+#auc
+```
+
+### Clean up
+
+```{r}
+
+rm(list = setdiff(ls(), "misclassied.svm"))
+```
+
+# Random Forest
+
+### Load rf data
+
+```{r}
+rf_her2_expr <- as.data.frame(read_tsv("../results/rf_genes_TPM.tsv.gz"))
+misclassied.rf <- rf_her2_expr$Sample[which(rf_her2_expr$RF_classified == "Misclassified")]
+```
+
+### Separate her2 positivity
+
+```{r}
+rf.her2_pos <- rf_her2_expr[which(rf_her2_expr$her2_status_by_ihc == "Positive"),]
+rf.her2_neg <- rf_her2_expr[which(rf_her2_expr$her2_status_by_ihc == "Negative"),]
+rm(rf_her2_expr)
+```
+
+## Positive
+
+### Run C50 analysis
+
+```{r}
+pos_her2_data <- as.matrix(sapply(subset(rf.her2_pos, select = -c(her2_status_by_ihc, Sample, RF_classified)), as.numeric))
+target.pos_her2 <- as.factor(rf.her2_pos$RF_classified)
+
+colnames(pos_her2_data) <- make.names(colnames(pos_her2_data))
+
+partition <- createDataPartition(target.pos_her2, p = 0.66, list = F)
+# print(partition)
+
+print("Pre c50")
+sink("../results/positive_rf_analysis.txt")
+results <- C5.0(pos_her2_data[partition, ], target.pos_her2[partition], trials = 1, rules = T)
+summary(results)
+predictions <- predict(results, pos_her2_data[-partition, ])
+print(sum((as.numeric(predictions) - as.numeric(target.pos_her2[-partition])) == 0) / length(predictions))
+
+predictions <- predict(results, pos_her2_data[-partition, ], type = "prob")
+print(mean(predictions[,1] > predictions[,2]))
+
+pred <- prediction(predictions[,2], target.pos_her2[-partition])
+auc.tmp <- performance(pred, "auc")
+auc <- as.numeric(auc.tmp@y.values)
+print("AUC:")
+auc
+
+rf.tree <- C5.0(pos_her2_data[partition, ], target.pos_her2[partition], trials = 1, rules = F)
+summary(rf.tree)
+sink()
+```
+
+```{r}
+neg_her2_data <- as.matrix(sapply(subset(rf.her2_neg, select = -c(her2_status_by_ihc, Sample, RF_classified)), as.numeric))
+target.neg_her2 <- as.factor(rf.her2_neg$RF_classified)
+
+colnames(neg_her2_data) <- make.names(colnames(neg_her2_data))
+
+partition <- createDataPartition(target.neg_her2, p = 0.66, list = F)
+# print(partition)
+
+print("Pre c50")
+sink("../results/negative_rf_analysis.txt")
+results <- C5.0(neg_her2_data[partition, ], target.neg_her2[partition], trials = 1, rules = T)
+summary(results)
+predictions <- predict(results, neg_her2_data[-partition, ])
+print(sum((as.numeric(predictions) - as.numeric(target.neg_her2[-partition])) == 0) / length(predictions))
+
+predictions <- predict(results, neg_her2_data[-partition, ], type = "prob")
+print(mean(predictions[,1] > predictions[,2]))
+
+pred <- prediction(predictions[,2], target.neg_her2[-partition])
+auc.tmp <- performance(pred, "auc")
+auc <- as.numeric(auc.tmp@y.values)
+print("AUC:")
+auc
+
+rf.tree <- C5.0(neg_her2_data[partition, ], target.neg_her2[partition], trials = 1, rules = F)
+summary(rf.tree)
+sink()
+```
+
+# Analyze misclassified ids
+
+```{r}
+rm(list = setdiff(ls(), c("misclassied.rf", "misclassied.svm")))
+
+both.misclassied <- intersect(misclassied.rf, misclassied.svm)
+
+total_her2_expr <- as.data.frame(read_tsv("../data/all_genes_TPM.tsv"))
+
+tot.numerics <- unlist(lapply(total_her2_expr, is.numeric))
+
+total_her2_expr[ , tot.numerics] <- scale(total_her2_expr[ , tot.numerics])
+
+total_her2_expr
+
+total_her2_expr <- total_her2_expr[which(total_her2_expr$Sample %in% misclassied.rf | total_her2_expr$Sample %in% misclassied.svm),]
+
+total_her2_expr$Classification <- ifelse(total_her2_expr$Sample %in% both.misclassied,
+                                         "Both",
+                                         ifelse(total_her2_expr$Sample %in% misclassied.rf,
+                                                "RF", "SVM"))
+
+total_her2_expr[,c('Sample', 'Classification')]
+
+target.her2 <- as.factor(total_her2_expr$Classification)
+
+data.her2 <- subset(total_her2_expr, select = -c(Sample, Classification, her2_status_by_ihc))
+
+partition <- createDataPartition(target.her2, p = 0.8, list = F)
+
+results <- C5.0(data.her2[partition, ], target.her2[partition], trials = 10, rules = F)
+summary(results)
+
+gscat <- ggplot(data = total_her2_expr, aes(x = ERBB2, y = LOC644100, color = Classification, shape = her2_status_by_ihc))
+
+ggscat <- gscat + geom_point() +
+  scale_color_manual(values = c(SVM = "#DF013A", RF = "blue", Both = "#31B404")) + 
+  guides(shape = guide_legend(title = "Misclassified"), color = guide_legend(title = "her2 status")) +
+  labs(title = "ERBB2 and LOC644100 predictions") +
+  theme_bw()
+
+ggscat
+
+#plot(results)
+```
+
+
+```{r}
+gscat <- ggplot(data = total_her2_expr, aes(x = AA06, y = CAMP, color = Classification, shape = her2_status_by_ihc))
+
+ggscat <- gscat + geom_point() +
+  scale_color_manual(values = c(SVM = "#DF013A", RF = "blue", Both = "#31B404")) + 
+  guides(shape = guide_legend(title = "Misclassified"), color = guide_legend(title = "her2 status")) +
+  labs(title = "ERBB2 and LOC644100 predictions") +
+  theme_bw()
+
+ggscat
+
+total_her2_expr[which(total_her2_expr$AA06 > 1), c('Sample', 'Classification', 'AA06')]
+```
+
+# SVM w/ only her2 genes
+
+### Load SVM data
+
+```{r}
+svm_her2_expr <- as.data.frame(read_tsv("../results/svm_her2_genes_TPM.tsv.gz"))
+misclassied.svm <- svm_her2_expr$Sample[which(svm_her2_expr$SVM_classified == "Misclassified")]
+```
+
+### Separate her2 positivity
+
+```{r}
+svm.her2_pos <- svm_her2_expr[which(svm_her2_expr$her2_status_by_ihc == "Positive"),]
+svm.her2_neg <- svm_her2_expr[which(svm_her2_expr$her2_status_by_ihc == "Negative"),]
+rm(svm_her2_expr)
+```
+
+## Positive
+
+### Run C50 analysis
+
+```{r}
+pos_her2_data <- as.matrix(sapply(subset(svm.her2_pos, select = -c(her2_status_by_ihc, Sample, SVM_classified)), as.numeric))
+target.pos_her2 <- as.factor(svm.her2_pos$SVM_classified)
+
+colnames(pos_her2_data) <- make.names(colnames(pos_her2_data))
+
+partition <- createDataPartition(target.pos_her2, p = 0.66, list = F)
+# print(partition)
+
+print("Pre c50")
+sink("../results/positive_svm_her2_genes_analysis.txt")
+cat("Positive SVM\n")
+results <- C5.0(pos_her2_data[partition, ], target.pos_her2[partition], trials = 1, rules = T)
+summary(results)
+predictions <- predict(results, pos_her2_data[-partition, ])
+print(sum((as.numeric(predictions) - as.numeric(target.pos_her2[-partition])) == 0) / length(predictions))
+
+predictions <- predict(results, pos_her2_data[-partition, ], type = "prob")
+print(mean(predictions[,1] > predictions[,2]))
+
+pred <- prediction(predictions[,2], target.pos_her2[-partition])
+auc.tmp <- performance(pred, "auc")
+auc <- as.numeric(auc.tmp@y.values)
+print("AUC:")
+auc
+
+svm.tree <- C5.0(pos_her2_data[partition, ], target.pos_her2[partition], trials = 1, rules = F)
+summary(svm.tree)
+sink()
+```
+
+```{r}
+neg_her2_data <- as.matrix(sapply(subset(svm.her2_neg, select = -c(her2_status_by_ihc, Sample, SVM_classified)), as.numeric))
+target.neg_her2 <- as.factor(svm.her2_neg$SVM_classified)
+
+colnames(neg_her2_data) <- make.names(colnames(neg_her2_data))
+
+partition <- createDataPartition(target.neg_her2, p = 0.66, list = F)
+# print(partition)
+
+print("Pre c50")
+sink("../results/negative_svm_her2_genes_analysis.txt")
+cat("Negative SVM\n")
+results <- C5.0(neg_her2_data[partition, ], target.neg_her2[partition], trials = 1, rules = T)
+summary(results)
+predictions <- predict(results, neg_her2_data[-partition, ])
+print(sum((as.numeric(predictions) - as.numeric(target.neg_her2[-partition])) == 0) / length(predictions))
+
+predictions <- predict(results, neg_her2_data[-partition, ], type = "prob")
+print(mean(predictions[,1] > predictions[,2]))
+
+pred <- prediction(predictions[,2], target.neg_her2[-partition])
+
+svm.tree <- C5.0(neg_her2_data[partition, ], target.neg_her2[partition], trials = 1, rules = F)
+summary(svm.tree)
+sink()
+#auc.tmp <- performance(pred, "auc")
+#auc <- as.numeric(auc.tmp@y.values)
+#auc
+```
+
+# Random Forest w/ only her2 genes
+
+### Load rf data
+
+```{r}
+rf_her2_expr <- as.data.frame(read_tsv("../results/rf_her2_genes_TPM.tsv.gz"))
+misclassied.rf <- rf_her2_expr$Sample[which(rf_her2_expr$RF_classified == "Misclassified")]
+```
+
+### Separate her2 positivity
+
+```{r}
+rf.her2_pos <- rf_her2_expr[which(rf_her2_expr$her2_status_by_ihc == "Positive"),]
+rf.her2_neg <- rf_her2_expr[which(rf_her2_expr$her2_status_by_ihc == "Negative"),]
+rm(rf_her2_expr)
+```
+
+## Positive
+
+### Run C50 analysis
+
+```{r}
+pos_her2_data <- as.matrix(sapply(subset(rf.her2_pos, select = -c(her2_status_by_ihc, Sample, RF_classified)), as.numeric))
+target.pos_her2 <- as.factor(rf.her2_pos$RF_classified)
+
+colnames(pos_her2_data) <- make.names(colnames(pos_her2_data))
+
+partition <- createDataPartition(target.pos_her2, p = 0.66, list = F)
+# print(partition)
+
+print("Pre c50")
+sink("../results/positive_rf_her2_genes_analysis.txt")
+cat("Positive Random Forest\n")
+results <- C5.0(pos_her2_data[partition, ], target.pos_her2[partition], trials = 1, rules = T)
+summary(results)
+predictions <- predict(results, pos_her2_data[-partition, ])
+print(sum((as.numeric(predictions) - as.numeric(target.pos_her2[-partition])) == 0) / length(predictions))
+
+predictions <- predict(results, pos_her2_data[-partition, ], type = "prob")
+print(mean(predictions[,1] > predictions[,2]))
+
+pred <- prediction(predictions[,2], target.pos_her2[-partition])
+auc.tmp <- performance(pred, "auc")
+auc <- as.numeric(auc.tmp@y.values)
+print("AUC:")
+auc
+
+rf.tree <- C5.0(pos_her2_data[partition, ], target.pos_her2[partition], trials = 1, rules = F)
+summary(rf.tree)
+sink()
+```
+
+```{r}
+neg_her2_data <- as.matrix(sapply(subset(rf.her2_neg, select = -c(her2_status_by_ihc, Sample, RF_classified)), as.numeric))
+target.neg_her2 <- as.factor(rf.her2_neg$RF_classified)
+
+colnames(neg_her2_data) <- make.names(colnames(neg_her2_data))
+
+partition <- createDataPartition(target.neg_her2, p = 0.66, list = F)
+# print(partition)
+
+print("Pre c50")
+sink("../results/negative_rf_her2_genes_analysis.txt")
+cat("Negative Random Forest\n")
+results <- C5.0(neg_her2_data[partition, ], target.neg_her2[partition], trials = 1, rules = T)
+summary(results)
+predictions <- predict(results, neg_her2_data[-partition, ])
+print(sum((as.numeric(predictions) - as.numeric(target.neg_her2[-partition])) == 0) / length(predictions))
+
+predictions <- predict(results, neg_her2_data[-partition, ], type = "prob")
+print(mean(predictions[,1] > predictions[,2]))
+
+pred <- prediction(predictions[,2], target.neg_her2[-partition])
+auc.tmp <- performance(pred, "auc")
+auc <- as.numeric(auc.tmp@y.values)
+print("AUC:")
+auc
+
+rf.tree <- C5.0(neg_her2_data[partition, ], target.neg_her2[partition], trials = 1, rules = F)
+summary(rf.tree)
+sink()
+```

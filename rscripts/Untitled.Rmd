@@ -1,0 +1,21 @@
+---
+title: "SVM vs. RF"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load packages
+
+```{r}
+require(readr)
+require(C50)
+```
+
+## Analyze SVM data
+
+```{r}
+svm_her2_expr <- as.data.frame(read_tsv("../results/svm_genes_TPM.tsv.gz"))
+```
