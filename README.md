@@ -23,13 +23,13 @@
 * I am now testing different groups of genes to see if we can improve accuracy
 
 1. Just ERBB2
-  * __AVG AUC:__ 0.7106403495743
+   * __AVG AUC:__ 0.7106403495743
 2. Genes that Dr. Piccolo gave me
-  * __AVG AUC:__ 0.7494731630026
+   * __AVG AUC:__ 0.7494731630026
 
 * I'm going to try the same thing with SVM (just for kicks and giggles)
 
 1. Just ERBB2
-  * __AVG AUC:__ 0.7514569716776001
+   * __AVG AUC:__ 0.7514569716776001
 2. Genes that Dr. Piccolo gave me
-  * __AVG AUC:__ 0.7279307783719
+   * __AVG AUC:__ 0.7279307783719
