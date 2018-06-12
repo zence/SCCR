@@ -1,0 +1,944 @@
+Loading required package: readr
+Loading required package: caret
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: C50
+Loading required package: VIM
+Loading required package: colorspace
+Loading required package: methods
+Loading required package: grid
+Loading required package: data.table
+VIM is ready to use. 
+ Since version 4.0.0 the GUI is in its own package VIMGUI.
+
+          Please use the package to use the new (and old) GUI.
+
+Suggestions and bug-reports can be submitted at: https://github.com/alexkowa/VIM/issues
+
+Attaching package: ‘VIM’
+
+The following object is masked from ‘package:datasets’:
+
+    sleep
+
+Loading required package: partykit
+Loading required package: libcoin
+Loading required package: mvtnorm
+Loading required package: rpart
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  AMY1B = col_integer(),
+  AMY1C = col_integer(),
+  ANKRD20A1 = col_integer(),
+  ANKRD20A2 = col_integer(),
+  ANXA8L1 = col_integer(),
+  APOC2 = col_integer(),
+  APOC4 = col_integer(),
+  ARL17B = col_integer(),
+  BAGE2 = col_integer(),
+  BAGE3 = col_integer(),
+  BAGE4 = col_integer(),
+  BAGE5 = col_integer(),
+  BMS1P1 = col_integer(),
+  BMS1P5 = col_integer(),
+  BOLA2 = col_integer(),
+  BOLA2B = col_integer(),
+  BPY2 = col_integer(),
+  BPY2B = col_integer(),
+  BPY2C = col_integer(),
+  C11orf52 = col_integer()
+  # ... with 536 more columns
+)
+See spec(...) for full column specifications.
+
+Call:
+C5.0.default(x = total_her2_data, y = target.total_her2, trials = 10, rules = T)
+
+
+C5.0 [Release 2.07 GPL Edition]  	Tue Jun  5 09:20:48 2018
+-------------------------------
+
+Class specified by attribute `outcome'
+
+Read 708 cases (23369 attributes) from undefined.data
+
+-----  Trial 0:  -----
+
+Rules:
+
+Rule 0/1: (169/1, lift 1.3)
+	DAPL1 <= 1.898996
+	FAM216A > 2.970522
+	LINC00330 <= 0
+	MIR367 <= 0.8816777
+	SERPINC1 > 0.1584471
+	SNORD114-1 <= 0.4289182
+	SNORD114-3 <= 0.581167
+	STARD3 <= 101.6007
+	->  class Negative  [0.988]
+
+Rule 0/2: (241/5, lift 1.3)
+	BPIFA3 <= 0
+	FAM216A > 2.970522
+	GDF7 > 0
+	MIR367 <= 0.8816777
+	SERPINC1 > 0.1584471
+	SNORD114-1 <= 0.4289182
+	STARD3 <= 101.6007
+	->  class Negative  [0.975]
+
+Rule 0/3: (405/18, lift 1.2)
+	C10orf131 <= 1.331904
+	CCDC169-SOHLH2 <= 0.05257687
+	DCTN6 <= 122.2075
+	FAM216A > 2.970522
+	RBM4B <= 52.07368
+	SNORD114-1 <= 0.4289182
+	STARD3 <= 101.6007
+	TSNAX-DISC1 <= 0.02856853
+	->  class Negative  [0.953]
+
+Rule 0/4: (424/37, lift 1.2)
+	FAM216A > 2.970522
+	GAGE2A <= 0.01928058
+	IFNA10 <= 0
+	MIR4451 <= 0
+	OR4E2 <= 0
+	STARD3 <= 101.6007
+	->  class Negative  [0.911]
+
+Rule 0/5: (225/23, lift 1.2)
+	LOC100129935 <= 0.02492667
+	MIR1296 <= 0
+	MIR3609 <= 0
+	STARD3 <= 101.6007
+	->  class Negative  [0.894]
+
+Rule 0/6: (89/3, lift 4.2)
+	STARD3 > 101.6007
+	->  class Positive  [0.956]
+
+Rule 0/7: (18, lift 4.2)
+	FAM216A <= 2.970522
+	MIR3609 > 0
+	->  class Positive  [0.950]
+
+Rule 0/8: (9, lift 4.0)
+	FAM216A <= 2.970522
+	MIR1296 > 0
+	->  class Positive  [0.909]
+
+Rule 0/9: (8, lift 3.9)
+	CCDC169-SOHLH2 > 0.05257687
+	DAPL1 <= 1.898996
+	SERPINC1 <= 0.1584471
+	->  class Positive  [0.900]
+
+Rule 0/10: (7, lift 3.9)
+	DAPL1 <= 1.898996
+	RBM4B > 52.07368
+	SERPINC1 <= 0.1584471
+	->  class Positive  [0.889]
+
+Rule 0/11: (39/22, lift 1.9)
+	MIR367 > 0.8816777
+	->  class Positive  [0.439]
+
+Rule 0/12: (48/28, lift 1.8)
+	SNORD114-1 > 0.4289182
+	->  class Positive  [0.420]
+
+Rule 0/13: (194/133, lift 1.4)
+	SERPINC1 <= 0.1584471
+	->  class Positive  [0.316]
+
+Default class: Negative
+
+-----  Trial 1:  -----
+
+Rules:
+
+Rule 1/1: (670.5/236.6, lift 1.1)
+	PGAP3 <= 335.3078
+	->  class Negative  [0.647]
+
+Rule 1/2: (62.8, lift 2.5)
+	ERBB2 > 562.9135
+	PGBD5 <= 12.18015
+	->  class Positive  [0.985]
+
+Rule 1/3: (37.5, lift 2.5)
+	PGAP3 > 335.3078
+	->  class Positive  [0.975]
+
+Rule 1/4: (192.3/15.3, lift 2.4)
+	ARMCX1 <= 81.0419
+	C1orf185 <= 0.03684683
+	FCGBP <= 12.85939
+	GNG5 <= 340.0512
+	KIAA0141 <= 43.34634
+	LOC100507582 <= 4.141219
+	LOC572558 <= 0.8542122
+	MMP14 > 144.3768
+	OSGIN2 > 17.46804
+	PGBD5 <= 12.18015
+	PNMA1 <= 71.1256
+	SLMO2-ATP5E <= 0.03844701
+	TMEM165 <= 161.6328
+	WDR75 > 38.99899
+	->  class Positive  [0.916]
+
+Rule 1/5: (27.4/2.3, lift 2.3)
+	ZMYM3 <= 7.481837
+	->  class Positive  [0.888]
+
+Default class: Negative
+
+-----  Trial 2:  -----
+
+Rules:
+
+Rule 2/1: (64.5, lift 1.7)
+	FCGBP > 12.85939
+	PGAP3 <= 335.3078
+	->  class Negative  [0.985]
+
+Rule 2/2: (74.2/0.6, lift 1.7)
+	ARHGEF38 <= 1.673608
+	PGAP3 <= 335.3078
+	->  class Negative  [0.979]
+
+Rule 2/3: (43.3, lift 1.7)
+	NEUROG2 > 0.7183555
+	PGAP3 <= 335.3078
+	->  class Negative  [0.978]
+
+Rule 2/4: (44.2, lift 1.7)
+	CDCA5 <= 6.75871
+	PGAP3 <= 335.3078
+	->  class Negative  [0.978]
+
+Rule 2/5: (41.2, lift 1.7)
+	H6PD > 55.28138
+	PGAP3 <= 335.3078
+	->  class Negative  [0.977]
+
+Rule 2/6: (37.2, lift 1.6)
+	MIR4757 > 0.4310111
+	->  class Negative  [0.975]
+
+Rule 2/7: (53.8/0.6, lift 1.6)
+	C12orf35 > 52.07311
+	PGAP3 <= 335.3078
+	->  class Negative  [0.972]
+
+Rule 2/8: (36.7/0.6, lift 1.6)
+	PGAP3 <= 335.3078
+	PRAMEF22 > 0.03535474
+	->  class Negative  [0.959]
+
+Rule 2/9: (38.6/1.2, lift 1.6)
+	ARHGEF38 > 1.673608
+	HOXB9 <= 0.2907474
+	PGAP3 <= 335.3078
+	->  class Negative  [0.947]
+
+Rule 2/10: (45.4/1.8, lift 1.6)
+	PGAP3 <= 335.3078
+	TMEM151A > 0.9405853
+	->  class Negative  [0.942]
+
+Rule 2/11: (60.3/5.3, lift 1.5)
+	NPPB > 0.1454421
+	PGAP3 <= 335.3078
+	->  class Negative  [0.898]
+
+Rule 2/12: (58.9/5.3, lift 1.5)
+	MIR4801 <= 0.5180888
+	PGAP3 <= 335.3078
+	TMEM151A <= 0.9405853
+	ZBTB17 > 32.65384
+	->  class Negative  [0.896]
+
+Rule 2/13: (57.4/5.3, lift 1.5)
+	FGF1 > 16.72756
+	PGAP3 <= 335.3078
+	TMEM151A <= 0.9405853
+	->  class Negative  [0.893]
+
+Rule 2/14: (49.9/4.8, lift 1.5)
+	MIR4801 > 0.5180888
+	PGAP3 <= 335.3078
+	PRAMEF22 <= 0.03535474
+	->  class Negative  [0.889]
+
+Rule 2/15: (28.6, lift 2.4)
+	PGAP3 > 335.3078
+	->  class Positive  [0.967]
+
+Rule 2/16: (287.1/38.5, lift 2.1)
+	ARHGEF38 > 1.673608
+	C12orf35 <= 52.07311
+	CDCA5 > 6.75871
+	FCGBP <= 12.85939
+	FGF1 <= 16.72756
+	H6PD <= 55.28138
+	HOXB9 > 0.2907474
+	MIR4757 <= 0.4310111
+	MIR4801 <= 0.5180888
+	NEUROG2 <= 0.7183555
+	NPPB <= 0.1454421
+	PRAMEF22 <= 0.03535474
+	TMEM151A <= 0.9405853
+	ZBTB17 <= 32.65384
+	->  class Positive  [0.863]
+
+Default class: Negative
+
+-----  Trial 3:  -----
+
+Rules:
+
+Rule 3/1: (671.3/233.8, lift 1.0)
+	RAB1B <= 592.3691
+	->  class Negative  [0.651]
+
+Rule 3/2: (61.6, lift 2.6)
+	KCNH6 <= 3.398345
+	STARD3 > 115.3819
+	->  class Positive  [0.984]
+
+Rule 3/3: (24.6/0.5, lift 2.5)
+	HADH > 194.4669
+	LOC727896 <= 3.479597
+	->  class Positive  [0.945]
+
+Rule 3/4: (30.6/2.3, lift 2.4)
+	ADRB1 <= 0.01484391
+	->  class Positive  [0.900]
+
+Rule 3/5: (36.7/3.2, lift 2.4)
+	RAB1B > 592.3691
+	->  class Positive  [0.892]
+
+Rule 3/6: (30.9/4, lift 2.2)
+	ADRB1 > 0.01484391
+	LRRC39 <= 0.2901027
+	->  class Positive  [0.847]
+
+Rule 3/7: (37.3/8.4, lift 2.0)
+	WBSCR16 > 37.92962
+	->  class Positive  [0.761]
+
+Rule 3/8: (28.9/6.8, lift 2.0)
+	C3orf80 > 13.71611
+	->  class Positive  [0.748]
+
+Rule 3/9: (32.6/9.9, lift 1.8)
+	ELL <= 28.24874
+	LDLR > 73.10379
+	RAB1B <= 592.3691
+	->  class Positive  [0.685]
+
+Rule 3/10: (31.5/10, lift 1.8)
+	ELL > 28.24874
+	->  class Positive  [0.673]
+
+Default class: Negative
+
+-----  Trial 4:  -----
+
+Rules:
+
+Rule 4/1: (25.9, lift 1.5)
+	ATXN7L1 > 3.959485
+	ERBB2 <= 509.5006
+	SAMD11 > 24.52124
+	->  class Negative  [0.964]
+
+Rule 4/2: (653/193.6, lift 1.1)
+	ERBB2 <= 509.5006
+	->  class Negative  [0.703]
+
+Rule 4/3: (25.7/0.4, lift 2.8)
+	LOC339685 > 0.06147074
+	MRPL49 > 173.9769
+	->  class Positive  [0.951]
+
+Rule 4/4: (26.1/1.1, lift 2.7)
+	ATXN7L1 <= 3.959485
+	LOC100129620 <= 0.02096415
+	MBD3L3 <= 0
+	SAMD11 > 24.52124
+	->  class Positive  [0.927]
+
+Rule 4/5: (55/4.7, lift 2.6)
+	ERBB2 > 509.5006
+	->  class Positive  [0.900]
+
+Rule 4/6: (20.7/1.4, lift 2.6)
+	LOC100129620 > 0.02096415
+	SIAH2 <= 45.73791
+	TSPYL1 <= 131.2511
+	->  class Positive  [0.893]
+
+Rule 4/7: (30.8/3.9, lift 2.5)
+	TSPYL1 > 131.2511
+	->  class Positive  [0.851]
+
+Rule 4/8: (28.6/6.4, lift 2.2)
+	ZNF77 > 15.94574
+	->  class Positive  [0.758]
+
+Rule 4/9: (30.2/6.9, lift 2.2)
+	COPS3 <= 35.85308
+	->  class Positive  [0.755]
+
+Rule 4/10: (28.7/7, lift 2.1)
+	CLRN1 > 0.1856335
+	->  class Positive  [0.740]
+
+Default class: Negative
+
+-----  Trial 5:  -----
+
+Rules:
+
+Rule 5/1: (60.8/0.8, lift 1.5)
+	GINS4 > 21.55412
+	->  class Negative  [0.971]
+
+Rule 5/2: (647.2/246.6, lift 1.0)
+	GINS4 <= 21.55412
+	->  class Negative  [0.619]
+
+Rule 5/3: (54.4/2.8, lift 2.7)
+	GINS4 <= 21.55412
+	KIAA0141 <= 43.23105
+	MED1 > 54.37759
+	->  class Positive  [0.932]
+
+Rule 5/4: (23.1/0.8, lift 2.7)
+	CTTN > 148.1692
+	GINS4 <= 21.55412
+	KIAA0141 <= 43.23105
+	SKAP2 > 54.43793
+	->  class Positive  [0.927]
+
+Rule 5/5: (18.6/0.8, lift 2.6)
+	ASB15 > 0.6347116
+	CTTN > 148.1692
+	GINS4 <= 21.55412
+	->  class Positive  [0.911]
+
+Rule 5/6: (23/1.7, lift 2.6)
+	CTTN > 148.1692
+	GINS4 <= 21.55412
+	HADH > 190.8886
+	SKAP2 <= 54.43793
+	->  class Positive  [0.891]
+
+Rule 5/7: (27/2.2, lift 2.5)
+	CTTN > 148.1692
+	GINS4 <= 21.55412
+	HADH <= 190.8886
+	LOC100506083 > 0.8792419
+	WDR73 <= 16.45196
+	->  class Positive  [0.889]
+
+Rule 5/8: (29.6/2.8, lift 2.5)
+	GINS4 <= 21.55412
+	KIAA0141 <= 43.23105
+	LOC100506083 <= 0.8792419
+	->  class Positive  [0.881]
+
+Rule 5/9: (43/6.6, lift 2.4)
+	CTTN > 148.1692
+	GINS4 <= 21.55412
+	KIAA0141 <= 43.23105
+	LOC100506083 > 0.8792419
+	MIR367 > 0.8163423
+	WDR73 > 16.45196
+	->  class Positive  [0.832]
+
+Rule 5/10: (21.9/3.9, lift 2.3)
+	GINS4 <= 21.55412
+	IQCF5 > 0.07186318
+	KIAA0141 <= 43.23105
+	WDR73 > 16.45196
+	->  class Positive  [0.794]
+
+Rule 5/11: (26/5.6, lift 2.2)
+	ADAMTSL2 > 17.88968
+	ARHGEF35 > 0.2876216
+	GINS4 <= 21.55412
+	KIAA0141 <= 43.23105
+	->  class Positive  [0.766]
+
+Rule 5/12: (23.3/8.1, lift 1.8)
+	ARHGEF35 <= 0.2876216
+	KIAA0141 <= 43.23105
+	->  class Positive  [0.640]
+
+Default class: Negative
+
+-----  Trial 6:  -----
+
+Rules:
+
+Rule 6/1: (87.5, lift 1.5)
+	MRPL48 <= 79.6731
+	NEIL2 <= 42.72445
+	PQLC2 > 24.48428
+	STARD3 <= 115.3819
+	->  class Negative  [0.989]
+
+Rule 6/2: (84.3, lift 1.5)
+	PPIC <= 66.59971
+	STARD3 <= 115.3819
+	->  class Negative  [0.988]
+
+Rule 6/3: (81.6, lift 1.5)
+	GRHL3 > 6.906818
+	MRPL48 <= 79.6731
+	STARD3 <= 115.3819
+	->  class Negative  [0.988]
+
+Rule 6/4: (360/8.4, lift 1.5)
+	AHSA1 > 110.2207
+	GYS1 <= 69.97662
+	LOC284889 > 0.3208894
+	LRRC69 <= 3.534451
+	MRPL48 <= 79.6731
+	MYO16 <= 1.711077
+	MYO3B <= 36.3154
+	NANS <= 384.2108
+	NEIL2 <= 42.72445
+	ONECUT2 <= 2.852414
+	STARD3 <= 115.3819
+	->  class Negative  [0.974]
+
+Rule 6/5: (63.9, lift 2.9)
+	KCNH6 <= 3.398345
+	STARD3 > 115.3819
+	->  class Positive  [0.985]
+
+Rule 6/6: (19.4/1.5, lift 2.6)
+	NANS > 384.2108
+	PPIC > 66.59971
+	->  class Positive  [0.884]
+
+Rule 6/7: (46.8/4.9, lift 2.6)
+	GRHL3 <= 6.906818
+	LRRC69 <= 3.534451
+	ONECUT2 > 2.852414
+	PPIC > 66.59971
+	PQLC2 <= 24.48428
+	->  class Positive  [0.879]
+
+Rule 6/8: (25.8/2.4, lift 2.6)
+	GRHL3 <= 6.906818
+	MYO16 > 1.711077
+	PPIC > 66.59971
+	PQLC2 <= 24.48428
+	->  class Positive  [0.878]
+
+Rule 6/9: (20.9/1.9, lift 2.6)
+	GRHL3 <= 6.906818
+	LRRC69 > 3.534451
+	PPIC > 66.59971
+	PQLC2 <= 24.48428
+	->  class Positive  [0.873]
+
+Rule 6/10: (31.4/4.3, lift 2.5)
+	GRHL3 <= 6.906818
+	LOC284889 <= 0.3208894
+	LRRC69 <= 3.534451
+	MRPL48 <= 79.6731
+	MYO3B <= 36.3154
+	NANS <= 384.2108
+	PQLC2 <= 24.48428
+	->  class Positive  [0.842]
+
+Rule 6/11: (26.6/3.9, lift 2.4)
+	NEIL2 > 42.72445
+	PPIC > 66.59971
+	->  class Positive  [0.830]
+
+Rule 6/12: (16.6/2.6, lift 2.4)
+	MYO3B > 36.3154
+	->  class Positive  [0.807]
+
+Rule 6/13: (28.6/5.3, lift 2.3)
+	MRPL48 > 79.6731
+	NEIL2 <= 42.72445
+	PPIC > 66.59971
+	->  class Positive  [0.794]
+
+Rule 6/14: (26.5/5.2, lift 2.3)
+	GRHL3 <= 6.906818
+	GYS1 > 69.97662
+	LRRC69 <= 3.534451
+	MYO16 <= 1.711077
+	ONECUT2 <= 2.852414
+	PQLC2 <= 24.48428
+	->  class Positive  [0.783]
+
+Rule 6/15: (16.4/3, lift 2.3)
+	AHSA1 <= 110.2207
+	PPIC > 66.59971
+	PQLC2 <= 24.48428
+	->  class Positive  [0.782]
+
+Default class: Negative
+
+-----  Trial 7:  -----
+
+Rules:
+
+Rule 7/1: (28.1, lift 1.4)
+	CALB2 > 130.5621
+	->  class Negative  [0.967]
+
+Rule 7/2: (619.8/130.3, lift 1.1)
+	DEGS1 <= 478.1764
+	STARD3 <= 101.6007
+	->  class Negative  [0.789]
+
+Rule 7/3: (54.7, lift 3.4)
+	CALB2 <= 130.5621
+	STARD3 > 101.6007
+	->  class Positive  [0.982]
+
+Rule 7/4: (23.9/0.3, lift 3.3)
+	DEGS1 <= 478.1764
+	NDUFV3 <= 47.05626
+	SLC41A3 <= 24.16485
+	->  class Positive  [0.949]
+
+Rule 7/5: (23.3/0.5, lift 3.2)
+	GUCA1B <= 1.051219
+	LOC100509894 <= 0.01153717
+	->  class Positive  [0.941]
+
+Rule 7/6: (12.7/0.2, lift 3.2)
+	ADAM29 <= 0.01180867
+	ZNF653 > 14.23451
+	->  class Positive  [0.921]
+
+Rule 7/7: (9.4, lift 3.1)
+	ADAM29 <= 0.01180867
+	SNORA36C > 0.347848
+	->  class Positive  [0.913]
+
+Rule 7/8: (8.9, lift 3.1)
+	ADAM29 <= 0.01180867
+	MTA2 > 172.1135
+	OR4E2 <= 0.03743984
+	->  class Positive  [0.908]
+
+Rule 7/9: (17.3/0.8, lift 3.1)
+	CYP4V2 > 19.30696
+	OR4E2 > 0.03743984
+	->  class Positive  [0.906]
+
+Rule 7/10: (12.8/0.7, lift 3.1)
+	ADAM29 <= 0.01180867
+	ANGPTL1 > 7.574129
+	DEGS1 <= 478.1764
+	->  class Positive  [0.888]
+
+Rule 7/11: (9.8/1.1, lift 2.8)
+	ADAM29 <= 0.01180867
+	LOC100509894 > 0.01153717
+	LOC440041 > 0.03307884
+	->  class Positive  [0.820]
+
+Rule 7/12: (32.4/7.1, lift 2.6)
+	DEGS1 > 478.1764
+	->  class Positive  [0.764]
+
+Default class: Negative
+
+-----  Trial 8:  -----
+
+Rules:
+
+Rule 8/1: (661.7/180.7, lift 1.1)
+	STARD3 <= 101.6007
+	->  class Negative  [0.726]
+
+Rule 8/2: (36.2/0.7, lift 3.0)
+	MIR3153 > 7.175739
+	SYT9 > 6.661856
+	->  class Positive  [0.954]
+
+Rule 8/3: (27.2/0.5, lift 3.0)
+	LOC283738 <= 0
+	MIR3153 <= 7.175739
+	WNK1 > 145.7753
+	->  class Positive  [0.949]
+
+Rule 8/4: (21/0.2, lift 3.0)
+	CCDC144C <= 0.04762013
+	MIR3153 <= 7.175739
+	SNORD49A > 21.99815
+	->  class Positive  [0.946]
+
+Rule 8/5: (28.8/1.3, lift 2.9)
+	SAT1 > 385.1683
+	ZNF382 <= 0.6828387
+	->  class Positive  [0.926]
+
+Rule 8/6: (46.3/4.5, lift 2.8)
+	STARD3 > 101.6007
+	->  class Positive  [0.887]
+
+Rule 8/7: (21.3/2.7, lift 2.7)
+	CFB > 263.7787
+	IQCA1 <= 4.127422
+	MIR3153 <= 7.175739
+	ZNF382 > 0.6828387
+	->  class Positive  [0.843]
+
+Default class: Negative
+
+-----  Trial 9:  -----
+
+Rules:
+
+Rule 9/1: (55, lift 1.6)
+	KIAA0141 > 43.23105
+	->  class Negative  [0.982]
+
+Rule 9/2: (678.2/243.8, lift 1.0)
+	BIVM-ERCC5 <= 0.02363763
+	->  class Negative  [0.640]
+
+Rule 9/3: (34.1/0.3, lift 2.5)
+	APOL1 > 67.55717
+	KIAA0141 <= 43.23105
+	RAD50 > 68.06023
+	->  class Positive  [0.964]
+
+Rule 9/4: (27.8/1.4, lift 2.4)
+	BIVM-ERCC5 > 0.02363763
+	KIAA0141 <= 43.23105
+	->  class Positive  [0.919]
+
+Rule 9/5: (27.9/2.8, lift 2.3)
+	C8orf22 <= 0.0548507
+	LOC100505696 <= 0.7936711
+	->  class Positive  [0.874]
+
+Rule 9/6: (57/6.5, lift 2.3)
+	C8orf22 <= 0.0548507
+	ERBB2 > 445.1522
+	KIAA0141 <= 43.23105
+	->  class Positive  [0.873]
+
+Rule 9/7: (28.6/3.3, lift 2.3)
+	C8orf22 <= 0.0548507
+	ERBB2 <= 445.1522
+	FILIP1L > 68.85689
+	KIAA0141 <= 43.23105
+	->  class Positive  [0.860]
+
+Rule 9/8: (20.2/2.2, lift 2.2)
+	ARAP1 > 138.3378
+	->  class Positive  [0.857]
+
+Rule 9/9: (27.5/4.6, lift 2.1)
+	C8orf22 <= 0.0548507
+	SNORD114-1 > 0.781849
+	->  class Positive  [0.810]
+
+Rule 9/10: (31.4/5.6, lift 2.1)
+	C8orf22 <= 0.0548507
+	LOC100505696 > 0.7936711
+	OTP > 0.3062441
+	RAD50 <= 68.06023
+	->  class Positive  [0.802]
+
+Rule 9/11: (30/6, lift 2.1)
+	C8orf22 <= 0.0548507
+	FUS > 240.2272
+	KIAA0141 <= 43.23105
+	OTP <= 0.3062441
+	SVOP <= 0.01284559
+	->  class Positive  [0.783]
+
+Rule 9/12: (29.8/6.8, lift 2.0)
+	C8orf22 <= 0.0548507
+	KIAA0141 <= 43.23105
+	PREB > 146.4101
+	RAD50 <= 68.06023
+	->  class Positive  [0.756]
+
+Default class: Negative
+
+
+Evaluation on training data (708 cases):
+
+Trial	        Rules     
+-----	  ----------------
+	    No      Errors
+
+   0	    13   42( 5.9%)
+   1	     5   44( 6.2%)
+   2	    16   89(12.6%)
+   3	    10   98(13.8%)
+   4	    10   72(10.2%)
+   5	    12  102(14.4%)
+   6	    15   69( 9.7%)
+   7	    12   43( 6.1%)
+   8	     7   61( 8.6%)
+   9	    12   86(12.1%)
+boost	          0( 0.0%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   546          (a): class Negative
+	         162    (b): class Positive
+
+
+	Attribute usage:
+
+	100.00%	ERBB2
+	100.00%	GINS4
+	100.00%	PGAP3
+	100.00%	RAB1B
+	100.00%	STARD3
+	 99.72%	BIVM-ERCC5
+	 89.41%	DEGS1
+	 82.77%	FAM216A
+	 76.13%	SNORD114-1
+	 70.90%	SERPINC1
+	 69.92%	MRPL48
+	 69.49%	LRRC69
+	 66.67%	NEIL2
+	 64.83%	ONECUT2
+	 62.29%	OR4E2
+	 62.15%	MYO16
+	 61.02%	NANS
+	 60.59%	MYO3B
+	 60.03%	GYS1
+	 59.89%	GAGE2A
+	 59.89%	IFNA10
+	 59.89%	MIR4451
+	 59.04%	LOC284889
+	 58.33%	CCDC169-SOHLH2
+	 58.19%	AHSA1
+	 58.19%	RBM4B
+	 57.20%	C10orf131
+	 57.20%	DCTN6
+	 57.20%	TSNAX-DISC1
+	 55.51%	TMEM151A
+	 49.58%	KIAA0141
+	 49.15%	MIR367
+	 44.77%	MIR4801
+	 44.63%	ARHGEF38
+	 44.63%	FCGBP
+	 37.57%	PRAMEF22
+	 37.29%	NPPB
+	 36.58%	FGF1
+	 36.44%	C12orf35
+	 36.02%	ZBTB17
+	 34.32%	MIR3609
+	 34.04%	BPIFA3
+	 34.04%	GDF7
+	 33.90%	NEUROG2
+	 33.19%	CDCA5
+	 33.05%	MIR1296
+	 32.77%	HOXB9
+	 32.49%	H6PD
+	 31.78%	LOC100129935
+	 30.79%	MIR4757
+	 29.94%	PQLC2
+	 29.24%	PPIC
+	 26.98%	GRHL3
+	 26.84%	C8orf22
+	 25.99%	DAPL1
+	 23.87%	LINC00330
+	 23.87%	SNORD114-3
+	 21.61%	PGBD5
+	 16.38%	CALB2
+	 11.72%	KCNH6
+	 11.44%	ARMCX1
+	 11.44%	C1orf185
+	 11.44%	GNG5
+	 11.44%	LOC100507582
+	 11.44%	LOC572558
+	 11.44%	MMP14
+	 11.44%	OSGIN2
+	 11.44%	PNMA1
+	 11.44%	SLMO2-ATP5E
+	 11.44%	TMEM165
+	 11.44%	WDR75
+	 10.31%	CTTN
+	 10.03%	LOC100506083
+	  9.89%	MED1
+	  9.46%	WDR73
+	  9.04%	ELL
+	  8.90%	RAD50
+	  7.77%	MIR3153
+	  7.63%	ATXN7L1
+	  7.63%	OTP
+	  7.63%	SAMD11
+	  6.36%	LOC100505696
+	  5.93%	ARHGEF35
+	  5.23%	ADAM29
+	  5.08%	LOC100129620
+	  5.08%	TSPYL1
+	  4.80%	ZNF382
+	  4.66%	ADRB1
+	  4.52%	LDLR
+	  4.38%	HADH
+	  3.67%	FUS
+	  3.67%	PREB
+	  3.67%	SVOP
+	  3.53%	C3orf80
+	  3.39%	LOC100509894
+	  3.39%	MBD3L3
+	  3.39%	WBSCR16
+	  3.25%	IQCF5
+	  3.11%	ADAMTSL2
+	  3.11%	SKAP2
+	  2.82%	CLRN1
+	  2.68%	CFB
+	  2.68%	COPS3
+	  2.68%	IQCA1
+	  2.68%	ZNF77
+	  2.54%	NDUFV3
+	  2.54%	SLC41A3
+	  2.12%	APOL1
+	  2.12%	FILIP1L
+	  2.12%	GUCA1B
+	  2.12%	LRRC39
+	  2.12%	SAT1
+	  2.12%	SYT9
+	  1.84%	CYP4V2
+	  1.84%	LOC339685
+	  1.84%	MRPL49
+	  1.69%	LOC283738
+	  1.69%	SIAH2
+	  1.69%	WNK1
+	  1.55%	ANGPTL1
+	  1.41%	LOC727896
+	  1.41%	ZMYM3
+	  1.27%	ASB15
+	  1.27%	CCDC144C
+	  1.27%	LOC440041
+	  1.27%	SNORD49A
+	  1.13%	ARAP1
+	  0.99%	ZNF653
+	  0.85%	MTA2
+	  0.56%	SNORA36C
+
+
+Time: 251.1 secs
+
+Error: tree models only
+Execution halted

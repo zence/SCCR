@@ -1,0 +1,571 @@
+Loading required package: readr
+Loading required package: caret
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: C50
+Loading required package: VIM
+Loading required package: colorspace
+Loading required package: methods
+Loading required package: grid
+Loading required package: data.table
+VIM is ready to use. 
+ Since version 4.0.0 the GUI is in its own package VIMGUI.
+
+          Please use the package to use the new (and old) GUI.
+
+Suggestions and bug-reports can be submitted at: https://github.com/alexkowa/VIM/issues
+
+Attaching package: ‘VIM’
+
+The following object is masked from ‘package:datasets’:
+
+    sleep
+
+Loading required package: partykit
+Loading required package: libcoin
+Loading required package: mvtnorm
+Loading required package: rpart
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  AMY1B = col_integer(),
+  AMY1C = col_integer(),
+  ANKRD20A1 = col_integer(),
+  ANKRD20A2 = col_integer(),
+  ANXA8L1 = col_integer(),
+  APOC2 = col_integer(),
+  APOC4 = col_integer(),
+  ARL17B = col_integer(),
+  BAGE2 = col_integer(),
+  BAGE3 = col_integer(),
+  BAGE4 = col_integer(),
+  BAGE5 = col_integer(),
+  BMS1P1 = col_integer(),
+  BMS1P5 = col_integer(),
+  BOLA2 = col_integer(),
+  BOLA2B = col_integer(),
+  BPY2 = col_integer(),
+  BPY2B = col_integer(),
+  BPY2C = col_integer(),
+  C11orf52 = col_integer()
+  # ... with 536 more columns
+)
+See spec(...) for full column specifications.
+
+Call:
+C5.0.default(x = total_her2_data, y = target.total_her2, trials = 10, rules = F)
+
+
+C5.0 [Release 2.07 GPL Edition]  	Tue Jun  5 09:33:54 2018
+-------------------------------
+
+Class specified by attribute `outcome'
+
+Read 708 cases (23369 attributes) from undefined.data
+
+-----  Trial 0:  -----
+
+Decision tree:
+
+STARD3 > 101.6007:
+:...ZNF706 <= 131.5137: Positive (84)
+:   ZNF706 > 131.5137:
+:   :...ANKRD26P1 <= 0.004016201: Negative (3)
+:       ANKRD26P1 > 0.004016201: Positive (2)
+STARD3 <= 101.6007:
+:...FAM216A <= 2.970522:
+    :...MIR3609 > 0: Positive (9)
+    :   MIR3609 <= 0:
+    :   :...MIR1296 > 0: Positive (3)
+    :       MIR1296 <= 0:
+    :       :...LOC100129935 <= 0.02492667: Negative (16)
+    :           LOC100129935 > 0.02492667: Positive (2)
+    FAM216A > 2.970522:
+    :...SNORD114-1 > 0.4289182:
+        :...MIR4451 > 0: Positive (5)
+        :   MIR4451 <= 0:
+        :   :...OR4E2 > 0: Positive (3)
+        :       OR4E2 <= 0:
+        :       :...IFNA10 > 0: Positive (2)
+        :           IFNA10 <= 0:
+        :           :...GAGE2A <= 0.01928058: Negative (27/1)
+        :               GAGE2A > 0.01928058: Positive (2)
+        SNORD114-1 <= 0.4289182:
+        :...DAPL1 > 1.898996:
+            :...LOC100130849 <= 0.09594505: Negative (181)
+            :   LOC100130849 > 0.09594505:
+            :   :...FAM194B <= 0.01026525: Negative (8)
+            :       FAM194B > 0.01026525: Positive (2)
+            DAPL1 <= 1.898996:
+            :...SERPINC1 > 0.1584471:
+                :...MIR367 > 0.8816777:
+                :   :...SLC12A3 <= 0.0460982: Positive (6)
+                :   :   SLC12A3 > 0.0460982: Negative (9)
+                :   MIR367 <= 0.8816777:
+                :   :...SNORD114-3 > 0.581167:
+                :       :...GDF7 <= 0: Positive (4)
+                :       :   GDF7 > 0:
+                :       :   :...BPIFA3 <= 0: Negative (20/1)
+                :       :       BPIFA3 > 0: Positive (2)
+                :       SNORD114-3 <= 0.581167:
+                :       :...FITM1 <= 0.3220001:
+                :           :...LINC00330 <= 0: Negative (11)
+                :           :   LINC00330 > 0: Positive (6/1)
+                :           FITM1 > 0.3220001:
+                :           :...MNS1 <= 18.64895: Negative (200)
+                :               MNS1 > 18.64895:
+                :               :...C15orf43 <= 0.01953788: Negative (9)
+                :                   C15orf43 > 0.01953788: Positive (2)
+                SERPINC1 <= 0.1584471:
+                :...CCDC169-SOHLH2 > 0.05257687: Positive (7)
+                    CCDC169-SOHLH2 <= 0.05257687:
+                    :...DCTN6 > 122.2075: Positive (5)
+                        DCTN6 <= 122.2075:
+                        :...C10orf131 > 1.331904: Positive (4)
+                            C10orf131 <= 1.331904:
+                            :...TSNAX-DISC1 > 0.02856853: Positive (4)
+                                TSNAX-DISC1 <= 0.02856853:
+                                :...RBM4B > 52.07368: Positive (4)
+                                    RBM4B <= 52.07368:
+                                    :...LOC100506136 > 0.2041842: Negative (61)
+                                        LOC100506136 <= 0.2041842:
+                                        :...ANKRD26P3 <= 0.008812919: Positive (3)
+                                            ANKRD26P3 > 0.008812919: Negative (2)
+
+-----  Trial 1:  -----
+
+Decision tree:
+
+MIR4698 > 1.356743: Positive (122.8/3)
+MIR4698 <= 1.356743:
+:...STARD3 > 101.6007: Positive (66.8/2.3)
+    STARD3 <= 101.6007:
+    :...LNP1 > 1.360089: Negative (485.4/41.3)
+        LNP1 <= 1.360089:
+        :...CHPF <= 135.5817: Negative (25.5/6)
+            CHPF > 135.5817: Positive (7.5)
+
+-----  Trial 2:  -----
+
+Decision tree:
+
+MIR4255 > 0.6484351: Positive (45.8)
+MIR4255 <= 0.6484351:
+:...MIR4802 > 2.697037: Positive (45.8)
+    MIR4802 <= 2.697037:
+    :...PGBD5 > 15.7104: Negative (96.2/0.6)
+        PGBD5 <= 15.7104:
+        :...KIAA0141 > 43.34634: Negative (44)
+            KIAA0141 <= 43.34634:
+            :...PGAP3 > 100.1739: Positive (60.8/4.1)
+                PGAP3 <= 100.1739:
+                :...FCGBP > 11.69305: Negative (44.5)
+                    FCGBP <= 11.69305:
+                    :...OR2Z1 > 0.0393052: Negative (19.1)
+                        OR2Z1 <= 0.0393052:
+                        :...CHRNB2 > 1.597242: Negative (27.8)
+                            CHRNB2 <= 1.597242:
+                            :...HTR2B <= 0.7142614: Negative (21.4)
+                                HTR2B > 0.7142614:
+                                :...PRINS > 1.166776: Negative (18.5)
+                                    PRINS <= 1.166776:
+                                    :...LOC572558 > 0.8823195: Negative (14.5)
+                                        LOC572558 <= 0.8823195:
+                                        :...RBM24 > 27.77637: Negative (15.6/1.2)
+                                            RBM24 <= 27.77637:
+                                            :...SNORD92 > 0: Negative (16.8/3.5)
+                                                SNORD92 <= 0: [S1]
+
+SubTree [S1]
+
+HIST1H1C > 639.7468: Negative (12.7/1.2)
+HIST1H1C <= 639.7468:
+:...GPR98 > 6.102294: Negative (13.9/2.9)
+    GPR98 <= 6.102294:
+    :...VNN3 <= 0: Negative (11/1.7)
+        VNN3 > 0: Positive (199.7/28.3)
+
+-----  Trial 3:  -----
+
+Decision tree:
+
+MIR4255 > 0.6484351: Positive (35.1)
+MIR4255 <= 0.6484351:
+:...MIR4802 > 2.697037: Positive (35.1)
+    MIR4802 <= 2.697037:
+    :...ERBB2 > 467.3155:
+        :...KCNH6 <= 3.398345: Positive (50.9/1.3)
+        :   KCNH6 > 3.398345: Negative (7.6)
+        ERBB2 <= 467.3155:
+        :...PPIEL <= 0.3600012:
+            :...CSNK1A1P1 <= 0.5022358: Negative (8)
+            :   CSNK1A1P1 > 0.5022358: Positive (29.6/0.4)
+            PPIEL > 0.3600012:
+            :...ABHD6 <= 3.042523:
+                :...HHLA3 <= 22.27897: Positive (26.5/1.8)
+                :   HHLA3 > 22.27897: Negative (7.1)
+                ABHD6 > 3.042523:
+                :...TRIL > 54.83528:
+                    :...CSPG4P1Y <= 0: Negative (8.4)
+                    :   CSPG4P1Y > 0: Positive (24.5/1.3)
+                    TRIL <= 54.83528:
+                    :...MIR564 > 0.5485286: Positive (24/8.4)
+                        MIR564 <= 0.5485286:
+                        :...MBD3L3 > 0: Positive (22.6/8.8)
+                            MBD3L3 <= 0:
+                            :...YJEFN3 <= 1.74928: Positive (22.7/7.1)
+                                YJEFN3 > 1.74928: Negative (406/41.3)
+
+-----  Trial 4:  -----
+
+Decision tree:
+
+MIR4255 > 0.6484351: Positive (27.3)
+MIR4255 <= 0.6484351:
+:...MIR4802 > 2.697037: Positive (27.3)
+    MIR4802 <= 2.697037:
+    :...STARD3 > 115.3819:
+        :...KCNH6 <= 3.398345: Positive (34.7)
+        :   KCNH6 > 3.398345: Negative (5.9)
+        STARD3 <= 115.3819:
+        :...ZNF597 > 13.38196: Positive (25.2/3.1)
+            ZNF597 <= 13.38196:
+            :...IDE > 50.67482:
+                :...GLIS1 <= 0.3353632: Negative (5.7)
+                :   GLIS1 > 0.3353632: Positive (28.5/2.4)
+                IDE <= 50.67482:
+                :...RBP3 > 0.2144762: Positive (26.8/5.3)
+                    RBP3 <= 0.2144762:
+                    :...TMEM190 <= 0.1098142: Positive (27.1/6.8)
+                        TMEM190 > 0.1098142:
+                        :...BZW2 > 313.6025:
+                            :...STRADB <= 11.9674: Positive (21.2/0.7)
+                            :   STRADB > 11.9674: Negative (10.8)
+                            BZW2 <= 313.6025:
+                            :...FAF1 > 35.20947: Negative (415.1/35.5)
+                                FAF1 <= 35.20947:
+                                :...LOC100506548 <= 9.247652: Positive (31.7/3.8)
+                                    LOC100506548 > 9.247652: Negative (20.8/0.3)
+
+-----  Trial 5:  -----
+
+Decision tree:
+
+GNPDA1 > 149.5962: Positive (25.2/0.3)
+GNPDA1 <= 149.5962:
+:...TTTY5 > 0.0383829: Positive (32.2/1.3)
+    TTTY5 <= 0.0383829:
+    :...STARD3 > 101.6007:
+        :...CALB2 <= 125.1337: Positive (29.6)
+        :   CALB2 > 125.1337: Negative (5.9)
+        STARD3 <= 101.6007:
+        :...FUT9 > 2.043144:
+            :...FBLL1 <= 1.095308: Positive (43.3/3.3)
+            :   FBLL1 > 1.095308: Negative (11.1)
+            FUT9 <= 2.043144:
+            :...CLRN1 > 0.1856335: Positive (26.8/5.9)
+                CLRN1 <= 0.1856335:
+                :...LOC100130890 > 5.417287: Positive (28.8/7.5)
+                    LOC100130890 <= 5.417287:
+                    :...MIR3200 > 0.3737307: Positive (25.5/9.7)
+                        MIR3200 <= 0.3737307:
+                        :...MIR4672 > 0.6806626:
+                            :...FAM66D <= 0.3308199: Positive (19/0.5)
+                            :   FAM66D > 0.3308199: Negative (15.9)
+                            MIR4672 <= 0.6806626:
+                            :...BLCAP > 53.45322: Negative (413.9/37)
+                                BLCAP <= 53.45322:
+                                :...LOC100506713 <= 2.610946: Positive (19.3/1.9)
+                                    LOC100506713 > 2.610946: Negative (11.7)
+
+-----  Trial 6:  -----
+
+Decision tree:
+
+LOC100130691 <= 0.1348127: Positive (36.8/1.4)
+LOC100130691 > 0.1348127:
+:...PTRF > 579.5395: Positive (28.6/1.5)
+    PTRF <= 579.5395:
+    :...ERBB2 > 509.5006: Positive (33/4.9)
+        ERBB2 <= 509.5006:
+        :...MRPL49 > 173.9769:
+            :...ATP5F1 <= 139.4449: Positive (27.1/0.2)
+            :   ATP5F1 > 139.4449: Negative (7.5)
+            MRPL49 <= 173.9769:
+            :...LOH12CR2 <= 0.6419382: Positive (25.4/6.4)
+                LOH12CR2 > 0.6419382:
+                :...HOOK2 > 83.44469:
+                    :...MAPK8IP2 <= 10.09144: Positive (24.9/0.8)
+                    :   MAPK8IP2 > 10.09144: Negative (10.3)
+                    HOOK2 <= 83.44469:
+                    :...OR6C68 > 0:
+                        :...ALOX12B <= 0.1487916: Positive (22.8/2.2)
+                        :   ALOX12B > 0.1487916: Negative (16.3)
+                        OR6C68 <= 0:
+                        :...FAM47A > 0.07298411:
+                            :...HIST1H4B <= 0: Positive (16.9/0.6)
+                            :   HIST1H4B > 0: Negative (12.8)
+                            FAM47A <= 0.07298411:
+                            :...ACCSL > 0.07422853: Positive (24/10.3)
+                                ACCSL <= 0.07422853:
+                                :...NFIX > 202.0031:
+                                    :...ZNF525 <= 10.26859: Negative (18.8/1)
+                                    :   ZNF525 > 10.26859: Positive (15.9/0.6)
+                                    NFIX <= 202.0031:
+                                    :...ARG1 > 0.06569501: Negative (355.5/6.8)
+                                        ARG1 <= 0.06569501:
+                                        :...GPR19 <= 0.646139: Positive (7.5)
+                                            GPR19 > 0.646139: Negative (23.8/1)
+
+-----  Trial 7:  -----
+
+Decision tree:
+
+BLMH > 147.7316: Positive (27.7/1.4)
+BLMH <= 147.7316:
+:...LOC100506801 <= 0.04182415: Positive (25.5/1.8)
+    LOC100506801 > 0.04182415:
+    :...ARHGEF38 <= 1.673608: Negative (118.8/0.5)
+        ARHGEF38 > 1.673608:
+        :...C18orf8 <= 19.9976: Positive (33.1/6.6)
+            C18orf8 > 19.9976:
+            :...PGAP3 > 104.7696: Positive (29.1/6.5)
+                PGAP3 <= 104.7696:
+                :...LOC100132831 > 0.6101208: Positive (25.2/5.7)
+                    LOC100132831 <= 0.6101208:
+                    :...C2CD4D <= 0.7323415:
+                        :...HIGD2B <= 0.1267452: Positive (25.8/1.4)
+                        :   HIGD2B > 0.1267452: Negative (10)
+                        C2CD4D > 0.7323415:
+                        :...SMEK1 <= 33.37264: Positive (21.7/5.9)
+                            SMEK1 > 33.37264:
+                            :...FLJ36777 <= 0.08225362: Positive (21.3/6.4)
+                                FLJ36777 > 0.08225362: Negative (369.8/36.4)
+
+-----  Trial 8:  -----
+
+Decision tree:
+
+MIR4698 > 1.356743: Positive (26.8/3.6)
+MIR4698 <= 1.356743:
+:...RCE1 > 76.0769: Positive (27.9/5.7)
+    RCE1 <= 76.0769:
+    :...SPINK5 <= 0.01594716:
+        :...NPPC <= 1.133945: Positive (25.7/0.5)
+        :   NPPC > 1.133945: Negative (10.9/0.1)
+        SPINK5 > 0.01594716:
+        :...TTR > 0.629651:
+            :...LRRC37B <= 5.132175: Positive (27.1/1.9)
+            :   LRRC37B > 5.132175: Negative (11.9)
+            TTR <= 0.629651:
+            :...SLC41A3 <= 24.68662:
+                :...TMEM216 <= 29.57022: Positive (26.3/1.2)
+                :   TMEM216 > 29.57022: Negative (14.8/0.1)
+                SLC41A3 > 24.68662:
+                :...FAM182A <= 0.00991863:
+                    :...ARL10 <= 2.02892: Positive (23.3/2.6)
+                    :   ARL10 > 2.02892: Negative (8.8)
+                    FAM182A > 0.00991863:
+                    :...MBD3L3 > 0.04243435:
+                        :...CYP4F35P <= 0.5543224: Positive (14.8/0.8)
+                        :   CYP4F35P > 0.5543224: Negative (14.7/0.2)
+                        MBD3L3 <= 0.04243435:
+                        :...HTR1A <= 0.07040104: Negative (444.4/39.3)
+                            HTR1A > 0.07040104:
+                            :...ADAM7 <= 0.01308248: Negative (19.7/3.7)
+                                ADAM7 > 0.01308248: Positive (10.8/0.2)
+
+-----  Trial 9:  -----
+
+Decision tree:
+
+STARD3 > 101.6007:
+:...CALB2 <= 130.5621: Positive (82.2)
+:   CALB2 > 130.5621: Negative (7.7)
+STARD3 <= 101.6007:
+:...PPIC <= 66.59971: Negative (84.6)
+    PPIC > 66.59971:
+    :...FAM208B > 138.1192: Positive (25.6/3.5)
+        FAM208B <= 138.1192:
+        :...SNORD60 > 79.52032: Positive (27.8/3.4)
+            SNORD60 <= 79.52032:
+            :...KIF26A > 6.705356:
+                :...DNAH11 <= 0.1208999: Positive (24.3/0.4)
+                :   DNAH11 > 0.1208999: Negative (6.9)
+                KIF26A <= 6.705356:
+                :...DEGS1 > 478.1764: Positive (23.3/5)
+                    DEGS1 <= 478.1764:
+                    :...OR4S1 > 0.03219054: Positive (25/8.9)
+                        OR4S1 <= 0.03219054:
+                        :...NOXO1 <= 0.5523894: Positive (22/6.3)
+                            NOXO1 > 0.5523894:
+                            :...BBS9 <= 19.10449: Negative (353.7/41.8)
+                                BBS9 > 19.10449: Positive (25/8.9)
+
+
+Evaluation on training data (708 cases):
+
+Trial	    Decision Tree   
+-----	  ----------------  
+	  Size      Errors  
+
+   0	    33    3( 0.4%)
+   1	     5   70( 9.9%)
+   2	    17   63( 8.9%)
+   3	    14   79(11.2%)
+   4	    14   70( 9.9%)
+   5	    14   88(12.4%)
+   6	    18   62( 8.8%)
+   7	    11   94(13.3%)
+   8	    15  108(15.3%)
+   9	    12   83(11.7%)
+boost	          0( 0.0%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   546          (a): class Negative
+	         162    (b): class Positive
+
+
+	Attribute usage:
+
+	100.00%	BLMH
+	100.00%	GNPDA1
+	100.00%	LOC100130691
+	100.00%	MIR4255
+	100.00%	MIR4698
+	100.00%	STARD3
+	 99.86%	MIR4802
+	 99.72%	ERBB2
+	 99.72%	PGBD5
+	 99.58%	TTTY5
+	 99.01%	RCE1
+	 97.88%	LOC100506801
+	 97.18%	PTRF
+	 95.34%	ARHGEF38
+	 94.77%	SPINK5
+	 94.63%	PGAP3
+	 90.54%	TTR
+	 88.98%	KIAA0141
+	 88.14%	MBD3L3
+	 87.71%	ZNF597
+	 87.43%	FAM216A
+	 87.43%	PPIC
+	 86.58%	PPIEL
+	 86.44%	LNP1
+	 86.02%	IDE
+	 85.88%	FUT9
+	 84.46%	MRPL49
+	 84.32%	SLC41A3
+	 83.19%	C18orf8
+	 83.19%	SNORD114-1
+	 82.34%	ABHD6
+	 81.92%	RBP3
+	 81.50%	LOH12CR2
+	 79.66%	CLRN1
+	 79.38%	FAM182A
+	 79.38%	TMEM190
+	 79.24%	HOOK2
+	 77.82%	TRIL
+	 77.68%	DAPL1
+	 76.98%	LOC100130890
+	 76.41%	BZW2
+	 75.42%	OR6C68
+	 74.86%	FAM208B
+	 74.29%	MIR564
+	 73.87%	MIR3200
+	 72.74%	SNORD60
+	 71.89%	FAF1
+	 71.75%	HTR1A
+	 70.90%	FAM47A
+	 70.48%	MIR4672
+	 70.34%	KIF26A
+	 69.21%	LOC100132831
+	 67.66%	YJEFN3
+	 66.95%	ACCSL
+	 66.81%	DEGS1
+	 66.81%	FCGBP
+	 65.96%	BLCAP
+	 65.68%	C2CD4D
+	 64.97%	OR4S1
+	 63.98%	NFIX
+	 61.72%	SMEK1
+	 61.58%	NOXO1
+	 59.75%	FLJ36777
+	 59.04%	ARG1
+	 59.04%	BBS9
+	 55.93%	OR2Z1
+	 51.84%	CHRNB2
+	 50.71%	SERPINC1
+	 45.06%	HTR2B
+	 39.83%	PRINS
+	 37.99%	MIR367
+	 35.88%	SNORD114-3
+	 35.31%	LOC572558
+	 32.20%	FITM1
+	 31.78%	RBM24
+	 29.80%	MNS1
+	 27.97%	SNORD92
+	 26.98%	LOC100130849
+	 24.44%	HIST1H1C
+	 21.33%	GPR98
+	 18.50%	VNN3
+	 13.42%	KCNH6
+	 12.71%	CCDC169-SOHLH2
+	 12.57%	CALB2
+	 12.57%	ZNF706
+	 11.72%	DCTN6
+	 11.02%	C10orf131
+	 10.45%	TSNAX-DISC1
+	  9.89%	RBM4B
+	  9.32%	LOC100506136
+	  6.64%	LOC100506548
+	  6.21%	CHPF
+	  6.21%	FBLL1
+	  6.21%	LRRC37B
+	  5.51%	ADAM7
+	  5.51%	LOC100506713
+	  5.51%	MIR4451
+	  4.94%	TMEM216
+	  4.94%	ZNF525
+	  4.80%	OR4E2
+	  4.66%	ARL10
+	  4.52%	ALOX12B
+	  4.52%	FAM66D
+	  4.52%	GPR19
+	  4.52%	HHLA3
+	  4.52%	STRADB
+	  4.38%	IFNA10
+	  4.24%	CSNK1A1P1
+	  4.24%	MIR3609
+	  4.24%	NPPC
+	  4.10%	GAGE2A
+	  4.10%	GLIS1
+	  3.95%	HIGD2B
+	  3.95%	HIST1H4B
+	  3.81%	MAPK8IP2
+	  3.67%	GDF7
+	  3.53%	CSPG4P1Y
+	  3.53%	DNAH11
+	  3.11%	BPIFA3
+	  2.97%	ATP5F1
+	  2.97%	CYP4F35P
+	  2.97%	MIR1296
+	  2.54%	LOC100129935
+	  2.40%	LINC00330
+	  2.12%	SLC12A3
+	  1.55%	C15orf43
+	  1.41%	FAM194B
+	  0.71%	ANKRD26P1
+	  0.71%	ANKRD26P3
+
+
+Time: 267.4 secs
+
+Error in parse(text = x, keep.source = FALSE) : 
+  <text>:1:123694: unexpected symbol
+1: + MIR645 + MIR647 + MIR648 + MIR650 + MIR651 + MIR653 + MIR654 + MIR655 + MIR656 + MIR657 + MIR658 + MIR659 + MIR660 + MIR661 + MIR662 + MIR663A + MIR663B + MIR664 + MIR665 + MIR668 + MIR670 +
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+Calls: plot ... formula -> formula.character -> formula -> eval -> parse
+Execution halted

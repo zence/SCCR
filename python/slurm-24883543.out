@@ -1,0 +1,4 @@
+  File "svm_testing.py", line 34
+    
+                                                        ^
+SyntaxError: unexpected EOF while parsing

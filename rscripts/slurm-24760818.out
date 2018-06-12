@@ -1,0 +1,16 @@
+Loading required package: readr
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  X1 = col_character()
+)
+See spec(...) for full column specifications.
+Warning message:
+Missing column names filled in: 'X1' [1] 
+Parsed with column specification:
+cols(
+  .default = col_character()
+)
+See spec(...) for full column specifications.
+Warning message:
+Missing column names filled in: 'X1' [1], 'X2' [2], 'X3' [3] 

@@ -1,0 +1,1141 @@
+Loading required package: readr
+Loading required package: caret
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: C50
+Loading required package: VIM
+Loading required package: colorspace
+Loading required package: methods
+Loading required package: grid
+Loading required package: data.table
+VIM is ready to use. 
+ Since version 4.0.0 the GUI is in its own package VIMGUI.
+
+          Please use the package to use the new (and old) GUI.
+
+Suggestions and bug-reports can be submitted at: https://github.com/alexkowa/VIM/issues
+
+Attaching package: ‘VIM’
+
+The following object is masked from ‘package:datasets’:
+
+    sleep
+
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  AMY1B = col_integer(),
+  AMY1C = col_integer(),
+  ANKRD20A1 = col_integer(),
+  ANKRD20A2 = col_integer(),
+  ANXA8L1 = col_integer(),
+  APOC2 = col_integer(),
+  APOC4 = col_integer(),
+  ARL17B = col_integer(),
+  BAGE2 = col_integer(),
+  BAGE3 = col_integer(),
+  BAGE4 = col_integer(),
+  BAGE5 = col_integer(),
+  BMS1P1 = col_integer(),
+  BMS1P5 = col_integer(),
+  BOLA2 = col_integer(),
+  BOLA2B = col_integer(),
+  BPY2 = col_integer(),
+  BPY2B = col_integer(),
+  BPY2C = col_integer(),
+  C11orf52 = col_integer()
+  # ... with 536 more columns
+)
+See spec(...) for full column specifications.
+
+Call:
+C5.0.default(x = total_her2_data, y = target.total_her2, trials = 10, rules = T)
+
+
+C5.0 [Release 2.07 GPL Edition]  	Mon Jun  4 16:53:28 2018
+-------------------------------
+
+Class specified by attribute `outcome'
+
+Read 708 cases (23370 attributes) from undefined.data
+
+-----  Trial 0:  -----
+
+Rules:
+
+Rule 0/1: (169/1, lift 1.3)
+	DAPL1 <= 1.898996
+	FAM216A > 2.970522
+	LINC00330 <= 0
+	MIR367 <= 0.8816777
+	SERPINC1 > 0.1584471
+	SNORD114-1 <= 0.4289182
+	SNORD114-3 <= 0.581167
+	STARD3 <= 101.6007
+	->  class Negative  [0.988]
+
+Rule 0/2: (241/5, lift 1.3)
+	BPIFA3 <= 0
+	FAM216A > 2.970522
+	GDF7 > 0
+	MIR367 <= 0.8816777
+	SERPINC1 > 0.1584471
+	SNORD114-1 <= 0.4289182
+	STARD3 <= 101.6007
+	->  class Negative  [0.975]
+
+Rule 0/3: (405/18, lift 1.2)
+	C10orf131 <= 1.331904
+	CCDC169-SOHLH2 <= 0.05257687
+	DCTN6 <= 122.2075
+	FAM216A > 2.970522
+	RBM4B <= 52.07368
+	SNORD114-1 <= 0.4289182
+	STARD3 <= 101.6007
+	TSNAX-DISC1 <= 0.02856853
+	->  class Negative  [0.953]
+
+Rule 0/4: (424/37, lift 1.2)
+	FAM216A > 2.970522
+	GAGE2A <= 0.01928058
+	IFNA10 <= 0
+	MIR4451 <= 0
+	OR4E2 <= 0
+	STARD3 <= 101.6007
+	->  class Negative  [0.911]
+
+Rule 0/5: (225/23, lift 1.2)
+	LOC100129935 <= 0.02492667
+	MIR1296 <= 0
+	MIR3609 <= 0
+	STARD3 <= 101.6007
+	->  class Negative  [0.894]
+
+Rule 0/6: (89/3, lift 4.2)
+	STARD3 > 101.6007
+	->  class Positive  [0.956]
+
+Rule 0/7: (18, lift 4.2)
+	FAM216A <= 2.970522
+	MIR3609 > 0
+	->  class Positive  [0.950]
+
+Rule 0/8: (9, lift 4.0)
+	FAM216A <= 2.970522
+	MIR1296 > 0
+	->  class Positive  [0.909]
+
+Rule 0/9: (8, lift 3.9)
+	CCDC169-SOHLH2 > 0.05257687
+	DAPL1 <= 1.898996
+	SERPINC1 <= 0.1584471
+	->  class Positive  [0.900]
+
+Rule 0/10: (7, lift 3.9)
+	DAPL1 <= 1.898996
+	RBM4B > 52.07368
+	SERPINC1 <= 0.1584471
+	->  class Positive  [0.889]
+
+Rule 0/11: (39/22, lift 1.9)
+	MIR367 > 0.8816777
+	->  class Positive  [0.439]
+
+Rule 0/12: (48/28, lift 1.8)
+	SNORD114-1 > 0.4289182
+	->  class Positive  [0.420]
+
+Rule 0/13: (194/133, lift 1.4)
+	SERPINC1 <= 0.1584471
+	->  class Positive  [0.316]
+
+Default class: Negative
+
+-----  Trial 1:  -----
+
+Rules:
+
+Rule 1/1: (346.1, lift 1.6)
+	ERBB2 <= 562.9135
+	PGBD5 <= 12.18015
+	ZMYM3 > 7.481837
+	Sample in {TCGA-5L-AAT0-01A-12R-A41B-07, TCGA-A1-A0SB-01A-11R-A144-07,
+                   TCGA-A1-A0SD-01A-11R-A115-07, TCGA-A1-A0SE-01A-11R-A084-07,
+                   TCGA-A1-A0SF-01A-11R-A144-07, TCGA-A1-A0SG-01A-11R-A144-07,
+                   TCGA-A1-A0SI-01A-11R-A144-07, TCGA-A1-A0SP-01A-11R-A084-07,
+                   TCGA-A1-A0SQ-01A-21R-A144-07, TCGA-A2-A04U-01A-11R-A115-07,
+                   TCGA-A2-A04Y-01A-21R-A034-07, TCGA-A2-A0CK-01A-11R-A22K-07,
+                   TCGA-A2-A0CL-01A-11R-A115-07, TCGA-A2-A0CO-01A-13R-A22K-07,
+                   TCGA-A2-A0CR-01A-11R-A22K-07, TCGA-A2-A0CV-01A-31R-A115-07,
+                   TCGA-A2-A0CY-01A-12R-A034-07, TCGA-A2-A0CZ-01A-11R-A034-07,
+                   TCGA-A2-A0D0-01A-11R-A00Z-07, TCGA-A2-A0D2-01A-21R-A034-07,
+                   TCGA-A2-A0D3-01A-11R-A115-07, TCGA-A2-A0D4-01A-11R-A00Z-07,
+                   TCGA-A2-A0EO-01A-11R-A034-07, TCGA-A2-A0EP-01A-52R-A22U-07,
+                   TCGA-A2-A0ES-01A-11R-A115-07, TCGA-A2-A0EU-01A-22R-A056-07,
+                   TCGA-A2-A0EV-01A-11R-A034-07, TCGA-A2-A0EW-01A-21R-A115-07,
+                   TCGA-A2-A0EX-01A-21R-A034-07, TCGA-A2-A0SU-01A-11R-A084-07,
+                   TCGA-A2-A0T5-01A-21R-A084-07, TCGA-A2-A0T6-01A-11R-A084-07,
+                   TCGA-A2-A0T7-01A-21R-A084-07, TCGA-A2-A0YE-01A-11R-A109-07,
+                   TCGA-A2-A0YF-01A-21R-A109-07, TCGA-A2-A0YH-01A-11R-A109-07,
+                   TCGA-A2-A0YI-01A-31R-A10J-07, TCGA-A2-A0YK-01A-22R-A109-07,
+                   TCGA-A2-A0YL-01A-21R-A109-07, TCGA-A2-A1FV-01A-11R-A13Q-07,
+                   TCGA-A2-A1FW-01A-11R-A13Q-07, TCGA-A2-A1FZ-01A-51R-A14D-07,
+                   TCGA-A2-A1G4-01A-11R-A13Q-07, TCGA-A2-A1G6-01A-11R-A13Q-07,
+                   TCGA-A2-A259-01A-11R-A16F-07, TCGA-A2-A25C-01A-11R-A169-07,
+                   TCGA-A2-A25D-01A-12R-A16F-07, TCGA-A2-A25F-01A-11R-A169-07,
+                   TCGA-A2-A3KD-01A-12R-A213-07, TCGA-A2-A3XW-01A-11R-A239-07,
+                   TCGA-A2-A3XY-01A-11R-A239-07, TCGA-A2-A3Y0-01A-11R-A239-07,
+                   TCGA-A2-A4RW-01A-21R-A266-07, TCGA-A2-A4RY-01A-31R-A266-07,
+                   TCGA-A2-A4S1-01A-21R-A266-07, TCGA-A2-A4S2-01A-12R-A266-07,
+                   TCGA-A2-A4S3-01A-21R-A266-07, TCGA-A7-A0CG-01A-12R-A056-07,
+                   TCGA-A7-A0CJ-01A-21R-A00Z-07, TCGA-A7-A0DA-01A-31R-A115-07,
+                   TCGA-A7-A26G-01A-21R-A169-07, TCGA-A7-A3IY-01A-21R-A21T-07,
+                   TCGA-A7-A3J1-01A-11R-A213-07, TCGA-A7-A426-01A-22R-A24H-07,
+                   TCGA-A7-A4SA-01A-11R-A266-07, TCGA-A7-A4SB-01A-21R-A266-07,
+                   TCGA-A7-A5ZW-01A-12R-A29R-07, TCGA-A7-A5ZX-01A-12R-A29R-07,
+                   TCGA-A7-A6VX-01A-12R-A33J-07, TCGA-A8-A06N-01A-11R-A00Z-07,
+                   TCGA-A8-A06O-01A-11R-A00Z-07, TCGA-A8-A06P-01A-11R-A00Z-07,
+                   TCGA-A8-A06Q-01A-11R-A034-07, TCGA-A8-A06Y-01A-21R-A00Z-07,
+                   TCGA-A8-A06Z-01A-11R-A00Z-07, TCGA-A8-A079-01A-21R-A00Z-07,
+                   TCGA-A8-A07C-01A-11R-A034-07, TCGA-A8-A07E-01A-11R-A034-07,
+                   TCGA-A8-A07F-01A-11R-A00Z-07, TCGA-A8-A07G-01A-11R-A034-07,
+                   TCGA-A8-A07J-01A-11R-A00Z-07, TCGA-A8-A07L-01A-11R-A00Z-07,
+                   TCGA-A8-A07O-01A-11R-A00Z-07, TCGA-A8-A07S-01A-11R-A034-07,
+                   TCGA-A8-A07W-01A-11R-A00Z-07, TCGA-A8-A07Z-01A-11R-A00Z-07,
+                   TCGA-A8-A081-01A-11R-A00Z-07, TCGA-A8-A082-01A-11R-A00Z-07,
+                   TCGA-A8-A083-01A-21R-A00Z-07, TCGA-A8-A084-01A-21R-A00Z-07,
+                   TCGA-A8-A085-01A-11R-A00Z-07, TCGA-A8-A086-01A-11R-A00Z-07,
+                   TCGA-A8-A08A-01A-11R-A32Y-07, TCGA-A8-A08F-01A-11R-A00Z-07,
+                   TCGA-A8-A08I-01A-11R-A00Z-07, TCGA-A8-A08L-01A-11R-A00Z-07,
+                   TCGA-A8-A08O-01A-21R-A056-07, TCGA-A8-A08Z-01A-21R-A00Z-07,
+                   TCGA-A8-A091-01A-11R-A00Z-07, TCGA-A8-A092-01A-11R-A00Z-07,
+                   TCGA-A8-A093-01A-11R-A00Z-07, TCGA-A8-A094-01A-11R-A00Z-07,
+                   TCGA-A8-A095-01A-11R-A00Z-07, TCGA-A8-A096-01A-11R-A00Z-07,
+                   TCGA-A8-A09A-01A-11R-A00Z-07, TCGA-A8-A09B-01A-11R-A00Z-07,
+                   TCGA-A8-A09C-01A-11R-A00Z-07, TCGA-A8-A09D-01A-11R-A00Z-07,
+                   TCGA-A8-A09K-01A-11R-A00Z-07, TCGA-A8-A09M-01A-11R-A00Z-07,
+                   TCGA-A8-A09Q-01A-11R-A00Z-07, TCGA-A8-A09T-01A-11R-A00Z-07,
+                   TCGA-A8-A09V-01A-11R-A034-07, TCGA-A8-A09W-01A-11R-A00Z-07,
+                   TCGA-A8-A09X-01A-11R-A00Z-07, TCGA-A8-A09Z-01A-11R-A00Z-07,
+                   TCGA-A8-A0A1-01A-11R-A00Z-07, TCGA-A8-A0A2-01A-11R-A034-07,
+                   TCGA-A8-A0A4-01A-11R-A00Z-07, TCGA-A8-A0A6-01A-12R-A056-07,
+                   TCGA-A8-A0A9-01A-11R-A00Z-07, TCGA-A8-A0AD-01A-11R-A056-07,
+                   TCGA-AC-A2B8-01A-11R-A17B-07, TCGA-AC-A2FO-01A-11R-A180-07,
+                   TCGA-AC-A2QI-01A-12R-A19W-07, TCGA-AC-A3BB-01A-21R-A19W-07,
+                   TCGA-AC-A3HN-01A-11R-A213-07, TCGA-AC-A3W6-01A-12R-A22K-07,
+                   TCGA-AC-A5XS-01A-11R-A29R-07, TCGA-AC-A62Y-01A-11R-A29R-07,
+                   TCGA-AC-A6NO-01A-12R-A33J-07, TCGA-AC-A7VC-01A-11R-A352-07,
+                   TCGA-AC-A8OR-01A-21R-A41B-07, TCGA-AN-A03Y-01A-21R-A00Z-07,
+                   TCGA-AN-A046-01A-21R-A034-07, TCGA-AN-A049-01A-21R-A00Z-07,
+                   TCGA-AN-A04A-01A-21R-A034-07, TCGA-AN-A04D-01A-21R-A034-07,
+                   TCGA-AN-A0AL-01A-11R-A00Z-07, TCGA-AN-A0AM-01A-11R-A034-07,
+                   TCGA-AN-A0AS-01A-11R-A00Z-07, TCGA-AN-A0AT-01A-11R-A034-07,
+                   TCGA-AN-A0FF-01A-11R-A034-07, TCGA-AN-A0FW-01A-11R-A034-07,
+                   TCGA-AN-A0FY-01A-11R-A034-07, TCGA-AN-A0G0-01A-11R-A034-07,
+                   TCGA-AN-A0XL-01A-11R-A10J-07, TCGA-AN-A0XN-01A-21R-A109-07,
+                   TCGA-AN-A0XO-01A-11R-A109-07, TCGA-AN-A0XR-01A-11R-A109-07,
+                   TCGA-AN-A0XS-01A-22R-A109-07, TCGA-AN-A0XT-01A-11R-A109-07,
+                   TCGA-AN-A0XU-01A-11R-A109-07, TCGA-AO-A03M-01B-11R-A10J-07,
+                   TCGA-AO-A03N-01B-11R-A10J-07, TCGA-AO-A03O-01A-11R-A00Z-07,
+                   TCGA-AO-A03P-01A-11R-A00Z-07, TCGA-AO-A03R-01A-21R-A034-07,
+                   TCGA-AO-A03T-01A-21R-A034-07, TCGA-AO-A03U-01B-21R-A10J-07,
+                   TCGA-AO-A03V-01A-11R-A115-07, TCGA-AO-A0J8-01A-21R-A034-07,
+                   TCGA-AO-A0JA-01A-11R-A056-07, TCGA-AO-A0JB-01A-11R-A32Y-07,
+                   TCGA-AO-A0JC-01A-11R-A056-07, TCGA-AO-A0JD-01A-11R-A056-07,
+                   TCGA-AO-A0JF-01A-11R-A056-07, TCGA-AO-A0JG-01A-31R-A084-07,
+                   TCGA-AO-A0JJ-01A-11R-A056-07, TCGA-AO-A125-01A-11R-A10J-07,
+                   TCGA-AO-A126-01A-11R-A10J-07, TCGA-AO-A128-01A-11R-A10J-07,
+                   TCGA-AO-A129-01A-21R-A10J-07, TCGA-AO-A12A-01A-21R-A115-07,
+                   TCGA-AO-A12B-01A-11R-A10J-07, TCGA-AO-A12E-01A-11R-A10J-07,
+                   TCGA-AO-A12F-01A-11R-A115-07, TCGA-AO-A12H-01A-11R-A115-07,
+                   TCGA-AO-A1KO-01A-31R-A13Q-07, TCGA-AO-A1KR-01A-12R-A144-07,
+                   TCGA-AQ-A1H3-01A-31R-A13Q-07, TCGA-AQ-A54O-01A-11R-A266-07,
+                   TCGA-AQ-A7U7-01A-22R-A352-07, TCGA-AR-A0TP-01A-11R-A084-07,
+                   TCGA-AR-A0TT-01A-31R-A084-07, TCGA-AR-A0TU-01A-31R-A109-07,
+                   TCGA-AR-A0TY-01A-12R-A115-07, TCGA-AR-A0U3-01A-11R-A109-07,
+                   TCGA-AR-A1AH-01A-11R-A12D-07, TCGA-AR-A1AK-01A-21R-A12P-07,
+                   TCGA-AR-A1AL-01A-21R-A12P-07, TCGA-AR-A1AN-01A-11R-A12P-07,
+                   TCGA-AR-A1AO-01A-11R-A12P-07, TCGA-AR-A1AS-01A-11R-A12P-07,
+                   TCGA-AR-A1AV-01A-21R-A12P-07, TCGA-AR-A24H-01A-11R-A169-07,
+                   TCGA-AR-A24M-01A-11R-A169-07, TCGA-AR-A24O-01A-11R-A169-07,
+                   TCGA-AR-A24Q-01A-12R-A169-07, TCGA-AR-A24R-01A-11R-A169-07,
+                   TCGA-AR-A24S-01A-11R-A169-07, TCGA-AR-A24V-01A-21R-A169-07,
+                   TCGA-AR-A24W-01A-11R-A169-07, TCGA-AR-A24Z-01A-11R-A169-07,
+                   TCGA-AR-A252-01A-11R-A169-07, TCGA-AR-A2LN-01A-21R-A18M-07,
+                   TCGA-AR-A2LQ-01A-22R-A18M-07, TCGA-AR-A2LR-01A-12R-A18M-07,
+                   TCGA-B6-A400-01A-11R-A239-07, TCGA-B6-A401-01A-11R-A239-07,
+                   TCGA-B6-A40B-01A-11R-A239-07, TCGA-B6-A40C-01A-11R-A239-07,
+                   TCGA-BH-A0AY-01A-21R-A00Z-07, TCGA-BH-A0AZ-01A-21R-A12P-07,
+                   TCGA-BH-A0B0-01A-21R-A115-07, TCGA-BH-A0B1-01A-12R-A056-07,
+                   TCGA-BH-A0B2-01A-11R-A10J-07, TCGA-BH-A0B5-01A-11R-A12P-07,
+                   TCGA-BH-A0B9-01A-11R-A056-07, TCGA-BH-A0BA-01A-11R-A056-07,
+                   TCGA-BH-A0BC-01A-22R-A084-07, TCGA-BH-A0BD-01A-11R-A034-07,
+                   TCGA-BH-A0BF-01A-21R-A12P-07, TCGA-BH-A0BG-01A-11R-A115-07,
+                   TCGA-BH-A0BJ-01A-11R-A056-07, TCGA-BH-A0BM-01A-11R-A056-07,
+                   TCGA-BH-A0BO-01A-23R-A12D-07, TCGA-BH-A0BP-01A-11R-A115-07,
+                   TCGA-BH-A0BR-01A-21R-A115-07, TCGA-BH-A0BT-01A-11R-A12P-07,
+                   TCGA-BH-A0BV-01A-11R-A00Z-07, TCGA-BH-A0BZ-01A-31R-A12P-07,
+                   TCGA-BH-A0C1-01B-11R-A12D-07, TCGA-BH-A0C3-01A-21R-A12P-07,
+                   TCGA-BH-A0DE-01A-11R-A115-07, TCGA-BH-A0DG-01A-21R-A12P-07,
+                   TCGA-BH-A0DH-01A-11R-A084-07, TCGA-BH-A0DI-01A-21R-A12P-07,
+                   TCGA-BH-A0DK-01A-21R-A056-07, TCGA-BH-A0DO-01B-11R-A12D-07,
+                   TCGA-BH-A0DP-01A-21R-A056-07, TCGA-BH-A0DQ-01A-11R-A084-07,
+                   TCGA-BH-A0DS-01A-11R-A056-07, TCGA-BH-A0DT-01A-21R-A12D-07,
+                   TCGA-BH-A0DV-01A-21R-A12P-07, TCGA-BH-A0DX-01A-11R-A115-07,
+                   TCGA-BH-A0E0-01A-11R-A056-07, TCGA-BH-A0E2-01A-11R-A056-07,
+                   TCGA-BH-A0E7-01A-11R-A034-07, TCGA-BH-A0E9-01B-11R-A115-07,
+                   TCGA-BH-A0EA-01A-11R-A115-07, TCGA-BH-A0EI-01A-11R-A115-07,
+                   TCGA-BH-A0GY-01A-11R-A056-07, TCGA-BH-A0H0-01A-11R-A056-07,
+                   TCGA-BH-A0H6-01A-21R-A056-07, TCGA-BH-A0H7-01A-13R-A056-07,
+                   TCGA-BH-A0HF-01A-11R-A056-07, TCGA-BH-A0HI-01A-11R-A084-07,
+                   TCGA-BH-A0HK-01A-11R-A056-07, TCGA-BH-A0HO-01A-11R-A034-07,
+                   TCGA-BH-A0HP-01A-12R-A084-07, TCGA-BH-A0HQ-01A-11R-A034-07,
+                   TCGA-BH-A0HU-01A-11R-A034-07, TCGA-BH-A0HX-01A-21R-A056-07,
+                   TCGA-BH-A0RX-01A-21R-A084-07, TCGA-BH-A0W4-01A-11R-A109-07,
+                   TCGA-BH-A0W7-01A-11R-A115-07, TCGA-BH-A0WA-01A-11R-A109-07,
+                   TCGA-BH-A18F-01A-11R-A12D-07, TCGA-BH-A18J-01A-11R-A12D-07,
+                   TCGA-BH-A18K-01A-11R-A12D-07, TCGA-BH-A18N-01A-11R-A12D-07,
+                   TCGA-BH-A18S-01A-11R-A12D-07, TCGA-BH-A1EO-01A-11R-A137-07,
+                   TCGA-BH-A1ET-01A-11R-A137-07, TCGA-BH-A1EU-01A-11R-A137-07,
+                   TCGA-BH-A1EW-01A-11R-A137-07, TCGA-BH-A1EY-01A-11R-A13Q-07,
+                   TCGA-BH-A1FB-01A-11R-A13Q-07, TCGA-BH-A1FD-01A-11R-A13Q-07,
+                   TCGA-BH-A1FG-01A-11R-A13Q-07, TCGA-BH-A201-01A-11R-A14M-07,
+                   TCGA-BH-A28O-01A-11R-A22K-07, TCGA-BH-A28Q-01A-11R-A16F-07,
+                   TCGA-BH-A2L8-01A-11R-A18M-07, TCGA-BH-A42U-01A-12R-A24H-07,
+                   TCGA-BH-A42V-01A-11R-A24H-07, TCGA-BH-A5J0-01A-11R-A27Q-07,
+                   TCGA-BH-A6R9-01A-21R-A32P-07, TCGA-BH-A8FY-01A-11R-A36F-07,
+                   TCGA-BH-A8G0-01A-11R-A352-07, TCGA-BH-AB28-01A-31R-A41B-07,
+                   TCGA-C8-A12M-01A-11R-A115-07, TCGA-C8-A12N-01A-11R-A115-07,
+                   TCGA-C8-A12O-01A-11R-A115-07, TCGA-C8-A12U-01A-11R-A115-07,
+                   TCGA-C8-A12V-01A-11R-A115-07, TCGA-C8-A12W-01A-11R-A115-07,
+                   TCGA-C8-A1HI-01A-11R-A137-07, TCGA-C8-A1HM-01A-12R-A137-07,
+                   TCGA-C8-A26V-01A-11R-A16F-07, TCGA-C8-A26X-01A-31R-A16F-07,
+                   TCGA-C8-A26Y-01A-11R-A16F-07, TCGA-C8-A26Z-01A-11R-A16F-07,
+                   TCGA-C8-A273-01A-11R-A16F-07, TCGA-C8-A274-01A-11R-A16F-07,
+                   TCGA-C8-A3M7-01A-12R-A21T-07, TCGA-C8-A8HQ-01A-11R-A36F-07,
+                   TCGA-D8-A141-01A-11R-A115-07, TCGA-D8-A146-01A-31R-A115-07,
+                   TCGA-D8-A1J8-01A-11R-A13Q-07, TCGA-D8-A1JC-01A-11R-A13Q-07,
+                   TCGA-D8-A1JD-01A-11R-A13Q-07, TCGA-D8-A1JE-01A-11R-A13Q-07,
+                   TCGA-D8-A1JF-01A-11R-A13Q-07, TCGA-D8-A1JH-01A-11R-A13Q-07,
+                   TCGA-D8-A1JI-01A-11R-A13Q-07, TCGA-D8-A1JJ-01A-31R-A14M-07,
+                   TCGA-D8-A1JK-01A-11R-A13Q-07, TCGA-D8-A1JL-01A-11R-A13Q-07,
+                   TCGA-D8-A1JP-01A-11R-A13Q-07, TCGA-D8-A1JS-01A-11R-A13Q-07,
+                   TCGA-D8-A1JU-01A-11R-A13Q-07, TCGA-D8-A1X6-01A-11R-A14M-07,
+                   TCGA-D8-A1X7-01A-11R-A14M-07, TCGA-D8-A1X8-01A-11R-A14M-07,
+                   TCGA-D8-A1XB-01A-11R-A14D-07, TCGA-D8-A1XD-01A-11R-A14D-07,
+                   TCGA-D8-A1XF-01A-11R-A14D-07, TCGA-D8-A1XK-01A-21R-A14M-07,
+                   TCGA-D8-A1XM-01A-21R-A14M-07, TCGA-D8-A1XO-01A-11R-A14M-07,
+                   TCGA-D8-A1XQ-01A-11R-A14M-07, TCGA-D8-A1XR-01A-11R-A14M-07,
+                   TCGA-D8-A1XU-01A-11R-A14M-07, TCGA-D8-A1XW-01A-11R-A14M-07,
+                   TCGA-D8-A1XZ-01A-11R-A14M-07, TCGA-D8-A1Y0-01A-11R-A14M-07,
+                   TCGA-D8-A1Y1-01A-21R-A14M-07, TCGA-D8-A27E-01A-11R-A16F-07,
+                   TCGA-D8-A27I-01A-11R-A16F-07, TCGA-D8-A27K-01A-11R-A16F-07,
+                   TCGA-D8-A27L-01A-11R-A16F-07, TCGA-D8-A27P-01A-11R-A16F-07,
+                   TCGA-D8-A27T-01A-11R-A16F-07, TCGA-D8-A27V-01A-12R-A17B-07,
+                   TCGA-D8-A3Z5-01A-41R-A24H-07, TCGA-D8-A3Z6-01A-11R-A239-07,
+                   TCGA-D8-A4Z1-01A-21R-A266-07, TCGA-D8-A73U-01A-11R-A33J-07,
+                   TCGA-D8-A73W-01A-22R-A352-07, TCGA-D8-A73X-01A-11R-A32P-07,
+                   TCGA-E2-A108-01A-13R-A10J-07, TCGA-E2-A10C-01A-21R-A10J-07,
+                   TCGA-E2-A14N-01A-31R-A137-07, TCGA-E2-A14Q-01A-11R-A12D-07,
+                   TCGA-E2-A14Z-01A-11R-A115-07, TCGA-E2-A153-01A-12R-A12D-07,
+                   TCGA-E2-A154-01A-11R-A115-07, TCGA-E2-A155-01A-11R-A12D-07,
+                   TCGA-E2-A156-01A-11R-A12D-07, TCGA-E2-A158-01A-11R-A12D-07,
+                   TCGA-E2-A15G-01A-11R-A12D-07, TCGA-E2-A15M-01A-11R-A12D-07,
+                   TCGA-E2-A15P-01A-11R-A115-07, TCGA-E2-A1B4-01A-11R-A12P-07,
+                   TCGA-E2-A1B5-01A-21R-A12P-07, TCGA-E2-A1BC-01A-11R-A12P-07,
+                   TCGA-E2-A1IF-01A-11R-A144-07, TCGA-E2-A1IG-01A-11R-A144-07,
+                   TCGA-E2-A1II-01A-11R-A144-07, TCGA-E2-A1IK-01A-11R-A144-07,
+                   TCGA-E2-A1IL-01A-11R-A14D-07, TCGA-E2-A1IN-01A-11R-A13Q-07,
+                   TCGA-E2-A1IU-01A-11R-A14D-07, TCGA-E2-A1L6-01A-11R-A13Q-07,
+                   TCGA-E2-A1L9-01A-11R-A13Q-07, TCGA-E2-A1LL-01A-11R-A144-07,
+                   TCGA-E2-A1LS-01A-12R-A157-07, TCGA-E9-A1N8-01A-11R-A144-07,
+                   TCGA-E9-A1NE-01A-21R-A14M-07, TCGA-E9-A1NF-01A-11R-A14D-07,
+                   TCGA-E9-A1NG-01A-21R-A14M-07, TCGA-E9-A1NH-01A-11R-A14D-07,
+                   TCGA-E9-A1NI-01A-11R-A14D-07, TCGA-E9-A227-01A-11R-A157-07,
+                   TCGA-E9-A22A-01A-11R-A157-07, TCGA-E9-A22B-01A-11R-A157-07,
+                   TCGA-E9-A54X-01A-11R-A266-07, TCGA-E9-A54Y-01A-11R-A466-07,
+                   TCGA-E9-A5FK-01A-11R-A27Q-07, TCGA-E9-A6HE-01A-11R-A31O-07,
+                   TCGA-EW-A1IX-01A-12R-A144-07, TCGA-EW-A1IY-01A-11R-A13Q-07,
+                   TCGA-EW-A1IZ-01A-11R-A13Q-07, TCGA-EW-A1J1-01A-11R-A13Q-07,
+                   TCGA-EW-A1J2-01A-21R-A13Q-07, TCGA-EW-A1J5-01A-11R-A13Q-07,
+                   TCGA-EW-A1J6-01A-11R-A13Q-07, TCGA-EW-A1OV-01A-11R-A144-07,
+                   TCGA-EW-A1OY-01A-11R-A144-07, TCGA-EW-A1P0-01A-11R-A144-07,
+                   TCGA-EW-A1P3-01A-11R-A144-07, TCGA-EW-A1P5-01A-11R-A144-07,
+                   TCGA-EW-A1P6-01A-11R-A144-07, TCGA-EW-A1PA-01A-11R-A144-07,
+                   TCGA-EW-A1PB-01A-11R-A144-07, TCGA-EW-A1PC-01B-11R-A21T-07,
+                   TCGA-EW-A1PE-01A-11R-A144-07, TCGA-EW-A1PF-01A-11R-A144-07,
+                   TCGA-EW-A2FS-01A-11R-A17B-07, TCGA-EW-A3E8-01B-11R-A24H-07,
+                   TCGA-EW-A423-01A-11R-A24H-07, TCGA-EW-A6SA-01A-21R-A32P-07,
+                   TCGA-GI-A2C8-01A-11R-A16F-07, TCGA-GI-A2C9-01A-11R-A21T-07,
+                   TCGA-GM-A2DB-01A-31R-A18M-07, TCGA-GM-A2DH-01A-11R-A180-07,
+                   TCGA-GM-A2DL-01A-11R-A18M-07, TCGA-GM-A2DM-01A-11R-A180-07,
+                   TCGA-GM-A2DN-01A-11R-A180-07, TCGA-GM-A2DO-01A-11R-A18M-07,
+                   TCGA-GM-A3NY-01A-11R-A21T-07, TCGA-GM-A3XG-01A-31R-A24H-07,
+                   TCGA-GM-A3XN-01A-12R-A22U-07, TCGA-GM-A5PX-01A-12R-A28M-07,
+                   TCGA-HN-A2OB-01A-21R-A27Q-07, TCGA-LD-A66U-01A-11R-A31O-07,
+                   TCGA-LD-A74U-01A-13R-A33J-07, TCGA-LD-A7W5-01A-22R-A352-07,
+                   TCGA-LD-A7W6-01A-81R-A352-07, TCGA-LL-A441-01A-11R-A24H-07,
+                   TCGA-LL-A5YO-01A-21R-A28M-07, TCGA-LL-A6FQ-01A-11R-A31O-07,
+                   TCGA-LL-A73Y-01A-11R-A33J-07, TCGA-LL-A7SZ-01A-32R-A352-07,
+                   TCGA-LL-A8F5-01A-11R-A36F-07, TCGA-MS-A51U-01A-31R-A266-07,
+                   TCGA-OK-A5Q2-01A-11R-A27Q-07, TCGA-OL-A6VO-01A-12R-A33J-07,
+                   TCGA-OL-A6VR-01A-32R-A33J-07, TCGA-PE-A5DE-01A-11R-A27Q-07,
+                   TCGA-S3-A6ZG-01A-22R-A32P-07, TCGA-S3-AA10-01A-21R-A41B-07,
+                   TCGA-S3-AA12-01A-11R-A41B-07, TCGA-S3-AA15-01A-11R-A41B-07,
+                   TCGA-W8-A86G-01A-21R-A36F-07, TCGA-WT-AB44-01A-11R-A41B-07,
+                   TCGA-XX-A899-01A-11R-A36F-07, TCGA-XX-A89A-01A-11R-A36F-07,
+                   TCGA-Z7-A8R5-01A-42R-A41B-07, TCGA-Z7-A8R6-01A-11R-A41B-07}
+	->  class Negative  [0.997]
+
+Rule 1/2: (87/1.5, lift 1.6)
+	PGBD5 > 12.18015
+	->  class Negative  [0.972]
+
+Rule 1/3: (184.7, lift 2.6)
+	Sample in {TCGA-A2-A0EQ-01A-11R-A034-07, TCGA-A8-A06R-01A-11R-A00Z-07,
+                   TCGA-A8-A06T-01A-11R-A00Z-07, TCGA-A8-A06U-01A-11R-A00Z-07,
+                   TCGA-A8-A06X-01A-21R-A00Z-07, TCGA-A8-A075-01A-11R-A084-07,
+                   TCGA-A8-A07R-01A-21R-A034-07, TCGA-A8-A08C-01A-11R-A00Z-07,
+                   TCGA-A8-A08G-01A-11R-A00Z-07, TCGA-A8-A08H-01A-21R-A00Z-07,
+                   TCGA-A8-A08P-01A-11R-A00Z-07, TCGA-A8-A08T-01A-21R-A00Z-07,
+                   TCGA-A8-A090-01A-11R-A00Z-07, TCGA-A8-A099-01A-11R-A00Z-07,
+                   TCGA-A8-A09E-01A-11R-A00Z-07, TCGA-A8-A09N-01A-11R-A00Z-07,
+                   TCGA-A8-A0AB-01A-11R-A034-07, TCGA-AC-A23G-01A-11R-A213-07,
+                   TCGA-AC-A3TN-01A-11R-A22K-07, TCGA-AC-A3YI-01A-21R-A239-07,
+                   TCGA-AC-A8OS-01A-12R-A41B-07, TCGA-AN-A03X-01A-21R-A00Z-07,
+                   TCGA-AN-A041-01A-11R-A034-07, TCGA-AN-A0AJ-01A-11R-A00Z-07,
+                   TCGA-AN-A0FD-01A-11R-A034-07, TCGA-AN-A0FJ-01A-11R-A00Z-07,
+                   TCGA-AN-A0FK-01A-11R-A034-07, TCGA-AN-A0FL-01A-11R-A034-07,
+                   TCGA-AN-A0FN-01A-11R-A034-07, TCGA-AN-A0FS-01A-11R-A034-07,
+                   TCGA-AN-A0FX-01A-11R-A034-07, TCGA-AN-A0FZ-01A-11R-A034-07,
+                   TCGA-AN-A0XP-01A-11R-A109-07, TCGA-AN-A0XV-01A-11R-A109-07,
+                   TCGA-AN-A0XW-01A-11R-A109-07, TCGA-AO-A03L-01A-41R-A056-07,
+                   TCGA-AO-A12C-01A-11R-A10J-07, TCGA-AO-A12G-01A-11R-A10J-07,
+                   TCGA-AQ-A04L-01B-21R-A10J-07, TCGA-AR-A255-01A-11R-A169-07,
+                   TCGA-AR-A5QN-01A-12R-A28M-07, TCGA-BH-A0AU-01A-11R-A12P-07,
+                   TCGA-BH-A0B6-01A-11R-A19W-07, TCGA-BH-A0BQ-01A-21R-A115-07,
+                   TCGA-BH-A18H-01A-11R-A12D-07, TCGA-BH-A18I-01A-11R-A12D-07,
+                   TCGA-BH-A18M-01A-11R-A12D-07, TCGA-BH-A18P-01A-11R-A12D-07,
+                   TCGA-BH-A18Q-01A-12R-A12D-07, TCGA-BH-A18T-01A-11R-A12D-07,
+                   TCGA-BH-A1EX-01A-11R-A13Q-07, TCGA-BH-A1F8-01A-11R-A13Q-07,
+                   TCGA-BH-A42T-01A-11R-A24H-07, TCGA-D8-A140-01A-11R-A115-07,
+                   TCGA-D8-A1XS-01A-11R-A14M-07, TCGA-D8-A1XY-01A-11R-A14M-07,
+                   TCGA-E2-A10A-01A-21R-A115-07, TCGA-E9-A1N4-01A-11R-A14M-07,
+                   TCGA-E9-A1N5-01A-11R-A14D-07, TCGA-E9-A1N6-01A-11R-A144-07,
+                   TCGA-E9-A1N9-01A-11R-A14D-07, TCGA-E9-A1ND-01A-11R-A144-07,
+                   TCGA-E9-A22E-01A-11R-A157-07, TCGA-E9-A22H-01A-11R-A157-07,
+                   TCGA-E9-A295-01A-11R-A16F-07, TCGA-EW-A424-01A-11R-A24H-07,
+                   TCGA-JL-A3YW-01A-12R-A239-07, TCGA-JL-A3YX-01A-11R-A22U-07,
+                   TCGA-LL-A7T0-01A-31R-A352-07, TCGA-PE-A5DC-01A-12R-A27Q-07,
+                   TCGA-PE-A5DD-01A-12R-A27Q-07}
+	->  class Positive  [0.995]
+
+Rule 1/4: (62.8, lift 2.5)
+	ERBB2 > 562.9135
+	PGBD5 <= 12.18015
+	->  class Positive  [0.985]
+
+Rule 1/5: (27.4/2.3, lift 2.3)
+	ZMYM3 <= 7.481837
+	->  class Positive  [0.888]
+
+Default class: Negative
+
+-----  Trial 2:  -----
+
+Rules:
+
+Rule 2/1: (609.2/187, lift 1.1)
+	ERBB2 <= 445.1522
+	->  class Negative  [0.692]
+
+Rule 2/2: (91.7/2.3, lift 2.5)
+	ERBB2 > 445.1522
+	KCNH6 <= 3.398345
+	->  class Positive  [0.965]
+
+Rule 2/3: (27/0.6, lift 2.4)
+	BTBD16 <= 0
+	FAM54B <= 39.01849
+	XPO7 <= 103.9887
+	->  class Positive  [0.946]
+
+Rule 2/4: (21.8/0.6, lift 2.4)
+	LOC440563 <= 4.299296
+	MIR3153 > 7.175739
+	->  class Positive  [0.934]
+
+Rule 2/5: (61.1/4, lift 2.4)
+	ERBB2 <= 445.1522
+	LOC284889 > 0.3144454
+	XPO7 > 103.9887
+	->  class Positive  [0.920]
+
+Rule 2/6: (38.7/5.8, lift 2.1)
+	LOC284889 <= 0.3144454
+	->  class Positive  [0.834]
+
+Rule 2/7: (29.8/8.1, lift 1.8)
+	LOC284889 > 0.3144454
+	RAB6A > 261.0368
+	->  class Positive  [0.715]
+
+Default class: Negative
+
+-----  Trial 3:  -----
+
+Rules:
+
+Rule 3/1: (79.5, lift 1.7)
+	FCGBP > 11.69305
+	PGAP3 <= 100.1739
+	->  class Negative  [0.988]
+
+Rule 3/2: (60.4, lift 1.7)
+	COBRA1 <= 224.6108
+	PGBD5 > 12.18015
+	->  class Negative  [0.984]
+
+Rule 3/3: (57.7, lift 1.7)
+	GOLGA7 > 120.6157
+	PGAP3 <= 100.1739
+	->  class Negative  [0.983]
+
+Rule 3/4: (135.7/1.8, lift 1.7)
+	ARHGEF38 <= 1.673608
+	->  class Negative  [0.980]
+
+Rule 3/5: (42.4, lift 1.7)
+	KIAA0141 > 43.23105
+	->  class Negative  [0.977]
+
+Rule 3/6: (36.4, lift 1.7)
+	FOXN3 > 35.87028
+	PGAP3 <= 100.1739
+	->  class Negative  [0.974]
+
+Rule 3/7: (33, lift 1.7)
+	IZUMO4 > 9.846131
+	PGAP3 <= 100.1739
+	->  class Negative  [0.971]
+
+Rule 3/8: (57.4/1.3, lift 1.7)
+	COBRA1 <= 224.6108
+	PGAP3 <= 100.1739
+	TMEM165 > 161.2802
+	->  class Negative  [0.961]
+
+Rule 3/9: (84/3.2, lift 1.6)
+	PGA4 > 0.06744802
+	PGAP3 <= 100.1739
+	->  class Negative  [0.951]
+
+Rule 3/10: (65.6/2.7, lift 1.6)
+	MAST2 > 53.69006
+	PGA4 <= 0.06744802
+	PGAP3 <= 100.1739
+	->  class Negative  [0.945]
+
+Rule 3/11: (39.9/2.6, lift 1.6)
+	PGAP3 <= 100.1739
+	ZNF880 > 24.67325
+	->  class Negative  [0.914]
+
+Rule 3/12: (39/2.6, lift 1.6)
+	PGAP3 <= 100.1739
+	SPACA7 > 0.05031559
+	->  class Negative  [0.913]
+
+Rule 3/13: (55.3, lift 2.3)
+	COBRA1 > 224.6108
+	->  class Positive  [0.983]
+
+Rule 3/14: (42.9, lift 2.3)
+	ARHGEF38 > 1.673608
+	KIAA0141 <= 43.23105
+	PGAP3 > 100.1739
+	PGBD5 <= 12.18015
+	->  class Positive  [0.978]
+
+Rule 3/15: (235.7/34.7, lift 2.0)
+	ARHGEF38 > 1.673608
+	FCGBP <= 11.69305
+	FOXN3 <= 35.87028
+	GOLGA7 <= 120.6157
+	IZUMO4 <= 9.846131
+	KIAA0141 <= 43.23105
+	MAST2 <= 53.69006
+	PGA4 <= 0.06744802
+	PGBD5 <= 12.18015
+	SPACA7 <= 0.05031559
+	TMEM165 <= 161.2802
+	ZNF880 <= 24.67325
+	->  class Positive  [0.850]
+
+Default class: Negative
+
+-----  Trial 4:  -----
+
+Rules:
+
+Rule 4/1: (665.5/207.8, lift 1.1)
+	COBRA1 <= 224.6108
+	->  class Negative  [0.687]
+
+Rule 4/2: (61.7, lift 2.8)
+	KCNH6 <= 3.398345
+	STARD3 > 115.3819
+	->  class Positive  [0.984]
+
+Rule 4/3: (42.5, lift 2.8)
+	COBRA1 > 224.6108
+	->  class Positive  [0.978]
+
+Rule 4/4: (29.4/0.3, lift 2.7)
+	CTDNEP1 <= 66.46895
+	PAX7 <= 9.95715
+	TMC3 <= 0.7635607
+	->  class Positive  [0.957]
+
+Rule 4/5: (57.9/2.1, lift 2.7)
+	ANKRD2 <= 2.232987
+	CTDNEP1 > 66.46895
+	LINC00410 <= 0
+	PAX7 <= 9.95715
+	RAB41 <= 1.057059
+	ST20 <= 2.66417
+	->  class Positive  [0.949]
+
+Rule 4/6: (29.9/0.7, lift 2.7)
+	SAMD11 > 30.29082
+	SPTBN1 <= 50.91242
+	->  class Positive  [0.947]
+
+Rule 4/7: (26.1/2.7, lift 2.5)
+	ANKRD2 <= 2.232987
+	CTDNEP1 > 66.46895
+	CTSF > 248.8566
+	L3MBTL2 > 44.2562
+	ST20 > 2.66417
+	->  class Positive  [0.867]
+
+Rule 4/8: (32.6/4.4, lift 2.4)
+	PAX7 > 9.95715
+	->  class Positive  [0.843]
+
+Rule 4/9: (25.6/6.3, lift 2.1)
+	ANKRD2 > 2.232987
+	->  class Positive  [0.737]
+
+Default class: Negative
+
+-----  Trial 5:  -----
+
+Rules:
+
+Rule 5/1: (675.4/211.6, lift 1.0)
+	COBRA1 <= 224.6108
+	->  class Negative  [0.686]
+
+Rule 5/2: (48.6, lift 2.8)
+	ERBB2 > 562.9135
+	KCNH6 <= 3.398345
+	->  class Positive  [0.980]
+
+Rule 5/3: (32.6, lift 2.8)
+	COBRA1 > 224.6108
+	->  class Positive  [0.971]
+
+Rule 5/4: (31/1.3, lift 2.7)
+	ATG9B > 0.5999482
+	HTRA3 > 354.9424
+	->  class Positive  [0.930]
+
+Rule 5/5: (18.8/0.5, lift 2.7)
+	C7orf62 > 0.1711939
+	CECR6 <= 0.412811
+	HTRA3 <= 354.9424
+	->  class Positive  [0.927]
+
+Rule 5/6: (41.2/2.4, lift 2.7)
+	AAA1 > 0.06502753
+	HSPD1 > 243.1258
+	->  class Positive  [0.922]
+
+Rule 5/7: (33.2/10, lift 2.0)
+	AAA1 <= 0.06502753
+	LOC338799 <= 4.136138
+	->  class Positive  [0.687]
+
+Default class: Negative
+
+-----  Trial 6:  -----
+
+Rules:
+
+Rule 6/1: (99.8, lift 1.7)
+	ABCG5 <= 0.8231599
+	ADAM12 <= 9.660658
+	HADH <= 194.4669
+	LENG9 <= 22.61628
+	STARD3 <= 95.10374
+	XPO7 > 19.4711
+	->  class Negative  [0.990]
+
+Rule 6/2: (65.2, lift 1.7)
+	SORL1 <= 5.119014
+	->  class Negative  [0.985]
+
+Rule 6/3: (314.1/12.7, lift 1.6)
+	ABCG5 <= 0.8231599
+	C10orf116 <= 1421.708
+	C16orf95 > 2.036315
+	FGF6 <= 0.1212769
+	HADH <= 194.4669
+	LENG9 <= 22.61628
+	MIR4281 <= 0.6238895
+	MRPL49 <= 173.9769
+	STARD3 <= 95.10374
+	TPST1 <= 37.88858
+	XPO7 > 19.4711
+	ZNF259 > 31.71775
+	->  class Negative  [0.957]
+
+Rule 6/4: (33.2/1.3, lift 1.6)
+	C10orf116 <= 1421.708
+	LOC729156 <= 0.3255281
+	MRPL49 <= 173.9769
+	STARD3 <= 95.10374
+	ZNF259 <= 31.71775
+	->  class Negative  [0.936]
+
+Rule 6/5: (32.3/0.2, lift 2.4)
+	LENG9 > 22.61628
+	->  class Positive  [0.965]
+
+Rule 6/6: (27.8/0.6, lift 2.3)
+	ADAM12 > 9.660658
+	LOC729156 > 0.3255281
+	MIR4281 <= 0.6238895
+	TPST1 <= 37.88858
+	ZNF259 <= 31.71775
+	->  class Positive  [0.946]
+
+Rule 6/7: (21.1/0.4, lift 2.3)
+	ADAM12 > 9.660658
+	C10orf116 > 1421.708
+	SORL1 > 5.119014
+	->  class Positive  [0.939]
+
+Rule 6/8: (57.6/3.8, lift 2.3)
+	SORL1 > 5.119014
+	STARD3 > 95.10374
+	->  class Positive  [0.919]
+
+Rule 6/9: (28.8/1.5, lift 2.3)
+	SORL1 > 5.119014
+	XPO7 <= 19.4711
+	->  class Positive  [0.918]
+
+Rule 6/10: (26.5/1.5, lift 2.3)
+	ABCG5 > 0.8231599
+	->  class Positive  [0.912]
+
+Rule 6/11: (39.8/3, lift 2.2)
+	HADH > 194.4669
+	SORL1 > 5.119014
+	->  class Positive  [0.905]
+
+Rule 6/12: (26.4/2.1, lift 2.2)
+	ADAM12 > 9.660658
+	HADH <= 194.4669
+	MIR4281 > 0.6238895
+	XPO7 > 19.4711
+	->  class Positive  [0.892]
+
+Rule 6/13: (25/2.3, lift 2.2)
+	ADAM12 > 9.660658
+	SORL1 > 5.119014
+	TPST1 > 37.88858
+	->  class Positive  [0.879]
+
+Rule 6/14: (38.2/4.5, lift 2.1)
+	ADAM12 > 9.660658
+	MRPL49 > 173.9769
+	->  class Positive  [0.865]
+
+Rule 6/15: (18/1.7, lift 2.1)
+	ADAM12 > 9.660658
+	FGF6 > 0.1212769
+	->  class Positive  [0.864]
+
+Rule 6/16: (36.9/14.4, lift 1.5)
+	C16orf95 <= 2.036315
+	->  class Positive  [0.605]
+
+Default class: Negative
+
+-----  Trial 7:  -----
+
+Rules:
+
+Rule 7/1: (14.5, lift 1.4)
+	MKI67 > 47.59167
+	TBC1D23 > 52.50871
+	->  class Negative  [0.939]
+
+Rule 7/2: (26.6/1.1, lift 1.4)
+	BTBD18 <= 0.05470045
+	KGFLP1 > 0.09811492
+	TGFBR3 > 13.53799
+	->  class Negative  [0.925]
+
+Rule 7/3: (428.5/42.4, lift 1.4)
+	A2ML1 <= 62.97807
+	BTBD18 > 0.05470045
+	CHMP7 <= 71.59209
+	KGFLP1 > 0.09811492
+	LENG9 <= 21.03682
+	REN <= 1.713777
+	SNORD113-2 <= 0.5002617
+	TBC1D23 <= 52.50871
+	ZNF597 <= 12.46155
+	->  class Negative  [0.899]
+
+Rule 7/4: (17.5/0.3, lift 2.7)
+	BTBD18 > 0.05470045
+	MKI67 <= 47.59167
+	SNORD113-2 <= 0.5002617
+	TBC1D23 > 52.50871
+	ZNF597 <= 12.46155
+	->  class Positive  [0.932]
+
+Rule 7/5: (49.2/3.9, lift 2.6)
+	BTBD18 <= 0.05470045
+	KGFLP1 > 0.09811492
+	TGFBR3 <= 13.53799
+	->  class Positive  [0.905]
+
+Rule 7/6: (27.6/1.9, lift 2.6)
+	LENG9 > 21.03682
+	->  class Positive  [0.902]
+
+Rule 7/7: (27.7/3.2, lift 2.5)
+	A2ML1 <= 62.97807
+	KGFLP1 <= 0.09811492
+	->  class Positive  [0.859]
+
+Rule 7/8: (27.9/3.4, lift 2.4)
+	A2ML1 > 62.97807
+	->  class Positive  [0.855]
+
+Rule 7/9: (25.3/3.7, lift 2.4)
+	ZNF597 > 12.46155
+	->  class Positive  [0.828]
+
+Rule 7/10: (33.9/6.8, lift 2.2)
+	LENG9 <= 21.03682
+	REN > 1.713777
+	->  class Positive  [0.782]
+
+Rule 7/11: (32.1/7.1, lift 2.2)
+	CHMP7 > 71.59209
+	REN <= 1.713777
+	->  class Positive  [0.761]
+
+Rule 7/12: (25.5/10, lift 1.7)
+	SNORD113-2 > 0.5002617
+	->  class Positive  [0.602]
+
+Default class: Negative
+
+-----  Trial 8:  -----
+
+Rules:
+
+Rule 8/1: (92.2, lift 1.5)
+	ASCL2 > 0.5227431
+	FAM189A2 > 17.71784
+	LRRC39 > 0.2901027
+	SQRDL > 65.02995
+	STARD3 <= 115.3819
+	->  class Negative  [0.989]
+
+Rule 8/2: (81.6, lift 1.5)
+	PPIC <= 66.59971
+	STARD3 <= 115.3819
+	->  class Negative  [0.988]
+
+Rule 8/3: (84.1, lift 1.5)
+	ARHGEF38 <= 1.673608
+	STARD3 <= 115.3819
+	->  class Negative  [0.988]
+
+Rule 8/4: (328.2/8.3, lift 1.5)
+	ASCL2 > 0.5227431
+	CDK15 <= 3.269663
+	CORO7-PAM16 <= 0.07748482
+	LOC643802 > 0.08085418
+	LRRC39 > 0.2901027
+	MIR22HG <= 24.99321
+	MRPL48 <= 79.6731
+	OCLN <= 22.77547
+	SNORD114-1 <= 0.781849
+	SQRDL > 65.02995
+	STARD3 <= 115.3819
+	->  class Negative  [0.972]
+
+Rule 8/5: (23.7/0.9, lift 2.6)
+	ARHGEF38 > 1.673608
+	LRRC39 <= 0.2901027
+	->  class Positive  [0.926]
+
+Rule 8/6: (29.9/1.5, lift 2.6)
+	ARHGEF38 > 1.673608
+	PPIC > 66.59971
+	SQRDL <= 65.02995
+	->  class Positive  [0.923]
+
+Rule 8/7: (70.7/4.9, lift 2.5)
+	STARD3 > 115.3819
+	->  class Positive  [0.919]
+
+Rule 8/8: (18/1.1, lift 2.5)
+	ARHGEF38 > 1.673608
+	FAM189A2 <= 17.71784
+	SNORD114-1 > 0.781849
+	->  class Positive  [0.895]
+
+Rule 8/9: (16.2/1.2, lift 2.4)
+	ASCL2 > 0.5227431
+	CDK15 > 3.269663
+	FAM189A2 <= 17.71784
+	->  class Positive  [0.882]
+
+Rule 8/10: (17.6/1.5, lift 2.4)
+	ARHGEF38 > 1.673608
+	CORO7-PAM16 > 0.07748482
+	FAM189A2 <= 17.71784
+	LRRC39 > 0.2901027
+	PPIC > 66.59971
+	->  class Positive  [0.871]
+
+Rule 8/11: (33.7/3.7, lift 2.4)
+	ARHGEF38 > 1.673608
+	CORO7-PAM16 <= 0.07748482
+	FAM189A2 <= 17.71784
+	LOC643802 <= 0.08085418
+	PPIC > 66.59971
+	->  class Positive  [0.869]
+
+Rule 8/12: (29.6/3.7, lift 2.4)
+	ARHGEF38 > 1.673608
+	MRPL48 > 79.6731
+	PPIC > 66.59971
+	->  class Positive  [0.852]
+
+Rule 8/13: (25.4/3.1, lift 2.3)
+	ARHGEF38 > 1.673608
+	ASCL2 > 0.5227431
+	FAM189A2 <= 17.71784
+	OCLN > 22.77547
+	PPIC > 66.59971
+	->  class Positive  [0.849]
+
+Rule 8/14: (29.5/3.9, lift 2.3)
+	ARHGEF38 > 1.673608
+	ASCL2 <= 0.5227431
+	PPIC > 66.59971
+	SQRDL > 65.02995
+	->  class Positive  [0.846]
+
+Rule 8/15: (29.6/12.9, lift 1.5)
+	MIR22HG > 24.99321
+	->  class Positive  [0.558]
+
+Default class: Negative
+
+-----  Trial 9:  -----
+
+Rules:
+
+Rule 9/1: (24.3/1.6, lift 1.3)
+	KCNH6 > 3.398345
+	->  class Negative  [0.902]
+
+Rule 9/2: (643/154.6, lift 1.1)
+	ERBB2 <= 509.5006
+	->  class Negative  [0.759]
+
+Rule 9/3: (56/0.5, lift 3.3)
+	ERBB2 > 509.5006
+	KCNH6 <= 3.398345
+	->  class Positive  [0.973]
+
+Rule 9/4: (21.5, lift 3.2)
+	LOC100130890 <= 5.417287
+	STAT6 <= 29.28403
+	TET2 > 4.853411
+	->  class Positive  [0.957]
+
+Rule 9/5: (24.8/0.4, lift 3.2)
+	LOC100130890 > 5.417287
+	PRSS53 <= 3.453431
+	->  class Positive  [0.949]
+
+Rule 9/6: (14.2, lift 3.1)
+	EPHA8 > 0.01227134
+	LOC285878 <= 0.01552128
+	MBD3L3 > 0.04243435
+	SNORD60 <= 79.52032
+	->  class Positive  [0.932]
+
+Rule 9/7: (42.6/7.9, lift 2.7)
+	EPHA8 <= 0.01227134
+	LOC100130890 <= 5.417287
+	LOC100499183 <= 0.6759782
+	SNORD60 <= 79.52032
+	->  class Positive  [0.801]
+
+Default class: Negative
+
+
+Evaluation on training data (708 cases):
+
+Trial	        Rules     
+-----	  ----------------
+	    No      Errors
+
+   0	    13   42( 5.9%)
+   1	     5    5( 0.7%)
+   2	     7   73(10.3%)
+   3	    15   89(12.6%)
+   4	     9   61( 8.6%)
+   5	     7   71(10.0%)
+   6	    16   68( 9.6%)
+   7	    12  138(19.5%)
+   8	    15   76(10.7%)
+   9	     7   60( 8.5%)
+boost	          0( 0.0%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   546          (a): class Negative
+	         162    (b): class Positive
+
+
+	Attribute usage:
+
+	100.00%	COBRA1
+	 99.72%	ERBB2
+	 98.59%	PGBD5
+	 96.33%	STARD3
+	 88.56%	LENG9
+	 82.77%	FAM216A
+	 80.37%	KGFLP1
+	 80.37%	SNORD114-1
+	 77.97%	BTBD18
+	 74.58%	REN
+	 73.87%	Sample
+	 73.31%	XPO7
+	 72.60%	A2ML1
+	 72.18%	HADH
+	 71.61%	SNORD113-2
+	 70.90%	SERPINC1
+	 70.34%	CHMP7
+	 70.20%	PGAP3
+	 70.06%	TBC1D23
+	 69.92%	ZNF597
+	 67.66%	ABCG5
+	 67.37%	MRPL49
+	 65.68%	ASCL2
+	 65.68%	C16orf95
+	 65.68%	ZNF259
+	 65.25%	C10orf116
+	 65.25%	ZMYM3
+	 64.97%	MIR4281
+	 64.69%	TPST1
+	 64.12%	SQRDL
+	 62.15%	LRRC39
+	 61.44%	FGF6
+	 59.89%	GAGE2A
+	 59.89%	IFNA10
+	 59.89%	MIR4451
+	 59.89%	OR4E2
+	 58.62%	CORO7-PAM16
+	 58.33%	CCDC169-SOHLH2
+	 58.33%	MIR22HG
+	 58.19%	RBM4B
+	 57.20%	C10orf131
+	 57.20%	DCTN6
+	 57.20%	TSNAX-DISC1
+	 56.78%	OCLN
+	 56.36%	LOC643802
+	 56.07%	MRPL48
+	 54.66%	CDK15
+	 52.26%	ARHGEF38
+	 51.98%	PGA4
+	 49.01%	MIR367
+	 42.80%	KIAA0141
+	 40.11%	FCGBP
+	 36.72%	MAST2
+	 35.59%	TMEM165
+	 34.32%	GOLGA7
+	 34.32%	MIR3609
+	 34.04%	BPIFA3
+	 34.04%	GDF7
+	 33.05%	MIR1296
+	 32.77%	ZNF880
+	 32.63%	IZUMO4
+	 32.49%	SPACA7
+	 32.34%	FOXN3
+	 31.92%	ADAM12
+	 31.78%	LOC100129935
+	 28.53%	FAM189A2
+	 28.11%	PPIC
+	 25.99%	DAPL1
+	 25.14%	SORL1
+	 23.87%	LINC00330
+	 23.87%	SNORD114-3
+	 15.82%	KCNH6
+	 11.30%	PAX7
+	 10.31%	TGFBR3
+	  9.32%	CTDNEP1
+	  9.32%	LOC284889
+	  9.04%	ANKRD2
+	  8.47%	LOC100130890
+	  7.63%	AAA1
+	  6.21%	ST20
+	  6.07%	EPHA8
+	  6.07%	SNORD60
+	  5.23%	LOC729156
+	  4.80%	LOC100499183
+	  4.80%	LOC338799
+	  4.10%	MKI67
+	  3.95%	HTRA3
+	  3.67%	RAB6A
+	  3.39%	LINC00410
+	  3.39%	RAB41
+	  3.11%	TMC3
+	  2.82%	CTSF
+	  2.82%	HSPD1
+	  2.82%	L3MBTL2
+	  2.82%	SAMD11
+	  2.82%	SPTBN1
+	  2.26%	BTBD16
+	  2.26%	FAM54B
+	  2.26%	PRSS53
+	  2.12%	ATG9B
+	  1.84%	C7orf62
+	  1.84%	CECR6
+	  1.55%	STAT6
+	  1.55%	TET2
+	  1.27%	LOC285878
+	  1.27%	MBD3L3
+	  0.99%	LOC440563
+	  0.99%	MIR3153
+
+
+Time: 245.2 secs
+

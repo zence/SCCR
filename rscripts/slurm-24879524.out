@@ -1,0 +1,57 @@
+Loading required package: readr
+Loading required package: caret
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: C50
+Loading required package: VIM
+Loading required package: colorspace
+Loading required package: methods
+Loading required package: grid
+Loading required package: data.table
+VIM is ready to use. 
+ Since version 4.0.0 the GUI is in its own package VIMGUI.
+
+          Please use the package to use the new (and old) GUI.
+
+Suggestions and bug-reports can be submitted at: https://github.com/alexkowa/VIM/issues
+
+Attaching package: ‘VIM’
+
+The following object is masked from ‘package:datasets’:
+
+    sleep
+
+Loading required package: partykit
+Loading required package: libcoin
+Loading required package: mvtnorm
+Loading required package: rpart
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  AMY1B = col_integer(),
+  AMY1C = col_integer(),
+  ANKRD20A1 = col_integer(),
+  ANKRD20A2 = col_integer(),
+  ANXA8L1 = col_integer(),
+  APOC2 = col_integer(),
+  APOC4 = col_integer(),
+  ARL17B = col_integer(),
+  BAGE2 = col_integer(),
+  BAGE3 = col_integer(),
+  BAGE4 = col_integer(),
+  BAGE5 = col_integer(),
+  BMS1P1 = col_integer(),
+  BMS1P5 = col_integer(),
+  BOLA2 = col_integer(),
+  BOLA2B = col_integer(),
+  BPY2 = col_integer(),
+  BPY2B = col_integer(),
+  BPY2C = col_integer(),
+  C11orf52 = col_integer()
+  # ... with 536 more columns
+)
+See spec(...) for full column specifications.
+[1] "Before making results"
+[1] "After results"
+Error: protect(): protection stack overflow
+Execution halted

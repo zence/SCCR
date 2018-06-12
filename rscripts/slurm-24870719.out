@@ -1,0 +1,353 @@
+Loading required package: readr
+Loading required package: caret
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: C50
+Loading required package: VIM
+Loading required package: colorspace
+Loading required package: methods
+Loading required package: grid
+Loading required package: data.table
+VIM is ready to use. 
+ Since version 4.0.0 the GUI is in its own package VIMGUI.
+
+          Please use the package to use the new (and old) GUI.
+
+Suggestions and bug-reports can be submitted at: https://github.com/alexkowa/VIM/issues
+
+Attaching package: ‘VIM’
+
+The following object is masked from ‘package:datasets’:
+
+    sleep
+
+Loading required package: partykit
+Loading required package: libcoin
+Loading required package: mvtnorm
+Loading required package: rpart
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  AMY1B = col_integer(),
+  AMY1C = col_integer(),
+  ANKRD20A1 = col_integer(),
+  ANKRD20A2 = col_integer(),
+  ANXA8L1 = col_integer(),
+  APOC2 = col_integer(),
+  APOC4 = col_integer(),
+  ARL17B = col_integer(),
+  BAGE2 = col_integer(),
+  BAGE3 = col_integer(),
+  BAGE4 = col_integer(),
+  BAGE5 = col_integer(),
+  BMS1P1 = col_integer(),
+  BMS1P5 = col_integer(),
+  BOLA2 = col_integer(),
+  BOLA2B = col_integer(),
+  BPY2 = col_integer(),
+  BPY2B = col_integer(),
+  BPY2C = col_integer(),
+  C11orf52 = col_integer()
+  # ... with 536 more columns
+)
+See spec(...) for full column specifications.
+
+Call:
+C5.0.default(x = total_her2_data, y = target.total_her2, trials = 5, rules = F)
+
+
+C5.0 [Release 2.07 GPL Edition]  	Tue Jun  5 14:19:10 2018
+-------------------------------
+
+Class specified by attribute `outcome'
+
+Read 708 cases (23369 attributes) from undefined.data
+
+-----  Trial 0:  -----
+
+Decision tree:
+
+STARD3 > 101.6007:
+:...ZNF706 <= 131.5137: Positive (84)
+:   ZNF706 > 131.5137:
+:   :...ANKRD26P1 <= 0.004016201: Negative (3)
+:       ANKRD26P1 > 0.004016201: Positive (2)
+STARD3 <= 101.6007:
+:...FAM216A <= 2.970522:
+    :...MIR3609 > 0: Positive (9)
+    :   MIR3609 <= 0:
+    :   :...MIR1296 > 0: Positive (3)
+    :       MIR1296 <= 0:
+    :       :...LOC100129935 <= 0.02492667: Negative (16)
+    :           LOC100129935 > 0.02492667: Positive (2)
+    FAM216A > 2.970522:
+    :...SNORD114-1 > 0.4289182:
+        :...MIR4451 > 0: Positive (5)
+        :   MIR4451 <= 0:
+        :   :...OR4E2 > 0: Positive (3)
+        :       OR4E2 <= 0:
+        :       :...IFNA10 > 0: Positive (2)
+        :           IFNA10 <= 0:
+        :           :...GAGE2A <= 0.01928058: Negative (27/1)
+        :               GAGE2A > 0.01928058: Positive (2)
+        SNORD114-1 <= 0.4289182:
+        :...DAPL1 > 1.898996:
+            :...LOC100130849 <= 0.09594505: Negative (181)
+            :   LOC100130849 > 0.09594505:
+            :   :...FAM194B <= 0.01026525: Negative (8)
+            :       FAM194B > 0.01026525: Positive (2)
+            DAPL1 <= 1.898996:
+            :...SERPINC1 > 0.1584471:
+                :...MIR367 > 0.8816777:
+                :   :...SLC12A3 <= 0.0460982: Positive (6)
+                :   :   SLC12A3 > 0.0460982: Negative (9)
+                :   MIR367 <= 0.8816777:
+                :   :...SNORD114-3 > 0.581167:
+                :       :...GDF7 <= 0: Positive (4)
+                :       :   GDF7 > 0:
+                :       :   :...BPIFA3 <= 0: Negative (20/1)
+                :       :       BPIFA3 > 0: Positive (2)
+                :       SNORD114-3 <= 0.581167:
+                :       :...FITM1 <= 0.3220001:
+                :           :...LINC00330 <= 0: Negative (11)
+                :           :   LINC00330 > 0: Positive (6/1)
+                :           FITM1 > 0.3220001:
+                :           :...MNS1 <= 18.64895: Negative (200)
+                :               MNS1 > 18.64895:
+                :               :...C15orf43 <= 0.01953788: Negative (9)
+                :                   C15orf43 > 0.01953788: Positive (2)
+                SERPINC1 <= 0.1584471:
+                :...CCDC169-SOHLH2 > 0.05257687: Positive (7)
+                    CCDC169-SOHLH2 <= 0.05257687:
+                    :...DCTN6 > 122.2075: Positive (5)
+                        DCTN6 <= 122.2075:
+                        :...C10orf131 > 1.331904: Positive (4)
+                            C10orf131 <= 1.331904:
+                            :...TSNAX-DISC1 > 0.02856853: Positive (4)
+                                TSNAX-DISC1 <= 0.02856853:
+                                :...RBM4B > 52.07368: Positive (4)
+                                    RBM4B <= 52.07368:
+                                    :...LOC100506136 > 0.2041842: Negative (61)
+                                        LOC100506136 <= 0.2041842:
+                                        :...ANKRD26P3 <= 0.008812919: Positive (3)
+                                            ANKRD26P3 > 0.008812919: Negative (2)
+
+-----  Trial 1:  -----
+
+Decision tree:
+
+MIR4698 > 1.356743: Positive (122.8/3)
+MIR4698 <= 1.356743:
+:...STARD3 > 101.6007: Positive (66.8/2.3)
+    STARD3 <= 101.6007:
+    :...LNP1 > 1.360089: Negative (485.4/41.3)
+        LNP1 <= 1.360089:
+        :...CHPF <= 135.5817: Negative (25.5/6)
+            CHPF > 135.5817: Positive (7.5)
+
+-----  Trial 2:  -----
+
+Decision tree:
+
+MIR4255 > 0.6484351: Positive (45.8)
+MIR4255 <= 0.6484351:
+:...MIR4802 > 2.697037: Positive (45.8)
+    MIR4802 <= 2.697037:
+    :...PGBD5 > 15.7104: Negative (96.2/0.6)
+        PGBD5 <= 15.7104:
+        :...KIAA0141 > 43.34634: Negative (44)
+            KIAA0141 <= 43.34634:
+            :...PGAP3 > 100.1739: Positive (60.8/4.1)
+                PGAP3 <= 100.1739:
+                :...FCGBP > 11.69305: Negative (44.5)
+                    FCGBP <= 11.69305:
+                    :...OR2Z1 > 0.0393052: Negative (19.1)
+                        OR2Z1 <= 0.0393052:
+                        :...CHRNB2 > 1.597242: Negative (27.8)
+                            CHRNB2 <= 1.597242:
+                            :...HTR2B <= 0.7142614: Negative (21.4)
+                                HTR2B > 0.7142614:
+                                :...PRINS > 1.166776: Negative (18.5)
+                                    PRINS <= 1.166776:
+                                    :...LOC572558 > 0.8823195: Negative (14.5)
+                                        LOC572558 <= 0.8823195:
+                                        :...RBM24 > 27.77637: Negative (15.6/1.2)
+                                            RBM24 <= 27.77637:
+                                            :...SNORD92 > 0: Negative (16.8/3.5)
+                                                SNORD92 <= 0: [S1]
+
+SubTree [S1]
+
+HIST1H1C > 639.7468: Negative (12.7/1.2)
+HIST1H1C <= 639.7468:
+:...GPR98 > 6.102294: Negative (13.9/2.9)
+    GPR98 <= 6.102294:
+    :...VNN3 <= 0: Negative (11/1.7)
+        VNN3 > 0: Positive (199.7/28.3)
+
+-----  Trial 3:  -----
+
+Decision tree:
+
+MIR4255 > 0.6484351: Positive (35.1)
+MIR4255 <= 0.6484351:
+:...MIR4802 > 2.697037: Positive (35.1)
+    MIR4802 <= 2.697037:
+    :...ERBB2 > 467.3155:
+        :...KCNH6 <= 3.398345: Positive (50.9/1.3)
+        :   KCNH6 > 3.398345: Negative (7.6)
+        ERBB2 <= 467.3155:
+        :...PPIEL <= 0.3600012:
+            :...CSNK1A1P1 <= 0.5022358: Negative (8)
+            :   CSNK1A1P1 > 0.5022358: Positive (29.6/0.4)
+            PPIEL > 0.3600012:
+            :...ABHD6 <= 3.042523:
+                :...HHLA3 <= 22.27897: Positive (26.5/1.8)
+                :   HHLA3 > 22.27897: Negative (7.1)
+                ABHD6 > 3.042523:
+                :...TRIL > 54.83528:
+                    :...CSPG4P1Y <= 0: Negative (8.4)
+                    :   CSPG4P1Y > 0: Positive (24.5/1.3)
+                    TRIL <= 54.83528:
+                    :...MIR564 > 0.5485286: Positive (24/8.4)
+                        MIR564 <= 0.5485286:
+                        :...MBD3L3 > 0: Positive (22.6/8.8)
+                            MBD3L3 <= 0:
+                            :...YJEFN3 <= 1.74928: Positive (22.7/7.1)
+                                YJEFN3 > 1.74928: Negative (406/41.3)
+
+-----  Trial 4:  -----
+
+Decision tree:
+
+MIR4255 > 0.6484351: Positive (27.3)
+MIR4255 <= 0.6484351:
+:...MIR4802 > 2.697037: Positive (27.3)
+    MIR4802 <= 2.697037:
+    :...STARD3 > 115.3819:
+        :...KCNH6 <= 3.398345: Positive (34.7)
+        :   KCNH6 > 3.398345: Negative (5.9)
+        STARD3 <= 115.3819:
+        :...ZNF597 > 13.38196: Positive (25.2/3.1)
+            ZNF597 <= 13.38196:
+            :...IDE > 50.67482:
+                :...GLIS1 <= 0.3353632: Negative (5.7)
+                :   GLIS1 > 0.3353632: Positive (28.5/2.4)
+                IDE <= 50.67482:
+                :...RBP3 > 0.2144762: Positive (26.8/5.3)
+                    RBP3 <= 0.2144762:
+                    :...TMEM190 <= 0.1098142: Positive (27.1/6.8)
+                        TMEM190 > 0.1098142:
+                        :...BZW2 > 313.6025:
+                            :...STRADB <= 11.9674: Positive (21.2/0.7)
+                            :   STRADB > 11.9674: Negative (10.8)
+                            BZW2 <= 313.6025:
+                            :...FAF1 > 35.20947: Negative (415.1/35.5)
+                                FAF1 <= 35.20947:
+                                :...LOC100506548 <= 9.247652: Positive (31.7/3.8)
+                                    LOC100506548 > 9.247652: Negative (20.8/0.3)
+
+
+Evaluation on training data (708 cases):
+
+Trial	    Decision Tree   
+-----	  ----------------  
+	  Size      Errors  
+
+   0	    33    3( 0.4%)
+   1	     5   70( 9.9%)
+   2	    17   63( 8.9%)
+   3	    14   79(11.2%)
+   4	    14   70( 9.9%)
+boost	          2( 0.3%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   546          (a): class Negative
+	     2   160    (b): class Positive
+
+
+	Attribute usage:
+
+	100.00%	MIR4255
+	100.00%	MIR4698
+	100.00%	STARD3
+	 99.86%	MIR4802
+	 99.72%	ERBB2
+	 99.72%	PGBD5
+	 88.98%	KIAA0141
+	 87.71%	ZNF597
+	 87.43%	FAM216A
+	 86.58%	PPIEL
+	 86.44%	LNP1
+	 86.02%	IDE
+	 83.19%	SNORD114-1
+	 82.34%	ABHD6
+	 81.92%	RBP3
+	 79.38%	PGAP3
+	 79.38%	TMEM190
+	 77.82%	TRIL
+	 77.68%	DAPL1
+	 76.41%	BZW2
+	 74.29%	MIR564
+	 71.89%	FAF1
+	 70.62%	MBD3L3
+	 67.66%	YJEFN3
+	 66.81%	FCGBP
+	 55.93%	OR2Z1
+	 51.84%	CHRNB2
+	 50.71%	SERPINC1
+	 45.06%	HTR2B
+	 39.83%	PRINS
+	 37.99%	MIR367
+	 35.88%	SNORD114-3
+	 35.31%	LOC572558
+	 32.20%	FITM1
+	 31.78%	RBM24
+	 29.80%	MNS1
+	 27.97%	SNORD92
+	 26.98%	LOC100130849
+	 24.44%	HIST1H1C
+	 21.33%	GPR98
+	 18.50%	VNN3
+	 13.42%	KCNH6
+	 12.71%	CCDC169-SOHLH2
+	 12.57%	ZNF706
+	 11.72%	DCTN6
+	 11.02%	C10orf131
+	 10.45%	TSNAX-DISC1
+	  9.89%	RBM4B
+	  9.32%	LOC100506136
+	  6.64%	LOC100506548
+	  6.21%	CHPF
+	  5.51%	MIR4451
+	  4.80%	OR4E2
+	  4.52%	HHLA3
+	  4.52%	STRADB
+	  4.38%	IFNA10
+	  4.24%	CSNK1A1P1
+	  4.24%	MIR3609
+	  4.10%	GAGE2A
+	  4.10%	GLIS1
+	  3.67%	GDF7
+	  3.53%	CSPG4P1Y
+	  3.11%	BPIFA3
+	  2.97%	MIR1296
+	  2.54%	LOC100129935
+	  2.40%	LINC00330
+	  2.12%	SLC12A3
+	  1.55%	C15orf43
+	  1.41%	FAM194B
+	  0.71%	ANKRD26P1
+	  0.71%	ANKRD26P3
+
+
+Time: 149.2 secs
+
+Error in parse(text = x, keep.source = FALSE) : 
+  <text>:1:123694: unexpected symbol
+1: + MIR645 + MIR647 + MIR648 + MIR650 + MIR651 + MIR653 + MIR654 + MIR655 + MIR656 + MIR657 + MIR658 + MIR659 + MIR660 + MIR661 + MIR662 + MIR663A + MIR663B + MIR664 + MIR665 + MIR668 + MIR670 +
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+Calls: plot ... formula -> formula.character -> formula -> eval -> parse
+Execution halted
