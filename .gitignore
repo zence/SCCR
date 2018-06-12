@@ -6,3 +6,5 @@ Interface
 *.gz
 *.bz2
 *.pdf*
+*.dot*
+*.png*

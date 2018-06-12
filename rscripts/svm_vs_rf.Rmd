@@ -253,7 +253,7 @@ total_her2_expr[which(total_her2_expr$AA06 > 1), c('Sample', 'Classification', '
 ### Load SVM data
 
 ```{r}
-svm_her2_expr <- as.data.frame(read_tsv("../results/svm_her2_genes_TPM.tsv.gz"))
+svm_her2_expr <- as.data.frame(read_tsv("../results/svm_multip_genes_TPM.tsv.gz"))
 misclassied.svm <- svm_her2_expr$Sample[which(svm_her2_expr$SVM_classified == "Misclassified")]
 ```
 
@@ -335,7 +335,7 @@ sink()
 ### Load rf data
 
 ```{r}
-rf_her2_expr <- as.data.frame(read_tsv("../results/rf_her2_genes_TPM.tsv.gz"))
+rf_her2_expr <- as.data.frame(read_tsv("../results/rf_multip_genes_TPM.tsv.gz"))
 misclassied.rf <- rf_her2_expr$Sample[which(rf_her2_expr$RF_classified == "Misclassified")]
 ```
 
