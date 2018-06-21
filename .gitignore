@@ -5,3 +5,5 @@ XCode*
 *.gz
 *.bz2
 *.pdf*
+data
+results
