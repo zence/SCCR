@@ -1,0 +1,60 @@
+---
+title: "Data Transformer"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load packages
+
+```{r}
+require(DESeq2)
+require(readr)
+```
+
+## VST
+
+```{r}
+featureCount <- as.data.frame(read_tsv("../../cancerproject/proj_090817/data/GSM1536837_06_01_15_TCGA_24.tumor_Rsubread_FeatureCounts.txt.gz"))
+
+her2.clinical <- as.data.frame(read_tsv("../data/her2_Clinical_Data.tsv"))
+
+row.names(her2.clinical) <- her2.clinical$X1
+
+her2.clinical$X1 <- NULL
+her2.clinical$X2 <- NULL
+her2.clinical$X3 <- NULL
+
+her2.clinical <- as.data.frame(t(her2.clinical))
+her2.clinical <- subset(her2.clinical, her2_status_by_ihc == "Positive" | her2_status_by_ihc == "Negative")
+her2.clinical <- her2.clinical[order(row.names(her2.clinical)), ]
+
+head(her2.clinical)
+
+featureCount <- featureCount[row.names(her2.clinical)]
+```
+
+```{r}
+row.names(featureCount) <- featureCount$X1
+
+featureCount$X1 <- NULL
+
+featureCount <- as.matrix(featureCount)
+
+head(featureCount)
+str(featureCount)
+
+dsq.fc <- DESeqDataSetFromMatrix(countData = featureCount, colData = her2.clinical, design = ~ her2_status_by_ihc)
+
+vsd.fc <- vst(dsq.fc)
+
+head(as.data.frame(assay(vsd.fc)))
+
+vsd.data <- as.data.frame(t(assay(vsd.fc)))
+
+merge(vsd.data, her2.clinical)
+
+write.table()
+```
