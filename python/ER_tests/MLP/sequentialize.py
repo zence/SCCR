@@ -1,4 +1,4 @@
-import run_svm
+import run_mlp
 import math
 import itertools
 
@@ -7,7 +7,7 @@ def sequence(genes, *args):
     best_string = ''
     for i in range(len(genes)):
         temp_genes = genes[:i + 1]
-        cur_auc = run_svm.run(temp_genes)
+        cur_auc = run_mlp.run(temp_genes)
         print(', '.join(temp_genes) + ': ' + str(cur_auc), flush=True)
         if cur_auc > best_auc:
             best_auc = cur_auc

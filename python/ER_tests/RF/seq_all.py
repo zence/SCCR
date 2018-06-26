@@ -1,4 +1,4 @@
-import run_svm
+import run_rf
 import math
 import itertools
 
@@ -7,7 +7,7 @@ def sequence(genes, *args):
     best_string = ''
     for i in range(len(genes)):
         temp_genes = genes[:i + 1]
-        cur_auc = run_svm.run(temp_genes)
+        cur_auc = run_rf.run(temp_genes)
         print(', '.join(temp_genes) + ': ' + str(cur_auc), flush=True)
         if cur_auc > best_auc:
             best_auc = cur_auc
@@ -31,10 +31,11 @@ all_genes = ''
 with open("../../../data/all_genes_er_Data.tsv", 'r') as in_f:
     all_genes = in_f.readline().split('\t')
 
-spec_genes = ['B3GNT3', 'ATP1A1OS', 'C4orf34', 'RFC2', 'TMEFF1', 'NPPB']
-just_ERBB2 = ['ESR1']
+spec_genes = ['FGFR1', 'EGFR', 'IGF1R', 'FGF1', 'EGF', 'IGF1']
+just_ERBB2 = ['ERBB2']
 
-all_genes = [x if x not in spec_genes and x not in just_ERBB2 else None for x in all_genes]
+all_genes = [x for x in all_genes if x not in just_ERBB2 and x not in spec_genes]
+all_genes = [x for x in all_genes if 'er' not in x and x != 'Sample']
 
 #auc_ERBB2 = run_svm.run(just_ERBB2)
 
@@ -42,4 +43,6 @@ all_genes = [x if x not in spec_genes and x not in just_ERBB2 else None for x in
 #print("No add_genes")
 #scramble([*just_ERBB2, *spec_genes])
 #print("add_genes = just_ERBB2")
-scramble([*just_ERBB2, *spec_genes], add_genes=just_ERBB2)
+#scramble([*just_ERBB2, *spec_genes], add_genes=just_ERBB2)
+
+print("AUC: " + str(run_rf.run([*just_ERBB2, *spec_genes, *all_genes])))
