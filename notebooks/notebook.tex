@@ -1,0 +1,1512 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{scaling\_methods}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{quote}
+A notebook for comparing scaling methods and their affect on Support
+Vector Machine and Random Forest algorithms' ability to predict her2
+status
+\end{quote}
+
+    I ran the following scaling methods on feature counts data:
+
+\begin{itemize}
+\tightlist
+\item
+  sklearn's preprocessing scale method
+\item
+  sklearn's robust scaler method
+\item
+  sklearn's quantile transform method
+\item
+  BioConductor's quantile normalization method
+\item
+  BioConductor's VST method
+\end{itemize}
+
+And measured each scaling method's affect on SVM and RandomForest's
+ability to predict her2 status given the scaled data.
+
+For each test, I trained the algorithm on data from a selection of seven
+genes which are thought to pertain to the her2 pathway. I would first
+train on ERBB2, and then extend the training data by one gene, testing
+the Area Under the Receiver Operating Characteristic Curve (ROC AUC, or
+AUC from here on out) on each test. As an example, here is some
+pseudo-code:
+
+\begin{verbatim}
+Test 1
+
+X_train, X_test = scale(gene_data[training_partition, 'ERBB2']), 
+                  scale(gene_data[testing_partition, 'ERBB2'])
+
+classifier = svm.SVC(kernel='rbf')
+classifier.fit(X_train, y_train)
+
+predictions = classifier.predict(X_test)
+
+auc = roc_auc_score(y_test, predictions)
+
+
+
+Test 2
+
+X_train, X_test = scale(gene_data[training_partition, 'ERBB2', 'IGF1R']), 
+                  scale(gene_data[testing_partition, 'ERBB2', 'IGF1R'])
+
+classifier = svm.SVC(kernel='rbf')
+classifier.fit(X_train, y_train)
+
+predictions = classifier.predict(X_test)
+
+auc = roc_auc_score(y_test, predictions)
+
+...
+\end{verbatim}
+
+Results are grouped by their series (i.e.~ERBB2, IGF1R, FGF1, EGFR,
+FGFR1, IGF1, EGF). The series with the highest average AUC is the most
+visible on the graphs to show
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Which series (and genes) show the greatest influence in prediction
+  accuracy
+\item
+  How the current scaling method improves (or hurts) accuracy
+\end{enumerate}
+
+\begin{quote}
+\textbf{NOTE:} These results were previously acquired through testing in
+python. Each algorithm was run using 5 stratified k fold cross
+validation. SVM was run using the `rbf' kernel, or `radial basis
+function'
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{require}\PY{p}{(}ggplot2\PY{p}{)}
+        \PY{k+kn}{require}\PY{p}{(}readr\PY{p}{)}
+        \PY{k+kn}{require}\PY{p}{(}reshape2\PY{p}{)}
+        \PY{k+kn}{require}\PY{p}{(}scales\PY{p}{)}
+        \PY{k+kn}{require}\PY{p}{(}grid\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loading required package: ggplot2
+Loading required package: readr
+Loading required package: reshape2
+Loading required package: scales
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:readr’:
+
+    col\_factor
+
+Loading required package: grid
+
+    \end{Verbatim}
+
+    \hypertarget{first-scaling-method-sklearns-preprocessing.scale-method}{%
+\section{First scaling method: Sklearn's preprocessing.scale
+method}\label{first-scaling-method-sklearns-preprocessing.scale-method}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Load SVM results and find average AUC of series}
+        svm.results \PY{o}{=} \PY{k+kp}{as.data.frame}\PY{p}{(}read\PYZus{}tsv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{../results/auc\PYZus{}scale\PYZus{}svm\PYZus{}results.tsv\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        groupings \PY{o}{\PYZlt{}\PYZhy{}} svm.results\PY{o}{\PYZdl{}}grouping
+        svm.results\PY{o}{\PYZdl{}}avg.val \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{rowMeans}\PY{p}{(}\PY{k+kp}{subset}\PY{p}{(}svm.results\PY{p}{,} select \PY{o}{=} \PY{o}{\PYZhy{}}grouping\PY{p}{)}\PY{p}{)}
+        svm.results\PY{o}{\PYZdl{}}relative.val \PY{o}{\PYZlt{}\PYZhy{}} rescale\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+        
+        \PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+        
+        svm.results\PY{o}{\PYZdl{}}performance \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{ifelse}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{1}\PY{p}{,} 
+                                          svm.results\PY{o}{\PYZdl{}}grouping\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Others\PYZdq{}}\PY{p}{)}
+        svm.results \PY{o}{\PYZlt{}\PYZhy{}} melt\PY{p}{(}svm.results\PY{p}{,} 
+                            id.vars \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} 
+                                        \PY{l+s}{\PYZsq{}}\PY{l+s}{performance\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                            variable.name \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Load RandomForest results and find average AUC of series}
+        rf.results \PY{o}{=} \PY{k+kp}{as.data.frame}\PY{p}{(}read\PYZus{}tsv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{../results/auc\PYZus{}scale\PYZus{}rf\PYZus{}results.tsv\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        groupings \PY{o}{\PYZlt{}\PYZhy{}} rf.results\PY{o}{\PYZdl{}}grouping
+        rf.results\PY{o}{\PYZdl{}}avg.val \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{rowMeans}\PY{p}{(}\PY{k+kp}{subset}\PY{p}{(}rf.results\PY{p}{,} select \PY{o}{=} \PY{o}{\PYZhy{}}grouping\PY{p}{)}\PY{p}{)}
+        rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{\PYZlt{}\PYZhy{}} rescale\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+        
+        \PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+        
+        rf.results\PY{o}{\PYZdl{}}performance \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{ifelse}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{1}\PY{p}{,} 
+                                         rf.results\PY{o}{\PYZdl{}}grouping\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Others\PYZdq{}}\PY{p}{)}
+        rf.results \PY{o}{\PYZlt{}\PYZhy{}} melt\PY{p}{(}rf.results\PY{p}{,} 
+                           id.vars \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} 
+                                       \PY{l+s}{\PYZsq{}}\PY{l+s}{performance\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                           variable.name \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Parsed with column specification:
+cols(
+  grouping = col\_character(),
+  `1` = col\_double(),
+  `2` = col\_double(),
+  `3` = col\_double(),
+  `4` = col\_double(),
+  `5` = col\_double(),
+  `6` = col\_double(),
+  `7` = col\_double()
+)
+
+    \end{Verbatim}
+
+    0.739758244206857
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Parsed with column specification:
+cols(
+  grouping = col\_character(),
+  `1` = col\_double(),
+  `2` = col\_double(),
+  `3` = col\_double(),
+  `4` = col\_double(),
+  `5` = col\_double(),
+  `6` = col\_double(),
+  `7` = col\_double()
+)
+
+    \end{Verbatim}
+
+    0.750183363749571
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Construct line plots}
+        \PY{c+c1}{\PYZsh{}     RF/rf = Random Forest}
+        gsvm \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PY{p}{(}data \PY{o}{=} svm.results\PY{p}{,} aes\PY{p}{(}x \PY{o}{=} series\PY{p}{,} y \PY{o}{=} value\PY{p}{,} 
+                                               group \PY{o}{=} grouping\PY{p}{,} 
+                                               alpha \PY{o}{=} performance\PY{p}{,} 
+                                               linetype \PY{o}{=} performance\PY{p}{)}\PY{p}{)}
+        
+        ggsvm \PY{o}{\PYZlt{}\PYZhy{}} gsvm \PY{o}{+} geom\PYZus{}line\PY{p}{(}aes\PY{p}{(}color \PY{o}{=} grouping\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                    guides\PY{p}{(}color \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{,} linetype \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{)} \PY{o}{+}
+                    scale\PYZus{}alpha\PYZus{}manual\PY{p}{(}values\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{0.07}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                    labs\PY{p}{(}title \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{SVM Scale\PYZdq{}}\PY{p}{,} 
+                         alpha \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Top Performer\PYZdq{}}\PY{p}{,} 
+                         x \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Series\PYZdq{}}\PY{p}{,} y \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{AUC\PYZdq{}}\PY{p}{)} \PY{o}{+}
+                    annotation\PYZus{}custom\PY{p}{(}
+                    grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest average AUC:\PYZdq{}}\PY{p}{,} 
+                                                  \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}\PY{p}{,} 
+                                                        digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                  sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                    hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                    xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,} \PY{c+c1}{\PYZsh{} Put it outside of graph}
+                    ymin \PY{o}{=} \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+                    \PY{p}{)} \PY{o}{+}
+                    annotation\PYZus{}custom\PY{p}{(}
+                    grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest AUC:\PYZdq{}}\PY{p}{,} 
+                                                  \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} 
+                                                        digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                  sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                    hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                    xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                    ymin \PY{o}{=} \PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                            \PY{p}{(}\PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                              \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{min}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m}{6}\PY{p}{)}\PY{p}{)}
+                    \PY{p}{)}
+        
+        grf \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PY{p}{(}data \PY{o}{=} rf.results\PY{p}{,} aes\PY{p}{(}x \PY{o}{=} series\PY{p}{,} y \PY{o}{=} value\PY{p}{,} 
+                                             group \PY{o}{=} grouping\PY{p}{,} 
+                                             alpha \PY{o}{=} performance\PY{p}{,} 
+                                             linetype \PY{o}{=} performance\PY{p}{)}\PY{p}{)}
+        
+        ggrf \PY{o}{\PYZlt{}\PYZhy{}} grf \PY{o}{+} geom\PYZus{}line\PY{p}{(}aes\PY{p}{(}color \PY{o}{=} grouping\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                    guides\PY{p}{(}color \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{,} linetype \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{)} \PY{o}{+}
+                    scale\PYZus{}alpha\PYZus{}manual\PY{p}{(}values\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{0.07}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                    labs\PY{p}{(}title \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{RF Scale\PYZdq{}}\PY{p}{,} 
+                         alpha \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Top Performer\PYZdq{}}\PY{p}{,} 
+                         x \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Series\PYZdq{}}\PY{p}{,} y \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{AUC\PYZdq{}}\PY{p}{)} \PY{o}{+}
+                    annotation\PYZus{}custom\PY{p}{(}
+                    grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest average AUC:\PYZdq{}}\PY{p}{,} 
+                                                  \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}\PY{p}{,} 
+                                                        digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                  sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                    hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                    xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                    ymin \PY{o}{=} \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+                    \PY{p}{)} \PY{o}{+}
+                    annotation\PYZus{}custom\PY{p}{(}
+                    grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest AUC:\PYZdq{}}\PY{p}{,} 
+                                                  \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} 
+                                                        digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                  sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                    hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                    xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                    ymin \PY{o}{=} \PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                            \PY{p}{(}\PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                              \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{min}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m}{6}\PY{p}{)}\PY{p}{)}
+                    \PY{p}{)}
+\end{Verbatim}
+
+
+    This standard scale method does not account for outliers and just places
+each data point within a relative scale between -1 and 1
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} Draw both graphs, but make sure annotations are intact }
+        \PY{c+c1}{\PYZsh{}  (if I do not use the gtable, the annotations will be clipped)}
+        gt \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PYZus{}gtable\PY{p}{(}ggplot\PYZus{}build\PY{p}{(}ggsvm\PY{p}{)}\PY{p}{)}
+        gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}clip\PY{p}{[}gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}name \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{panel\PYZdq{}}\PY{p}{]} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{off\PYZdq{}}
+        grid.draw\PY{p}{(}gt\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_7_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} gt \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PYZus{}gtable\PY{p}{(}ggplot\PYZus{}build\PY{p}{(}ggrf\PY{p}{)}\PY{p}{)}
+        gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}clip\PY{p}{[}gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}name \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{panel\PYZdq{}}\PY{p}{]} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{off\PYZdq{}}
+        grid.draw\PY{p}{(}gt\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{svm}{%
+\subsection{SVM}\label{svm}}
+
+As you can see, SVM performs best with less data. From what I've read,
+SVM works best when provided with only the most pertinent data. Since
+ERBB2 has the greatest correlation to HER2 positivity, other genes only
+make the data noisier. It might be useful to run tests where ERBB2 is
+not the first gene provided/the only gene that ever stands alone. This
+could potentially show ERBB2's influence, although we will not see an
+improvement in AUC beyond the performance of just ERBB2.
+
+\hypertarget{random-forest}{%
+\subsection{Random Forest}\label{random-forest}}
+
+RF performs better with more variables, although there surely must be
+limit and noisy data will always cause issues. For this reason, the top
+performer takes a slight decline when IGF1R is added to the data. Since
+the lines do not converge like they do at the end of the SVM graph, we
+can infer that the order in which features are presented to the
+algorithm can affect the overall performance. We also see that some
+genes cause for of an issue than others. The next bit of code will
+reveal which gene caused the significant AUC drop that we see on the
+third series.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} rf.results\PY{o}{\PYZdl{}}grouping\PY{p}{[}\PY{k+kp}{which}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value \PY{o}{==} \PY{k+kp}{min}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 'ERBB2\_IGF1R\_EGFR\_FGFR1\_FGF1\_EGF\_IGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_FGFR1\_FGF1\_IGF1\_EGF'
+\item 'ERBB2\_IGF1R\_EGFR\_FGFR1\_EGF\_FGF1\_IGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_FGFR1\_EGF\_IGF1\_FGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_FGFR1\_IGF1\_FGF1\_EGF'
+\item 'ERBB2\_IGF1R\_EGFR\_FGFR1\_IGF1\_EGF\_FGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_FGF1\_FGFR1\_EGF\_IGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_FGF1\_FGFR1\_IGF1\_EGF'
+\item 'ERBB2\_IGF1R\_EGFR\_FGF1\_EGF\_FGFR1\_IGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_FGF1\_EGF\_IGF1\_FGFR1'
+\item 'ERBB2\_IGF1R\_EGFR\_FGF1\_IGF1\_FGFR1\_EGF'
+\item 'ERBB2\_IGF1R\_EGFR\_FGF1\_IGF1\_EGF\_FGFR1'
+\item 'ERBB2\_IGF1R\_EGFR\_EGF\_FGFR1\_FGF1\_IGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_EGF\_FGFR1\_IGF1\_FGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_EGF\_FGF1\_FGFR1\_IGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_EGF\_FGF1\_IGF1\_FGFR1'
+\item 'ERBB2\_IGF1R\_EGFR\_EGF\_IGF1\_FGFR1\_FGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_EGF\_IGF1\_FGF1\_FGFR1'
+\item 'ERBB2\_IGF1R\_EGFR\_IGF1\_FGFR1\_FGF1\_EGF'
+\item 'ERBB2\_IGF1R\_EGFR\_IGF1\_FGFR1\_EGF\_FGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_IGF1\_FGF1\_FGFR1\_EGF'
+\item 'ERBB2\_IGF1R\_EGFR\_IGF1\_FGF1\_EGF\_FGFR1'
+\item 'ERBB2\_IGF1R\_EGFR\_IGF1\_EGF\_FGFR1\_FGF1'
+\item 'ERBB2\_IGF1R\_EGFR\_IGF1\_EGF\_FGF1\_FGFR1'
+\end{enumerate*}
+
+
+    
+    As we can see, there are multiple groupings, but they all share the
+first three genes: ERBB2, IGF1R, and then EGFR
+
+For whatever reason, EGFR is the worst possible option for the third
+gene slot. This also shows us that adding a third feature to Random
+Forest can cause a significant divide where other positions in the
+series are not as crucial.
+
+Now, I'll look at which order created our peak:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} rf.results\PY{o}{\PYZdl{}}grouping\PY{p}{[}\PY{k+kp}{which}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value \PY{o}{==} \PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{enumerate*}
+\item 'ERBB2\_EGF\_IGF1R\_EGFR\_FGF1\_FGFR1\_IGF1'
+\item 'ERBB2\_EGF\_IGF1R\_EGFR\_FGF1\_IGF1\_FGFR1'
+\end{enumerate*}
+
+
+    
+    There are only two groupings that show this peak, which is nearly
+invisible.
+
+\begin{quote}
+\textbf{NOTE:} I have the alpha set low so the grouping with the highest
+average AUC sticks out, and this is the highest alpha that I feel
+comfortable with, since it still makes the one line stick out without
+making the lines entirely invisible
+\end{quote}
+
+From here on out, I will mostly only speak about the influence of
+scaling methods on the algorithms and not the ordering of gene data,
+although there may be different gene groupings that prove to be the most
+useful within these next few tests
+
+    \hypertarget{second-scaling-method-sklearns-robustscaler-method}{%
+\section{Second scaling method: sklearn's RobustScaler
+method}\label{second-scaling-method-sklearns-robustscaler-method}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} Load SVM results and find average AUC of series}
+        svm.results \PY{o}{=} \PY{k+kp}{as.data.frame}\PY{p}{(}read\PYZus{}tsv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{../results/auc\PYZus{}robust\PYZus{}svm\PYZus{}results.tsv\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        groupings \PY{o}{\PYZlt{}\PYZhy{}} svm.results\PY{o}{\PYZdl{}}grouping
+        svm.results\PY{o}{\PYZdl{}}avg.val \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{rowMeans}\PY{p}{(}\PY{k+kp}{subset}\PY{p}{(}svm.results\PY{p}{,} select \PY{o}{=} \PY{o}{\PYZhy{}}grouping\PY{p}{)}\PY{p}{)}
+        svm.results\PY{o}{\PYZdl{}}relative.val \PY{o}{\PYZlt{}\PYZhy{}} rescale\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+        
+        \PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+        
+        svm.results\PY{o}{\PYZdl{}}performance \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{ifelse}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{1}\PY{p}{,} 
+                                          svm.results\PY{o}{\PYZdl{}}grouping\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Others\PYZdq{}}\PY{p}{)}
+        svm.results \PY{o}{\PYZlt{}\PYZhy{}} melt\PY{p}{(}svm.results\PY{p}{,} 
+                            id.vars \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} 
+                                        \PY{l+s}{\PYZsq{}}\PY{l+s}{performance\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                            variable.name \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Load RandomForest results and find average AUC of series}
+        rf.results \PY{o}{=} \PY{k+kp}{as.data.frame}\PY{p}{(}read\PYZus{}tsv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{../results/auc\PYZus{}robust\PYZus{}rf\PYZus{}results.tsv\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        groupings \PY{o}{\PYZlt{}\PYZhy{}} rf.results\PY{o}{\PYZdl{}}grouping
+        rf.results\PY{o}{\PYZdl{}}avg.val \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{rowMeans}\PY{p}{(}\PY{k+kp}{subset}\PY{p}{(}rf.results\PY{p}{,} select \PY{o}{=} \PY{o}{\PYZhy{}}grouping\PY{p}{)}\PY{p}{)}
+        rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{\PYZlt{}\PYZhy{}} rescale\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+        
+        \PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+        
+        rf.results\PY{o}{\PYZdl{}}performance \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{ifelse}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{1}\PY{p}{,} 
+                                         rf.results\PY{o}{\PYZdl{}}grouping\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Others\PYZdq{}}\PY{p}{)}
+        rf.results \PY{o}{\PYZlt{}\PYZhy{}} melt\PY{p}{(}rf.results\PY{p}{,} 
+                           id.vars \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} 
+                                       \PY{l+s}{\PYZsq{}}\PY{l+s}{performance\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                           variable.name \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Parsed with column specification:
+cols(
+  grouping = col\_character(),
+  `1` = col\_double(),
+  `2` = col\_double(),
+  `3` = col\_double(),
+  `4` = col\_double(),
+  `5` = col\_double(),
+  `6` = col\_double(),
+  `7` = col\_double()
+)
+
+    \end{Verbatim}
+
+    0.745546306906429
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Parsed with column specification:
+cols(
+  grouping = col\_character(),
+  `1` = col\_double(),
+  `2` = col\_double(),
+  `3` = col\_double(),
+  `4` = col\_double(),
+  `5` = col\_double(),
+  `6` = col\_double(),
+  `7` = col\_double()
+)
+
+    \end{Verbatim}
+
+    0.757913748833
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} Construct line plots}
+        \PY{c+c1}{\PYZsh{}     RF/rf = Random Forest}
+        gsvm \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PY{p}{(}data \PY{o}{=} svm.results\PY{p}{,} aes\PY{p}{(}x \PY{o}{=} series\PY{p}{,} y \PY{o}{=} value\PY{p}{,} 
+                                               group \PY{o}{=} grouping\PY{p}{,} 
+                                               alpha \PY{o}{=} performance\PY{p}{,} 
+                                               linetype \PY{o}{=} performance\PY{p}{)}\PY{p}{)}
+        
+        ggsvm \PY{o}{\PYZlt{}\PYZhy{}} gsvm \PY{o}{+} geom\PYZus{}line\PY{p}{(}aes\PY{p}{(}color \PY{o}{=} grouping\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                    guides\PY{p}{(}color \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{,} linetype \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{)} \PY{o}{+}
+                    scale\PYZus{}alpha\PYZus{}manual\PY{p}{(}values\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{0.07}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                    labs\PY{p}{(}title \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{SVM Robust Scale\PYZdq{}}\PY{p}{,} 
+                         alpha \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Top Performer\PYZdq{}}\PY{p}{,} 
+                         x \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Series\PYZdq{}}\PY{p}{,} y \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{AUC\PYZdq{}}\PY{p}{)} \PY{o}{+}
+                    annotation\PYZus{}custom\PY{p}{(}
+                    grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest average AUC:\PYZdq{}}\PY{p}{,} 
+                                                  \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}\PY{p}{,} 
+                                                        digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                  sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                    hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                    xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                    ymin \PY{o}{=} \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+                    \PY{p}{)} \PY{o}{+}
+                    annotation\PYZus{}custom\PY{p}{(}
+                    grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest AUC:\PYZdq{}}\PY{p}{,} 
+                                                  \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} 
+                                                        digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                  sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                    hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                    xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                    ymin \PY{o}{=} \PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                            \PY{p}{(}\PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                              \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{min}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m}{6}\PY{p}{)}\PY{p}{)}
+                    \PY{p}{)}
+        
+        grf \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PY{p}{(}data \PY{o}{=} rf.results\PY{p}{,} aes\PY{p}{(}x \PY{o}{=} series\PY{p}{,} y \PY{o}{=} value\PY{p}{,} 
+                                             group \PY{o}{=} grouping\PY{p}{,} 
+                                             alpha \PY{o}{=} performance\PY{p}{,} 
+                                             linetype \PY{o}{=} performance\PY{p}{)}\PY{p}{)}
+        
+        ggrf \PY{o}{\PYZlt{}\PYZhy{}} grf \PY{o}{+} geom\PYZus{}line\PY{p}{(}aes\PY{p}{(}color \PY{o}{=} grouping\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                    guides\PY{p}{(}color \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{,} linetype \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{)} \PY{o}{+}
+                    scale\PYZus{}alpha\PYZus{}manual\PY{p}{(}values\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{0.07}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                    labs\PY{p}{(}title \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{RF Robust Scale\PYZdq{}}\PY{p}{,} 
+                         alpha \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Top Performer\PYZdq{}}\PY{p}{,} 
+                         x \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Series\PYZdq{}}\PY{p}{,} y \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{AUC\PYZdq{}}\PY{p}{)} \PY{o}{+}
+                    annotation\PYZus{}custom\PY{p}{(}
+                    grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest average AUC:\PYZdq{}}\PY{p}{,} 
+                                                  \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}\PY{p}{,} 
+                                                        digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                  sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                    hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                    xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                    ymin \PY{o}{=} \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+                    \PY{p}{)} \PY{o}{+}
+                    annotation\PYZus{}custom\PY{p}{(}
+                    grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest AUC:\PYZdq{}}\PY{p}{,} 
+                                                  \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} 
+                                                        digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                  sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                    hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                    xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                    ymin \PY{o}{=} \PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                            \PY{p}{(}\PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                              \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{min}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m}{6}\PY{p}{)}\PY{p}{)}
+                    \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} gt \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PYZus{}gtable\PY{p}{(}ggplot\PYZus{}build\PY{p}{(}ggsvm\PY{p}{)}\PY{p}{)}
+         gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}clip\PY{p}{[}gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}name \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{panel\PYZdq{}}\PY{p}{]} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{off\PYZdq{}}
+         grid.draw\PY{p}{(}gt\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} gt \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PYZus{}gtable\PY{p}{(}ggplot\PYZus{}build\PY{p}{(}ggrf\PY{p}{)}\PY{p}{)}
+         gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}clip\PY{p}{[}gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}name \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{panel\PYZdq{}}\PY{p}{]} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{off\PYZdq{}}
+         grid.draw\PY{p}{(}gt\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    It is already apparent that robust scaler, which accounts more for
+outliers, improves overall performance in both algorithms.
+
+\hypertarget{svm}{%
+\subsection{SVM}\label{svm}}
+
+Unlike in the standard scaling method, we see that robust scaler causes
+SVM to actually improve when given more data. From this we can learn
+that some genes will be more useful when properly scaled. This positive
+trend is lost after the fourth series, seeing that all of the tests
+declined in AUC on the fifth series and so on.
+
+\hypertarget{rf}{%
+\subsection{RF}\label{rf}}
+
+We see that most of the groupings actually performed their worst when
+only given ERBB2 data. It looks to me like there is a single line that
+dips fairly low in the seventh series, so I'm going to check to see how
+many groupings belong to the lowest AUC.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} rf.results\PY{o}{\PYZdl{}}grouping\PY{p}{[}\PY{k+kp}{which}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value \PY{o}{==} \PY{k+kp}{min}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    'ERBB2\_FGF1\_EGF\_EGFR\_FGFR1\_IGF1R\_IGF1'
+
+    
+    As I suspected, the single line that dips on the seventh series dips
+farther than its initial starting point. This performance is still
+better than the lowest AUC of the standard scale method on RandomForest.
+I will now look at all of the data of this particular grouping.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{k+kp}{unique}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}grouping\PY{p}{[}\PY{k+kp}{which}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}grouping \PY{o}{==} 
+                                          \PY{l+s}{\PYZsq{}}\PY{l+s}{ERBB2\PYZus{}FGF1\PYZus{}EGF\PYZus{}EGFR\PYZus{}FGFR1\PYZus{}IGF1R\PYZus{}IGF1\PYZsq{}}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         rf.results\PY{p}{[}\PY{k+kp}{which}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}grouping \PY{o}{==} \PY{l+s}{\PYZsq{}}\PY{l+s}{ERBB2\PYZus{}FGF1\PYZus{}EGF\PYZus{}EGFR\PYZus{}FGFR1\PYZus{}IGF1R\PYZus{}IGF1\PYZsq{}}\PY{p}{)}\PY{p}{,}
+                   \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{value\PYZsq{}}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    'ERBB2\_FGF1\_EGF\_EGFR\_FGFR1\_IGF1R\_IGF1'
+
+    
+    \begin{tabular}{r|llll}
+  & series & avg.val & relative.val & value\\
+\hline
+	439 & 1         & 0.7469274 & 0.3100075 & 0.7269921\\
+	1159 & 2         & 0.7469274 & 0.3100075 & 0.7448156\\
+	1879 & 3         & 0.7469274 & 0.3100075 & 0.7561392\\
+	2599 & 4         & 0.7469274 & 0.3100075 & 0.7645546\\
+	3319 & 5         & 0.7469274 & 0.3100075 & 0.7608649\\
+	4039 & 6         & 0.7469274 & 0.3100075 & 0.7495083\\
+	4759 & 7         & 0.7469274 & 0.3100075 & 0.7256173\\
+\end{tabular}
+
+
+    
+    It doesn't even have the lowest performance! Out of curiosity, I will
+now check the data points of the grouping with the lowest average AUC.
+This won't really add much to this analysis, but dang it if I don't find
+that intriguing.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{k+kp}{unique}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}grouping\PY{p}{[}\PY{k+kp}{which}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{0}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         rf.results\PY{p}{[}\PY{k+kp}{which}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{0}\PY{p}{)}\PY{p}{,}
+                   \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{value\PYZsq{}}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    'ERBB2\_FGF1\_IGF1\_FGFR1\_EGF\_IGF1R\_EGFR'
+
+    
+    \begin{tabular}{r|llll}
+  & series & avg.val & relative.val & value\\
+\hline
+	462 & 1         & 0.7419914 & 0         & 0.7269921\\
+	1182 & 2         & 0.7419914 & 0         & 0.7448156\\
+	1902 & 3         & 0.7419914 & 0         & 0.7415867\\
+	2622 & 4         & 0.7419914 & 0         & 0.7412423\\
+	3342 & 5         & 0.7419914 & 0         & 0.7438399\\
+	4062 & 6         & 0.7419914 & 0         & 0.7463665\\
+	4782 & 7         & 0.7419914 & 0         & 0.7490966\\
+\end{tabular}
+
+
+    
+    I don't really have anything to say about this. We all know how averages
+and numbers work.
+
+\hypertarget{third-scaling-method-sklearns-quantile-transform-method}{%
+\section{Third scaling method: sklearn's Quantile Transform
+method}\label{third-scaling-method-sklearns-quantile-transform-method}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Load SVM results and find average AUC of series}
+         svm.results \PY{o}{=} \PY{k+kp}{as.data.frame}\PY{p}{(}read\PYZus{}tsv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{../results/auc\PYZus{}quantile\PYZus{}svm\PYZus{}results.tsv\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         groupings \PY{o}{\PYZlt{}\PYZhy{}} svm.results\PY{o}{\PYZdl{}}grouping
+         svm.results\PY{o}{\PYZdl{}}avg.val \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{rowMeans}\PY{p}{(}\PY{k+kp}{subset}\PY{p}{(}svm.results\PY{p}{,} select \PY{o}{=} \PY{o}{\PYZhy{}}grouping\PY{p}{)}\PY{p}{)}
+         svm.results\PY{o}{\PYZdl{}}relative.val \PY{o}{\PYZlt{}\PYZhy{}} rescale\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         \PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         svm.results\PY{o}{\PYZdl{}}performance \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{ifelse}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{1}\PY{p}{,} 
+                                           svm.results\PY{o}{\PYZdl{}}grouping\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Others\PYZdq{}}\PY{p}{)}
+         svm.results \PY{o}{\PYZlt{}\PYZhy{}} melt\PY{p}{(}svm.results\PY{p}{,} 
+                             id.vars \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} 
+                                         \PY{l+s}{\PYZsq{}}\PY{l+s}{performance\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                             variable.name \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Load RandomForest results and find average AUC of series}
+         rf.results \PY{o}{=} \PY{k+kp}{as.data.frame}\PY{p}{(}read\PYZus{}tsv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{../results/auc\PYZus{}quantile\PYZus{}rf\PYZus{}results.tsv\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         groupings \PY{o}{\PYZlt{}\PYZhy{}} rf.results\PY{o}{\PYZdl{}}grouping
+         rf.results\PY{o}{\PYZdl{}}avg.val \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{rowMeans}\PY{p}{(}\PY{k+kp}{subset}\PY{p}{(}rf.results\PY{p}{,} select \PY{o}{=} \PY{o}{\PYZhy{}}grouping\PY{p}{)}\PY{p}{)}
+         rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{\PYZlt{}\PYZhy{}} rescale\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         \PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         rf.results\PY{o}{\PYZdl{}}performance \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{ifelse}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{1}\PY{p}{,} 
+                                          rf.results\PY{o}{\PYZdl{}}grouping\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Others\PYZdq{}}\PY{p}{)}
+         rf.results \PY{o}{\PYZlt{}\PYZhy{}} melt\PY{p}{(}rf.results\PY{p}{,} 
+                            id.vars \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} 
+                                        \PY{l+s}{\PYZsq{}}\PY{l+s}{performance\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                            variable.name \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Parsed with column specification:
+cols(
+  grouping = col\_character(),
+  `1` = col\_double(),
+  `2` = col\_double(),
+  `3` = col\_double(),
+  `4` = col\_double(),
+  `5` = col\_double(),
+  `6` = col\_double(),
+  `7` = col\_double()
+)
+
+    \end{Verbatim}
+
+    0.718702801827857
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Parsed with column specification:
+cols(
+  grouping = col\_character(),
+  `1` = col\_double(),
+  `2` = col\_double(),
+  `3` = col\_double(),
+  `4` = col\_double(),
+  `5` = col\_double(),
+  `6` = col\_double(),
+  `7` = col\_double()
+)
+
+    \end{Verbatim}
+
+    0.741842603203
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} Construct line plots}
+         \PY{c+c1}{\PYZsh{}     RF/rf = Random Forest}
+         gsvm \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PY{p}{(}data \PY{o}{=} svm.results\PY{p}{,} aes\PY{p}{(}x \PY{o}{=} series\PY{p}{,} y \PY{o}{=} value\PY{p}{,} 
+                                                group \PY{o}{=} grouping\PY{p}{,} 
+                                                alpha \PY{o}{=} performance\PY{p}{,} 
+                                                linetype \PY{o}{=} performance\PY{p}{)}\PY{p}{)}
+         
+         ggsvm \PY{o}{\PYZlt{}\PYZhy{}} gsvm \PY{o}{+} geom\PYZus{}line\PY{p}{(}aes\PY{p}{(}color \PY{o}{=} grouping\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     guides\PY{p}{(}color \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{,} linetype \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{)} \PY{o}{+}
+                     scale\PYZus{}alpha\PYZus{}manual\PY{p}{(}values\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{0.07}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     labs\PY{p}{(}title \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{SVM Quantile Transform\PYZdq{}}\PY{p}{,} 
+                          alpha \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Top Performer\PYZdq{}}\PY{p}{,} 
+                          x \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Series\PYZdq{}}\PY{p}{,} y \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{AUC\PYZdq{}}\PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest average AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                     ymin \PY{o}{=} \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+                     \PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                     ymin \PY{o}{=} \PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                             \PY{p}{(}\PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                               \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{min}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m}{6}\PY{p}{)}\PY{p}{)}
+                     \PY{p}{)}
+         
+         grf \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PY{p}{(}data \PY{o}{=} rf.results\PY{p}{,} aes\PY{p}{(}x \PY{o}{=} series\PY{p}{,} y \PY{o}{=} value\PY{p}{,} 
+                                              group \PY{o}{=} grouping\PY{p}{,} 
+                                              alpha \PY{o}{=} performance\PY{p}{,} 
+                                              linetype \PY{o}{=} performance\PY{p}{)}\PY{p}{)}
+         
+         ggrf \PY{o}{\PYZlt{}\PYZhy{}} grf \PY{o}{+} geom\PYZus{}line\PY{p}{(}aes\PY{p}{(}color \PY{o}{=} grouping\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     guides\PY{p}{(}color \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{,} linetype \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{)} \PY{o}{+}
+                     scale\PYZus{}alpha\PYZus{}manual\PY{p}{(}values\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{0.07}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     labs\PY{p}{(}title \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{RF Quantile Transform\PYZdq{}}\PY{p}{,} 
+                          alpha \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Top Performer\PYZdq{}}\PY{p}{,} 
+                          x \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Series\PYZdq{}}\PY{p}{,} y \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{AUC\PYZdq{}}\PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest average AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                     ymin \PY{o}{=} \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+                     \PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                     ymin \PY{o}{=} \PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                             \PY{p}{(}\PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                               \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{min}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m}{6}\PY{p}{)}\PY{p}{)}
+                     \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} gt \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PYZus{}gtable\PY{p}{(}ggplot\PYZus{}build\PY{p}{(}ggsvm\PY{p}{)}\PY{p}{)}
+         gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}clip\PY{p}{[}gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}name \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{panel\PYZdq{}}\PY{p}{]} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{off\PYZdq{}}
+         grid.draw\PY{p}{(}gt\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_28_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} gt \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PYZus{}gtable\PY{p}{(}ggplot\PYZus{}build\PY{p}{(}ggrf\PY{p}{)}\PY{p}{)}
+         gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}clip\PY{p}{[}gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}name \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{panel\PYZdq{}}\PY{p}{]} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{off\PYZdq{}}
+         grid.draw\PY{p}{(}gt\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Quantile transform did not really help either algorithm and, at least,
+in this moment, is not worth my time to analyze.
+
+\hypertarget{fourth-scaling-method-bioconductors-quantile-normalization-method}{%
+\section{Fourth scaling method: BioConductor's Quantile Normalization
+method}\label{fourth-scaling-method-bioconductors-quantile-normalization-method}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} Load SVM results and find average AUC of series}
+         svm.results \PY{o}{=} \PY{k+kp}{as.data.frame}\PY{p}{(}read\PYZus{}tsv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{../results/auc\PYZus{}norm\PYZus{}quan\PYZus{}svm\PYZus{}results.tsv\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         groupings \PY{o}{\PYZlt{}\PYZhy{}} svm.results\PY{o}{\PYZdl{}}grouping
+         svm.results\PY{o}{\PYZdl{}}avg.val \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{rowMeans}\PY{p}{(}\PY{k+kp}{subset}\PY{p}{(}svm.results\PY{p}{,} select \PY{o}{=} \PY{o}{\PYZhy{}}grouping\PY{p}{)}\PY{p}{)}
+         svm.results\PY{o}{\PYZdl{}}relative.val \PY{o}{\PYZlt{}\PYZhy{}} rescale\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         \PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         svm.results\PY{o}{\PYZdl{}}performance \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{ifelse}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{1}\PY{p}{,} 
+                                           svm.results\PY{o}{\PYZdl{}}grouping\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Others\PYZdq{}}\PY{p}{)}
+         svm.results \PY{o}{\PYZlt{}\PYZhy{}} melt\PY{p}{(}svm.results\PY{p}{,} 
+                             id.vars \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} 
+                                         \PY{l+s}{\PYZsq{}}\PY{l+s}{performance\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                             variable.name \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Load RandomForest results and find average AUC of series}
+         rf.results \PY{o}{=} \PY{k+kp}{as.data.frame}\PY{p}{(}read\PYZus{}tsv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{../results/auc\PYZus{}norm\PYZus{}quan\PYZus{}rf\PYZus{}results.tsv\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         groupings \PY{o}{\PYZlt{}\PYZhy{}} rf.results\PY{o}{\PYZdl{}}grouping
+         rf.results\PY{o}{\PYZdl{}}avg.val \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{rowMeans}\PY{p}{(}\PY{k+kp}{subset}\PY{p}{(}rf.results\PY{p}{,} select \PY{o}{=} \PY{o}{\PYZhy{}}grouping\PY{p}{)}\PY{p}{)}
+         rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{\PYZlt{}\PYZhy{}} rescale\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         \PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         rf.results\PY{o}{\PYZdl{}}performance \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{ifelse}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{1}\PY{p}{,} 
+                                          rf.results\PY{o}{\PYZdl{}}grouping\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Others\PYZdq{}}\PY{p}{)}
+         rf.results \PY{o}{\PYZlt{}\PYZhy{}} melt\PY{p}{(}rf.results\PY{p}{,} 
+                            id.vars \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} 
+                                        \PY{l+s}{\PYZsq{}}\PY{l+s}{performance\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                            variable.name \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Parsed with column specification:
+cols(
+  grouping = col\_character(),
+  `1` = col\_double(),
+  `2` = col\_double(),
+  `3` = col\_double(),
+  `4` = col\_double(),
+  `5` = col\_double(),
+  `6` = col\_double(),
+  `7` = col\_double()
+)
+
+    \end{Verbatim}
+
+    0.530445112991
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Parsed with column specification:
+cols(
+  grouping = col\_character(),
+  `1` = col\_double(),
+  `2` = col\_double(),
+  `3` = col\_double(),
+  `4` = col\_double(),
+  `5` = col\_double(),
+  `6` = col\_double(),
+  `7` = col\_double()
+)
+
+    \end{Verbatim}
+
+    0.760947292386429
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} Construct line plots}
+         \PY{c+c1}{\PYZsh{}     RF/rf = Random Forest}
+         gsvm \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PY{p}{(}data \PY{o}{=} svm.results\PY{p}{,} aes\PY{p}{(}x \PY{o}{=} series\PY{p}{,} y \PY{o}{=} value\PY{p}{,} 
+                                                group \PY{o}{=} grouping\PY{p}{,} 
+                                                alpha \PY{o}{=} performance\PY{p}{,} 
+                                                linetype \PY{o}{=} performance\PY{p}{)}\PY{p}{)}
+         
+         ggsvm \PY{o}{\PYZlt{}\PYZhy{}} gsvm \PY{o}{+} geom\PYZus{}line\PY{p}{(}aes\PY{p}{(}color \PY{o}{=} grouping\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     guides\PY{p}{(}color \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{,} linetype \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{)} \PY{o}{+}
+                     scale\PYZus{}alpha\PYZus{}manual\PY{p}{(}values\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{0.07}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     labs\PY{p}{(}title \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{SVM Normalized Quantile\PYZdq{}}\PY{p}{,} 
+                          alpha \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Top Performer\PYZdq{}}\PY{p}{,} 
+                          x \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Series\PYZdq{}}\PY{p}{,} y \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{AUC\PYZdq{}}\PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest average AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,} 
+                     ymin \PY{o}{=} \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+                     \PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                     ymin \PY{o}{=} \PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                             \PY{p}{(}\PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                               \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{min}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m}{6}\PY{p}{)}\PY{p}{)}
+                     \PY{p}{)}
+         
+         grf \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PY{p}{(}data \PY{o}{=} rf.results\PY{p}{,} aes\PY{p}{(}x \PY{o}{=} series\PY{p}{,} y \PY{o}{=} value\PY{p}{,} 
+                                              group \PY{o}{=} grouping\PY{p}{,} 
+                                              alpha \PY{o}{=} performance\PY{p}{,} 
+                                              linetype \PY{o}{=} performance\PY{p}{)}\PY{p}{)}
+         
+         ggrf \PY{o}{\PYZlt{}\PYZhy{}} grf \PY{o}{+} geom\PYZus{}line\PY{p}{(}aes\PY{p}{(}color \PY{o}{=} grouping\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     guides\PY{p}{(}color \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{,} linetype \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{)} \PY{o}{+}
+                     scale\PYZus{}alpha\PYZus{}manual\PY{p}{(}values\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{0.07}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     labs\PY{p}{(}title \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{RF Normalized Quantile\PYZdq{}}\PY{p}{,} 
+                          alpha \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Top Performer\PYZdq{}}\PY{p}{,} 
+                          x \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Series\PYZdq{}}\PY{p}{,} y \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{AUC\PYZdq{}}\PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest average AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                     ymin \PY{o}{=} \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+                     \PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                     ymin \PY{o}{=} \PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                             \PY{p}{(}\PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                               \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{min}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m}{6}\PY{p}{)}\PY{p}{)}
+                     \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} gt \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PYZus{}gtable\PY{p}{(}ggplot\PYZus{}build\PY{p}{(}ggsvm\PY{p}{)}\PY{p}{)}
+         gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}clip\PY{p}{[}gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}name \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{panel\PYZdq{}}\PY{p}{]} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{off\PYZdq{}}
+         grid.draw\PY{p}{(}gt\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_33_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} gt \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PYZus{}gtable\PY{p}{(}ggplot\PYZus{}build\PY{p}{(}ggrf\PY{p}{)}\PY{p}{)}
+         gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}clip\PY{p}{[}gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}name \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{panel\PYZdq{}}\PY{p}{]} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{off\PYZdq{}}
+         grid.draw\PY{p}{(}gt\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_34_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We see that quantile normalization improved the RF's highest average AUC
+as well as its highest AUC peak (0.78). However, it proved detrimental
+to SVM.
+
+I'm going to print off the data of the groupings that were part of the
+highest peak and the lowest low. I will not analyze the data at this
+time, seeing as this has gotten really long.
+
+\begin{quote}
+Highest peak
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} rf.results\PY{p}{[}\PY{k+kp}{which}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value \PY{o}{==} \PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+                    \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{value\PYZsq{}}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|llll}
+  & grouping & avg.val & relative.val & value\\
+\hline
+	2761 & ERBB2\_IGF1\_FGFR1\_EGFR\_IGF1R\_FGF1\_EGF & 0.7589568                                        & 0.8800763                                        & 0.7799878                                       \\
+	2762 & ERBB2\_IGF1\_FGFR1\_EGFR\_IGF1R\_EGF\_FGF1 & 0.7592106                                        & 0.8953665                                        & 0.7799878                                       \\
+	2763 & ERBB2\_IGF1\_FGFR1\_EGFR\_FGF1\_IGF1R\_EGF & 0.7596732                                        & 0.9232353                                        & 0.7799878                                       \\
+	2764 & ERBB2\_IGF1\_FGFR1\_EGFR\_FGF1\_EGF\_IGF1R & 0.7598587                                        & 0.9344113                                        & 0.7799878                                       \\
+	2765 & ERBB2\_IGF1\_FGFR1\_EGFR\_EGF\_IGF1R\_FGF1 & 0.7589003                                        & 0.8766725                                        & 0.7799878                                       \\
+	2766 & ERBB2\_IGF1\_FGFR1\_EGFR\_EGF\_FGF1\_IGF1R & 0.7594778                                        & 0.9114656                                        & 0.7799878                                       \\
+\end{tabular}
+
+
+    
+    \begin{quote}
+Lowest low
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} rf.results\PY{p}{[}\PY{k+kp}{which}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value \PY{o}{==} \PY{k+kp}{min}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                   \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{value\PYZsq{}}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{tabular}{r|lllll}
+  & grouping & avg.val & relative.val & series & value\\
+\hline
+	4816 & ERBB2\_EGF\_FGFR1\_FGF1\_IGF1R\_IGF1\_EGFR & 0.7494177                                        & 0.3053583                                        & 7                                                & 0.7309226                                       \\
+\end{tabular}
+
+
+    
+    \begin{quote}
+It should be noted that I accidentally began to run SVM with quantile
+normalization and standard scaling and it actually performed decently,
+but I interrupted the program before it could finish and do not have
+that data. I may go back and see how well SVM and RF perform with a
+combination of scaling methods (especially the most different ones)
+\end{quote}
+
+\hypertarget{fifth-scaling-method-bioconductors-vst-method}{%
+\section{Fifth scaling method: BioConductor's VST
+method}\label{fifth-scaling-method-bioconductors-vst-method}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{} Load SVM results and find average AUC of series}
+         svm.results \PY{o}{=} \PY{k+kp}{as.data.frame}\PY{p}{(}read\PYZus{}tsv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{../results/auc\PYZus{}vsd\PYZus{}svm\PYZus{}results.tsv\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         groupings \PY{o}{\PYZlt{}\PYZhy{}} svm.results\PY{o}{\PYZdl{}}grouping
+         svm.results\PY{o}{\PYZdl{}}avg.val \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{rowMeans}\PY{p}{(}\PY{k+kp}{subset}\PY{p}{(}svm.results\PY{p}{,} select \PY{o}{=} \PY{o}{\PYZhy{}}grouping\PY{p}{)}\PY{p}{)}
+         svm.results\PY{o}{\PYZdl{}}relative.val \PY{o}{\PYZlt{}\PYZhy{}} rescale\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         \PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         svm.results\PY{o}{\PYZdl{}}performance \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{ifelse}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{1}\PY{p}{,} 
+                                           svm.results\PY{o}{\PYZdl{}}grouping\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Others\PYZdq{}}\PY{p}{)}
+         svm.results \PY{o}{\PYZlt{}\PYZhy{}} melt\PY{p}{(}svm.results\PY{p}{,} 
+                             id.vars \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} 
+                                         \PY{l+s}{\PYZsq{}}\PY{l+s}{performance\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                             variable.name \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Load RandomForest results and find average AUC of series}
+         rf.results \PY{o}{=} \PY{k+kp}{as.data.frame}\PY{p}{(}read\PYZus{}tsv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{../results/auc\PYZus{}vsd\PYZus{}rf\PYZus{}results.tsv\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         groupings \PY{o}{\PYZlt{}\PYZhy{}} rf.results\PY{o}{\PYZdl{}}grouping
+         rf.results\PY{o}{\PYZdl{}}avg.val \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{rowMeans}\PY{p}{(}\PY{k+kp}{subset}\PY{p}{(}rf.results\PY{p}{,} select \PY{o}{=} \PY{o}{\PYZhy{}}grouping\PY{p}{)}\PY{p}{)}
+         rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{\PYZlt{}\PYZhy{}} rescale\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         \PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}
+         
+         rf.results\PY{o}{\PYZdl{}}performance \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kp}{ifelse}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}relative.val \PY{o}{==} \PY{l+m}{1}\PY{p}{,} 
+                                          rf.results\PY{o}{\PYZdl{}}grouping\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Others\PYZdq{}}\PY{p}{)}
+         rf.results \PY{o}{\PYZlt{}\PYZhy{}} melt\PY{p}{(}rf.results\PY{p}{,} 
+                            id.vars \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{grouping\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{avg.val\PYZsq{}}\PY{p}{,} 
+                                        \PY{l+s}{\PYZsq{}}\PY{l+s}{performance\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{relative.val\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                            variable.name \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{series\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Parsed with column specification:
+cols(
+  grouping = col\_character(),
+  `1` = col\_double(),
+  `2` = col\_double(),
+  `3` = col\_double(),
+  `4` = col\_double(),
+  `5` = col\_double(),
+  `6` = col\_double(),
+  `7` = col\_double()
+)
+
+    \end{Verbatim}
+
+    0.530445112991
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Parsed with column specification:
+cols(
+  grouping = col\_character(),
+  `1` = col\_double(),
+  `2` = col\_double(),
+  `3` = col\_double(),
+  `4` = col\_double(),
+  `5` = col\_double(),
+  `6` = col\_double(),
+  `7` = col\_double()
+)
+
+    \end{Verbatim}
+
+    0.755295658088143
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} Construct line plots}
+         \PY{c+c1}{\PYZsh{}     RF/rf = Random Forest}
+         gsvm \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PY{p}{(}data \PY{o}{=} svm.results\PY{p}{,} aes\PY{p}{(}x \PY{o}{=} series\PY{p}{,} y \PY{o}{=} value\PY{p}{,} 
+                                                group \PY{o}{=} grouping\PY{p}{,} 
+                                                alpha \PY{o}{=} performance\PY{p}{,} 
+                                                linetype \PY{o}{=} performance\PY{p}{)}\PY{p}{)}
+         
+         ggsvm \PY{o}{\PYZlt{}\PYZhy{}} gsvm \PY{o}{+} geom\PYZus{}line\PY{p}{(}aes\PY{p}{(}color \PY{o}{=} grouping\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     guides\PY{p}{(}color \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{,} linetype \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{)} \PY{o}{+}
+                     scale\PYZus{}alpha\PYZus{}manual\PY{p}{(}values\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{0.07}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     labs\PY{p}{(}title \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{SVM VST\PYZdq{}}\PY{p}{,} 
+                          alpha \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Top Performer\PYZdq{}}\PY{p}{,} 
+                          x \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Series\PYZdq{}}\PY{p}{,} y \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{AUC\PYZdq{}}\PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest average AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                     ymin \PY{o}{=} \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+                     \PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                     ymin \PY{o}{=} \PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                             \PY{p}{(}\PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                               \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{min}\PY{p}{(}svm.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m}{6}\PY{p}{)}\PY{p}{)}
+                     \PY{p}{)}
+         
+         grf \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PY{p}{(}data \PY{o}{=} rf.results\PY{p}{,} aes\PY{p}{(}x \PY{o}{=} series\PY{p}{,} y \PY{o}{=} value\PY{p}{,} 
+                                              group \PY{o}{=} grouping\PY{p}{,} 
+                                              alpha \PY{o}{=} performance\PY{p}{,} 
+                                              linetype \PY{o}{=} performance\PY{p}{)}\PY{p}{)}
+         
+         ggrf \PY{o}{\PYZlt{}\PYZhy{}} grf \PY{o}{+} geom\PYZus{}line\PY{p}{(}aes\PY{p}{(}color \PY{o}{=} grouping\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     guides\PY{p}{(}color \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{,} linetype \PY{o}{=} \PY{n+nb+bp}{F}\PY{p}{)} \PY{o}{+}
+                     scale\PYZus{}alpha\PYZus{}manual\PY{p}{(}values\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{0.07}\PY{p}{)}\PY{p}{)} \PY{o}{+} 
+                     labs\PY{p}{(}title \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{RF VST\PYZdq{}}\PY{p}{,} 
+                          alpha \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Top Performer\PYZdq{}}\PY{p}{,} 
+                          x \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Series\PYZdq{}}\PY{p}{,} y \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{AUC\PYZdq{}}\PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest average AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}avg.val\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                     ymin \PY{o}{=} \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+                     \PY{p}{)} \PY{o}{+}
+                     annotation\PYZus{}custom\PY{p}{(}
+                     grob \PY{o}{=} textGrob\PY{p}{(}label \PY{o}{=} \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Highest AUC:\PYZdq{}}\PY{p}{,} 
+                                                   \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} 
+                                                         digits \PY{o}{=} \PY{l+m}{4}\PY{p}{)}\PY{p}{,} 
+                                                   sep \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}n\PYZdq{}}\PY{p}{)}\PY{p}{,}
+                                     hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{,}
+                     xmin \PY{o}{=} \PY{l+m}{15}\PY{p}{,}
+                     ymin \PY{o}{=} \PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                             \PY{p}{(}\PY{p}{(}\PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{max}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)} \PY{o}{\PYZhy{}} 
+                               \PY{k+kp}{round}\PY{p}{(}\PY{k+kp}{min}\PY{p}{(}rf.results\PY{o}{\PYZdl{}}value\PY{p}{)}\PY{p}{,} digits \PY{o}{=} \PY{l+m}{2}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{l+m}{6}\PY{p}{)}\PY{p}{)}
+                     \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} gt \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PYZus{}gtable\PY{p}{(}ggplot\PYZus{}build\PY{p}{(}ggsvm\PY{p}{)}\PY{p}{)}
+         gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}clip\PY{p}{[}gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}name \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{panel\PYZdq{}}\PY{p}{]} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{off\PYZdq{}}
+         grid.draw\PY{p}{(}gt\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} gt \PY{o}{\PYZlt{}\PYZhy{}} ggplot\PYZus{}gtable\PY{p}{(}ggplot\PYZus{}build\PY{p}{(}ggrf\PY{p}{)}\PY{p}{)}
+         gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}clip\PY{p}{[}gt\PY{o}{\PYZdl{}}layout\PY{o}{\PYZdl{}}name \PY{o}{==} \PY{l+s}{\PYZdq{}}\PY{l+s}{panel\PYZdq{}}\PY{p}{]} \PY{o}{\PYZlt{}\PYZhy{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{off\PYZdq{}}
+         grid.draw\PY{p}{(}gt\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_43_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Again, we see that this method has caused SVM to fail after being
+trained on more than just ERBB2. RF performed decently, but did not
+outperform RF on Quantile Normalized data.
+
+\hypertarget{conclusions}{%
+\section{Conclusions}\label{conclusions}}
+
+\hypertarget{svm}{%
+\subsection{SVM}\label{svm}}
+
+The Robust Scaler proved to the best method for scaling data when
+attempting to predict her2 positivity with SVM. Within this, we saw that
+SVM has poorer performance the noisier the data, meaning that it seems
+that the less data the better.
+
+Since each graph showed convergence on the seventh series, it would be
+reasonable for us to infer that the order of the data does not matter to
+SVM.
+
+We also see that the SVM algorithm is very sensitive to data that is not
+scaled to its `\emph{liking}'
+
+\hypertarget{rf}{%
+\subsection{RF}\label{rf}}
+
+BioConductor's Quantile Normalization showed the greatest improvement
+when used with RF. All other scaling methods showed decent performance
+and in most of our cases showed that with this particular dataset and
+classification, RandomForest outperformed SVM. Random Forest shows
+better performance when given multiple features, but this does not mean
+that Random Forest will perform amazingly given more data, as the order
+of the given data seems to affect how the decision tree is made. As
+stated earlier, we can infer this by the fact that the lines do not
+converge on the seventh seried, even though the only difference in the
+data was the order of the columns (genes).
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
