@@ -5,6 +5,7 @@ XCode*
 *.gz
 *.bz2
 *.pdf*
+!peak_performance_*.pdf
 *.png*
 *.dot*
 data
