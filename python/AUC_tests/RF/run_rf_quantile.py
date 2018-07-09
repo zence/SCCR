@@ -27,7 +27,7 @@ def run(genes):
 
     expr_target = pd.DataFrame(data=total_her2_expr['her2_status_by_ihc'])
     expr_target['her2_status_by_ihc'] = (expr_target['her2_status_by_ihc'] == 'Positive').astype(int)
-    expr_data = total_her2_expr.iloc[:, :-2]
+    expr_data = quantile_transform(total_her2_expr.iloc[:, :-2])
 
 
     #cv_results = cross_val_predict(clf, expr_data, expr_target.values.ravel(), cv=10)
@@ -42,7 +42,7 @@ def run(genes):
 
         # Look at robust_scaler (or however it's spelled)
 
-        X_train, X_test = quantile_transform(expr_data.values[train]), quantile_transform(expr_data.values[test])
+        X_train, X_test = expr_data[train], expr_data[test]
         y_train, y_test = expr_target.values[train], expr_target.values[test]
         #print(X_train)
         #print(y_train.ravel())

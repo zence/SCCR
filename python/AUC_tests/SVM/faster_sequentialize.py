@@ -48,8 +48,9 @@ with open("../../../data/all_genes_TPM.tsv", 'r') as in_f:
 spec_genes = ['FGFR1', 'EGFR', 'IGF1R', 'FGF1', 'EGF', 'IGF1']
 just_ERBB2 = ['ERBB2']
 
-all_genes = [x if x not in spec_genes and x not in just_ERBB2 else None for x in all_genes]
+#all_genes = [x if x not in spec_genes and x not in just_ERBB2 else None for x in all_genes]
 
+all_genes = [x for x in all_genes if x not in spec_genes and x not in just_ERBB2 and x not in ['Sample', 'her2_status_by_ihc']]
 #auc_ERBB2 = run_svm.run(just_ERBB2)
 
 #sequence([*just_ERBB2, *spec_genes])

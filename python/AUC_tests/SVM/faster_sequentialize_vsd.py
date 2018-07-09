@@ -6,7 +6,7 @@ def sequence(genes, best_string='', best_auc=0, ix=0, *args):
     for i in range(len(genes)):
         if i >= ix:
             temp_genes = genes[:i + 1]
-            cur_auc = run_svm.run(temp_genes)
+            cur_auc = run_vsd_svm.run(temp_genes)
             print(', '.join(temp_genes) + ': ' + str(cur_auc), flush=True)
             if cur_auc > best_auc:
                 best_auc = cur_auc
@@ -38,7 +38,7 @@ def scramble(genes, add_genes=None):
         for perm in itertools.permutations(genes, len(genes)):
             print(perm)
 
-
+print('SVM VSD')
 
 all_genes = ''
 
@@ -48,8 +48,9 @@ with open("../../../data/all_genes_TPM.tsv", 'r') as in_f:
 spec_genes = ['FGFR1', 'EGFR', 'IGF1R', 'FGF1', 'EGF', 'IGF1']
 just_ERBB2 = ['ERBB2']
 
-all_genes = [x if x not in spec_genes and x not in just_ERBB2 else None for x in all_genes]
+#all_genes = [x if x not in spec_genes and x not in just_ERBB2 else None for x in all_genes]
 
+all_genes = [x for x in all_genes if x not in spec_genes and x not in just_ERBB2 and x not in ['Sample', 'her2_status_by_ihc']]
 #auc_ERBB2 = run_svm.run(just_ERBB2)
 
 #sequence([*just_ERBB2, *spec_genes])
