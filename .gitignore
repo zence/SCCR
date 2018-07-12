@@ -6,3 +6,4 @@ XCode*
 *.bz2
 *.pdf*
 *.out*
+*pycache*
