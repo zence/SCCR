@@ -1,6 +1,6 @@
 import os
 
-no_no_dirs = ['pycache', 'results', 'fixers', 'MLP']
+no_no_dirs = ['pycache', 'results', 'fixers', 'MLP', '0.0.2']
 
 for root, dirs, files in os.walk('../.'):
     if any(no_no_dir in root for no_no_dir in no_no_dirs):

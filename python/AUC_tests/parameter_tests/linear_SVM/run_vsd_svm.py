@@ -1,7 +1,7 @@
 from sklearn.svm import SVC
 from sklearn.preprocessing import scale
 from sklearn.metrics import roc_auc_score
-from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold, GridSearchCV
 
 import pandas as pd
 
@@ -21,7 +21,7 @@ def compare_lists(x, y):
 
 def run(genes, random_seed):
 
-    total_her2_expr = pd.read_csv('../../../../../data/vsd_FeatureCounts.tsv', sep='\t')
+    total_her2_expr = pd.read_csv('../../../../data/vsd_FeatureCounts.tsv', sep='\t')
 
     total_her2_expr = total_her2_expr[[*genes, 'her2_status_by_ihc', 'Sample']]
 
@@ -35,10 +35,12 @@ def run(genes, random_seed):
     #print(cv_results)
 
     kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=random_seed)
+    parameters = {'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000]}
     auc_vals = []
 
     for train, test in kf.split(expr_data, expr_target):
-        clf = SVC(kernel='linear', C=1, random_state=0, probability=True)
+        svc = SVC(kernel='linear', random_state=random_seed, probability=True)
+        clf = GridSearchCV(svc, parameters)
 
         # Look at robust_scaler (or however it's spelled)
 
@@ -47,12 +49,13 @@ def run(genes, random_seed):
         #print(X_train)
         #print(y_train.ravel())
         clf.fit(X_train, y_train.ravel())
+        print(clf.best_estimator_)
 
-        testing_ids = total_her2_expr['Sample'].values[test]
+        #testing_ids = total_her2_expr['Sample'].values[test]
 
         predictions = clf.predict(X_test)
 
-        misclassied = compare_lists(y_test.ravel(), predictions)
+        #misclassied = compare_lists(y_test.ravel(), predictions)
 
         auc_vals.append(roc_auc_score(y_test.ravel(), predictions))
 

@@ -36,10 +36,10 @@ def run(genes, random_seed):
 
     kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=random_seed)
     auc_vals = []
-    parameters = {'kernel': ('linear', 'rbf'), 'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000]}
+    parameters = {'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000]}
 
     for train, test in kf.split(expr_data, expr_target):
-        svc = SVC(random_state=random_seed, probability=True)
+        svc = SVC(kernel='rbf', random_state=random_seed, probability=True)
         clf = GridSearchCV(svc, parameters)
 
         # Look at robust_scaler (or however it's spelled)
@@ -48,16 +48,17 @@ def run(genes, random_seed):
         y_train, y_test = expr_target.values[train], expr_target.values[test]
         #print(X_train)
         #print(y_train.ravel())
-        print(clf.fit(X_train, y_train.ravel()))
-
+        clf.fit(X_train, y_train.ravel())
+        #print(pd.DataFrame(clf.cv_results_))
+        print(clf.best_estimator_)
         
 
         #testing_ids = total_her2_expr['Sample'].values[test]
 
-        #predictions = clf.predict(X_test)
+        predictions = clf.predict(X_test)
 
         #misclassied = compare_lists(y_test.ravel(), predictions)
 
-        #auc_vals.append(roc_auc_score(y_test.ravel(), predictions))
+        auc_vals.append(roc_auc_score(y_test.ravel(), predictions))
 
     return auc_vals

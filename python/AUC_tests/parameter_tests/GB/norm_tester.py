@@ -10,7 +10,7 @@ all_genes = ''
 print('GB ' + mod_name)
 
 # load gene data
-with open('../../../../../data/all_genes_TPM.tsv', 'r') as in_f:
+with open('../../../../data/all_genes_TPM.tsv', 'r') as in_f:
     all_genes = in_f.readline().rstrip().split('\t')
 
 all_genes = [x for x in all_genes if x not in ['Sample', 'her2_status_by_ihc']]

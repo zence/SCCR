@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-no_no_dirs = ['pycache', 'fixers', 'MLP', 'results']
+no_no_dirs = ['pycache', 'fixers', 'MLP', 'results', '0.0.2']
 
 no_no_files = ['automator.sh']
 
@@ -17,6 +17,8 @@ for root, dirs, files in os.walk('../.'):
             in_f.readline()
             metadata = in_f.readline().split(' ')
             model = metadata[0]
+            if model == '':
+                continue
             method = '_'.join(metadata[1].split('_')[1:-1])
             for line in in_f:
                 if line.startswith('AUC'):
@@ -29,4 +31,4 @@ for root, dirs, files in os.walk('../.'):
                     #aucs.append(float(line.split(': ')[1]))
             in_f.close()
     #print(output)
-raw_aucs.to_csv('raw_aucs.tsv', sep='\t', index=False)
+raw_aucs.to_csv('raw_aucs_params.tsv', sep='\t', index=False)
