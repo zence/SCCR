@@ -1,5 +1,5 @@
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import RobustScaler
+from sklearn.svm import SVC
+from sklearn.preprocessing import scale
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import StratifiedKFold
 
@@ -21,13 +21,13 @@ def compare_lists(x, y):
 
 def run(genes):
 
-    total_her2_expr = pd.read_csv('../../../../data/vsd_FeatureCounts.tsv', sep='\t')
+    total_her2_expr = pd.read_csv('../../../../../data/vsd_FeatureCounts.tsv', sep='\t')
 
     total_her2_expr = total_her2_expr[[*genes, 'her2_status_by_ihc', 'Sample']]
 
     expr_target = pd.DataFrame(data=total_her2_expr['her2_status_by_ihc'])
     expr_target['her2_status_by_ihc'] = (expr_target['her2_status_by_ihc'] == 'Positive').astype(int)
-    expr_data = RobustScaler().fit_transform(total_her2_expr.iloc[:, :-2])
+    expr_data = total_her2_expr.iloc[:, :-2]
 
 
     #cv_results = cross_val_predict(clf, expr_data, expr_target.values.ravel(), cv=10)
@@ -38,11 +38,11 @@ def run(genes):
     auc_vals = []
 
     for train, test in kf.split(expr_data, expr_target):
-        clf = LogisticRegression(random_state=0)
+        clf = SVC(kernel='linear', C=1, random_state=0, probability=True)
 
         # Look at robust_scaler (or however it's spelled)
 
-        X_train, X_test = expr_data[train], expr_data[test]
+        X_train, X_test = expr_data.values[train], expr_data.values[test]
         y_train, y_test = expr_target.values[train], expr_target.values[test]
         #print(X_train)
         #print(y_train.ravel())

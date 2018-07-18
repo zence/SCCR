@@ -21,7 +21,7 @@ def compare_lists(x, y):
 
 def run(genes):
 
-    total_her2_expr = pd.read_csv('../../../../data/vsd_FeatureCounts.tsv', sep='\t')
+    total_her2_expr = pd.read_csv('../../../../../data/vsd_FeatureCounts.tsv', sep='\t')
 
     total_her2_expr = total_her2_expr[[*genes, 'her2_status_by_ihc', 'Sample']]
 

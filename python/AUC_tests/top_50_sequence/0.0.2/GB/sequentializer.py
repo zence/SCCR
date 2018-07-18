@@ -7,12 +7,12 @@ all_genes = []
 print('GradientBoost Sequence 50', flush=True)
 
 # load gene data
-with open('../genes.txt', 'r') as in_f:
+with open('../../genes.txt', 'r') as in_f:
     for line in in_f:
         all_genes.append(line.strip())
 
 erbb2_auc = run_vsd_gb.run(['ERBB2'])
-important_genes = ['ERBB2']
+important_genes = []
 # Declaring here just in case python throws a fit
 cur_best_auc = 0
 cur_auc = []

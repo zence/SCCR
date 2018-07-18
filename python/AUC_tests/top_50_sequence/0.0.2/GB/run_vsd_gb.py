@@ -1,4 +1,4 @@
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.preprocessing import scale
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import StratifiedKFold
@@ -21,7 +21,7 @@ def compare_lists(x, y):
 
 def run(genes):
 
-    total_her2_expr = pd.read_csv('../../../../data/norm_quan_FeatureCount.tsv', sep='\t')
+    total_her2_expr = pd.read_csv('../../../../../data/vsd_FeatureCounts.tsv', sep='\t')
 
     total_her2_expr = total_her2_expr[[*genes, 'her2_status_by_ihc', 'Sample']]
 
@@ -38,7 +38,7 @@ def run(genes):
     auc_vals = []
 
     for train, test in kf.split(expr_data, expr_target):
-        clf = RandomForestClassifier(random_state=0)
+        clf = GradientBoostingClassifier(random_state=0)
 
         # Look at robust_scaler (or however it's spelled)
 

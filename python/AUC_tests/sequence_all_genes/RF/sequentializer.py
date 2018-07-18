@@ -26,9 +26,9 @@ for ix in range(30):
             continue
         cur_auc = run_norm_quan_rf.run([*important_genes, gene])
         if cur_auc > cur_best_auc:
-            print("Current best AUC: " + str(cur_best_auc), flush=True)
             cur_best_auc = cur_auc
             winner = gene
+            print("Current best AUC: " + str(cur_best_auc) + ", " + gene, flush=True)
     important_genes.append(winner)
     print(': '.join(['The winners so far: ', ', '.join(important_genes)]), flush=True) 
 

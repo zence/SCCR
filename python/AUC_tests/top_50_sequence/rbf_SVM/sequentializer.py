@@ -2,15 +2,15 @@ import sys
 import run_vsd_svm
 
 
-all_genes = ''
+all_genes = []
 
 print('rbfSVM Sequence All', flush=True)
 
 # load gene data
-with open('../../../../data/all_genes_TPM.tsv', 'r') as in_f:
-    all_genes = in_f.readline().rstrip().split('\t')
+with open('../genes.txt', 'r') as in_f:
+    for line in in_f:
+        all_genes.append(line.strip())
 
-all_genes = [x for x in all_genes if x not in ['Sample', 'her2_status_by_ihc']]
 
 erbb2_auc = run_vsd_svm.run(['ERBB2'])
 important_genes = ['ERBB2']
@@ -32,4 +32,4 @@ for ix in range(10):
     important_genes.append(winner)
     print(': '.join(['The winners so far: ', ', '.join(important_genes)])) 
 
-print('WINNER: ' + ', '.join(important_genes), + '\nAUC: ' + cur_best_auc)
+print('WINNER: ' + ', '.join(important_genes) + '\nAUC: ' + str(cur_best_auc))
