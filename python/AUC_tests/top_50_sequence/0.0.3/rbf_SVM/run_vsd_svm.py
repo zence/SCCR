@@ -1,4 +1,4 @@
-from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.svm import SVC
 from sklearn.preprocessing import scale
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import StratifiedKFold
@@ -19,9 +19,9 @@ def compare_lists(x, y):
             discrepancies.append(i)
     return discrepancies
 
-def run(genes, random_seed):
+def run(genes):
 
-    total_her2_expr = pd.read_csv('../../../../data/vsd_posneg_score.tsv', sep='\t')
+    total_her2_expr = pd.read_csv('../../../../../data/vsd_posneg_score.tsv', sep='\t')
 
     total_her2_expr = total_her2_expr[[*genes, 'her2_status_by_ihc']]
 
@@ -34,11 +34,11 @@ def run(genes, random_seed):
 
     #print(cv_results)
 
-    kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=random_seed)
+    kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
     auc_vals = []
 
     for train, test in kf.split(expr_data, expr_target):
-        clf = GradientBoostingClassifier(random_state=random_seed)
+        clf = SVC(kernel='rbf', C=1, random_state=0, probability=True)
 
         # Look at robust_scaler (or however it's spelled)
 
@@ -56,4 +56,4 @@ def run(genes, random_seed):
 
         auc_vals.append(roc_auc_score(y_test.ravel(), predictions))
 
-    return auc_vals
+    return (sum(auc_vals) / len(auc_vals))

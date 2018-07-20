@@ -27,7 +27,7 @@ def run(genes, random_seed):
 
     expr_target = pd.DataFrame(data=total_her2_expr['her2_status_by_ihc'])
     expr_target['her2_status_by_ihc'] = (expr_target['her2_status_by_ihc'] == 'Positive').astype(int)
-    expr_data = total_her2_expr.iloc[:, :-2]
+    expr_data = total_her2_expr.iloc[:, :-1]
 
 
     #cv_results = cross_val_predict(clf, expr_data, expr_target.values.ravel(), cv=10)

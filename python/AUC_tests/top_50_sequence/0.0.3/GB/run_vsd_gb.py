@@ -19,11 +19,13 @@ def compare_lists(x, y):
             discrepancies.append(i)
     return discrepancies
 
-def run(genes, random_seed):
+def run(genes):
 
-    total_her2_expr = pd.read_csv('../../../../data/vsd_posneg_score.tsv', sep='\t')
+    total_her2_expr = pd.read_csv('../../../../../data/vsd_posneg_score.tsv', sep='\t')
 
     total_her2_expr = total_her2_expr[[*genes, 'her2_status_by_ihc']]
+
+    print(total_her2_expr)
 
     expr_target = pd.DataFrame(data=total_her2_expr['her2_status_by_ihc'])
     expr_target['her2_status_by_ihc'] = (expr_target['her2_status_by_ihc'] == 'Positive').astype(int)
@@ -34,11 +36,11 @@ def run(genes, random_seed):
 
     #print(cv_results)
 
-    kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=random_seed)
+    kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
     auc_vals = []
 
     for train, test in kf.split(expr_data, expr_target):
-        clf = GradientBoostingClassifier(random_state=random_seed)
+        clf = GradientBoostingClassifier(random_state=0)
 
         # Look at robust_scaler (or however it's spelled)
 
@@ -56,4 +58,4 @@ def run(genes, random_seed):
 
         auc_vals.append(roc_auc_score(y_test.ravel(), predictions))
 
-    return auc_vals
+    return (sum(auc_vals) / len(auc_vals))
