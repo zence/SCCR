@@ -19,11 +19,15 @@ def compare_lists(x, y):
             discrepancies.append(i)
     return discrepancies
 
-def run(genes, random_seed):
+def run(genes, random_seed, misclassied_samples):
 
-    total_her2_expr = pd.read_csv('../../../../data/vsd_posneg_score.tsv', sep='\t')
+    total_her2_expr = pd.read_csv('../../../../../data/vsd_FeatureCounts_cleanscores.tsv', sep='\t', index_col=0)
 
     total_her2_expr = total_her2_expr[[*genes, 'her2_status_by_ihc']]
+    total_her2_expr = total_her2_expr.loc[(total_her2_expr['her2_status_by_ihc'] == 'Positive') |
+                                          (total_her2_expr['her2_status_by_ihc'] == 'Negative')]
+
+    print(total_her2_expr)
 
     expr_target = pd.DataFrame(data=total_her2_expr['her2_status_by_ihc'])
     expr_target['her2_status_by_ihc'] = (expr_target['her2_status_by_ihc'] == 'Positive').astype(int)
@@ -48,12 +52,26 @@ def run(genes, random_seed):
         #print(y_train.ravel())
         clf.fit(X_train, y_train.ravel())
 
-        #testing_ids = total_her2_expr['Sample'].values[test]
+        testing_ids = total_her2_expr.index[test]
+
+        print(testing_ids)
 
         predictions = clf.predict(X_test)
 
         misclassied = compare_lists(y_test.ravel(), predictions)
 
-        auc_vals.append(roc_auc_score(y_test.ravel(), predictions))
+        misclassied_ids = testing_ids[misclassied]
 
-    return auc_vals
+        for mis_id in misclassied_ids:
+            if mis_id not in misclassied_samples['Sample'].values:
+                print("**	YOU SHOULD BE HERE	**")
+                misclassied_samples = misclassied_samples.append({'Sample': mis_id, 'times_misclassified': 1, 'notes': ''}, ignore_index=True)
+            else:
+                times_misclassified = misclassied_samples.loc[misclassied_samples['Sample'] == mis_id]['times_misclassified']
+                cur_ix = misclassied_samples.loc[misclassied_samples['Sample'] == mis_id].index
+                misclassied_samples.at[cur_ix, 'times_misclassified'] = times_misclassified + 1
+
+        #auc_vals.append(roc_auc_score(y_test.ravel(), predictions))
+        #print(misclassied_samples)
+
+    return misclassied_samples
